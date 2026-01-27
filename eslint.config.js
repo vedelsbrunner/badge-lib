@@ -27,7 +27,7 @@ export default tseslint.config(
     }
   },
   {
-    ignores: ['dist/']
+    ignores: ['dist/', '.svelte-kit/']
   }
 );
 

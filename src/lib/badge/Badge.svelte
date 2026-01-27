@@ -13,7 +13,6 @@
   import { getBasePath } from '../runtime/platform';
   import BadgeIcon from './icons/BadgeIcon.svelte';
   import type { BadgeData, BadgeHint, BadgeHintIcon, BadgeOnClick } from './types';
-  import type { BadgeIconName } from './icons/BadgeIcon.svelte';
 
   type BadgeType = 'mini' | 'normal' | 'big';
   type BadgeVariant = 'filled' | 'outlined';
@@ -57,7 +56,7 @@
   }
 
   function hasHref(click: BadgeOnClick | null): click is { href: string; external?: boolean; hint?: BadgeHint } {
-    return Boolean(click) && typeof (click as any).href === 'string';
+    return Boolean(click) && 'href' in click && typeof click.href === 'string';
   }
 
   function hasAction(click: BadgeOnClick | null): click is {
@@ -65,7 +64,7 @@
     hint?: BadgeHint;
     ariaLabel?: string;
   } {
-    return Boolean(click) && typeof (click as any).action === 'function';
+    return Boolean(click) && 'action' in click && typeof click.action === 'function';
   }
 
   function handleActionKeydown(e: KeyboardEvent, action: () => void) {
@@ -94,7 +93,7 @@
       return text ? { text, icon: null } : null;
     }
     if (hint && typeof hint === 'object') {
-      const maybe = hint as any;
+      const maybe = hint as Record<string, unknown>;
       const text = typeof maybe.text === 'string' ? maybe.text.trim() : '';
       const icon: BadgeHintIcon | null = maybe.icon === 'download' ? 'download' : maybe.icon === 'info' ? 'info' : null;
       return text ? { text, icon } : null;
@@ -102,7 +101,7 @@
     return null;
   }
 
-  $: normalizedHint = onClick && 'hint' in onClick ? normalizeHint((onClick as any).hint) : null;
+  $: normalizedHint = onClick ? normalizeHint(onClick.hint) : null;
   $: clickHintText = normalizedHint?.text ?? (clickKind !== 'none' ? 'Click for more' : '');
   $: clickHintIcon = normalizedHint?.icon ?? null;
 

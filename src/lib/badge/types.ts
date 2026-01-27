@@ -1,6 +1,6 @@
 import type { BadgeIconName } from './icons/BadgeIcon.svelte';
 
-export type BadgeIntent = 'CONFIRMATION' | 'INFORMATION' | 'WARNING';
+export type BadgeColor = string;
 
 export type BadgeHintIcon = 'download' | 'info';
 
@@ -48,9 +48,14 @@ export interface BadgeData {
   id?: string | number;
   label: string;
   description?: string;
-  intent?: BadgeIntent;
   /**
-   * Optional icon override (used when the intent icon isn't the best fit).
+   * Main color used to render the badge.
+   * Accepts any valid CSS color string (e.g. '#2E7D32', 'rgb(46 125 50)', 'hsl(210 90% 40%)').
+   */
+  color: BadgeColor;
+  /**
+   * Optional icon.
+   * If omitted, no icon is shown.
    */
   icon?: BadgeIconName;
   /**

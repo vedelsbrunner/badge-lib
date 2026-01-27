@@ -1,6 +1,5 @@
 <script context="module" lang="ts">
   export type BadgeType = 'mini' | 'normal' | 'big';
-  export type BadgeTone = 'neutral' | 'success' | 'info' | 'warning';
   export type BadgeVariant = 'filled' | 'outlined';
 
   // Big badge renderers
@@ -13,11 +12,10 @@
   import FlowbiteTooltip from '../components/FlowbiteTooltip.svelte';
   import { getBasePath } from '../runtime/platform';
   import BadgeIcon from './icons/BadgeIcon.svelte';
-  import type { BadgeData, BadgeHint, BadgeHintIcon, BadgeIntent, BadgeOnClick } from './types';
+  import type { BadgeData, BadgeHint, BadgeHintIcon, BadgeOnClick } from './types';
   import type { BadgeIconName } from './icons/BadgeIcon.svelte';
 
   type BadgeType = 'mini' | 'normal' | 'big';
-  type BadgeTone = 'neutral' | 'success' | 'info' | 'warning';
   type BadgeVariant = 'filled' | 'outlined';
 
   // Big badge renderers
@@ -42,39 +40,12 @@
   export let variant: BadgeVariant = 'filled';
   export let mini: boolean = false;
   export let onClick: BadgeOnClick | null = null;
-
-  function toIntent(value: unknown): BadgeIntent | undefined {
-    if (typeof value !== 'string') return undefined;
-    const normalized = value.normalize('NFKC').replace(/\s+/g, ' ').trim().toUpperCase();
-    if (normalized === 'CONFIRMATION') return 'CONFIRMATION';
-    if (normalized === 'INFORMATION') return 'INFORMATION';
-    if (normalized === 'WARNING') return 'WARNING';
-    return undefined;
-  }
-
-  function intentToTone(intent?: BadgeIntent): BadgeTone {
-    if (!intent) return 'neutral';
-    if (intent === 'CONFIRMATION') return 'success';
-    if (intent === 'INFORMATION') return 'info';
-    if (intent === 'WARNING') return 'warning';
-    return 'neutral';
-  }
-
-  function intentToIcon(intent?: BadgeIntent): BadgeIconName | null {
-    if (!intent) return null;
-    if (intent === 'CONFIRMATION') return 'Confirmation';
-    if (intent === 'INFORMATION') return 'Info';
-    if (intent === 'WARNING') return 'Warning';
-    return null;
-  }
-
-  $: intent = toIntent(badge?.intent);
-  $: tone = intentToTone(intent);
-  $: iconName = badge?.icon ?? intentToIcon(intent);
+  $: iconName = badge?.icon ?? null;
 
   $: effectiveType = mini ? 'mini' : type;
   $: badgeId = badge?.id != null ? String(badge.id) : String(badge?.label ?? '');
   $: isComparisonAverage = badgeId === 'comparison-average';
+  $: badgeColor = String(badge?.color ?? '').trim() || 'rgb(17, 24, 39)';
 
   // ----- Normal/mini pill -----
   $: pillIconSize = effectiveType === 'mini' ? 22 : 20;
@@ -190,8 +161,8 @@
           {#if bigStyle === 'seal'}
             {#if clickKind === 'link' && href}
               <a
-                class="seal {tone} {sealVariant}"
-                style={`--seal-size:${sealSize}px; --seal-font:${ringFontPx}px; --rotation:${rotationMs}ms;`}
+                class="seal {sealVariant}"
+                style={`--seal-solid:${badgeColor}; --seal-size:${sealSize}px; --seal-font:${ringFontPx}px; --rotation:${rotationMs}ms;`}
                 href={href}
                 target={external ? '_blank' : undefined}
                 rel={external ? 'noopener noreferrer' : undefined}
@@ -213,8 +184,8 @@
               </a>
             {:else if clickKind === 'action' && onClick && 'action' in onClick}
               <span
-                class="seal {tone} {sealVariant}"
-                style={`--seal-size:${sealSize}px; --seal-font:${ringFontPx}px; --rotation:${rotationMs}ms;`}
+                class="seal {sealVariant}"
+                style={`--seal-solid:${badgeColor}; --seal-size:${sealSize}px; --seal-font:${ringFontPx}px; --rotation:${rotationMs}ms;`}
                 role="button"
                 tabindex="0"
                 on:click={onClick.action}
@@ -237,8 +208,8 @@
               </span>
             {:else}
               <span
-                class="seal {tone} {sealVariant}"
-                style={`--seal-size:${sealSize}px; --seal-font:${ringFontPx}px; --rotation:${rotationMs}ms;`}
+                class="seal {sealVariant}"
+                style={`--seal-solid:${badgeColor}; --seal-size:${sealSize}px; --seal-font:${ringFontPx}px; --rotation:${rotationMs}ms;`}
                 role="note"
                 aria-label={badge.label}
               >
@@ -260,8 +231,8 @@
           {:else}
             {#if clickKind === 'link' && href}
               <a
-                class="prio {tone} {bigVariant} with-label"
-                style={`--prio-size:${roundRenderSize}px; --prio-text-size:${roundTextSize}px;`}
+                class="prio {bigVariant} with-label"
+                style={`--prio-solid:${badgeColor}; --prio-size:${roundRenderSize}px; --prio-text-size:${roundTextSize}px;`}
                 href={href}
                 target={external ? '_blank' : undefined}
                 rel={external ? 'noopener noreferrer' : undefined}
@@ -282,8 +253,8 @@
               </a>
             {:else if clickKind === 'action' && onClick && 'action' in onClick}
               <span
-                class="prio {tone} {bigVariant} with-label"
-                style={`--prio-size:${roundRenderSize}px; --prio-text-size:${roundTextSize}px;`}
+                class="prio {bigVariant} with-label"
+                style={`--prio-solid:${badgeColor}; --prio-size:${roundRenderSize}px; --prio-text-size:${roundTextSize}px;`}
                 role="button"
                 tabindex="0"
                 on:click={onClick.action}
@@ -305,8 +276,8 @@
               </span>
             {:else}
               <span
-                class="prio {tone} {bigVariant} with-label"
-                style={`--prio-size:${roundRenderSize}px; --prio-text-size:${roundTextSize}px;`}
+                class="prio {bigVariant} with-label"
+                style={`--prio-solid:${badgeColor}; --prio-size:${roundRenderSize}px; --prio-text-size:${roundTextSize}px;`}
                 role="note"
                 aria-label={badge.label}
               >
@@ -328,7 +299,8 @@
         {:else}
           {#if clickKind === 'link' && href}
             <a
-              class="badge {tone} {variant} {effectiveType === 'mini' ? 'mini' : ''} {isComparisonAverage ? 'avg-grey' : ''} interactive"
+              class="badge {variant} {effectiveType === 'mini' ? 'mini' : ''} {isComparisonAverage ? 'avg-grey' : ''} interactive"
+              style={`--badge-solid:${badgeColor};`}
               href={href}
               target={external ? '_blank' : undefined}
               rel={external ? 'noopener noreferrer' : undefined}
@@ -349,7 +321,8 @@
             </a>
           {:else if clickKind === 'action' && onClick && 'action' in onClick}
             <span
-              class="badge {tone} {variant} {effectiveType === 'mini' ? 'mini' : ''} {isComparisonAverage ? 'avg-grey' : ''} interactive"
+              class="badge {variant} {effectiveType === 'mini' ? 'mini' : ''} {isComparisonAverage ? 'avg-grey' : ''} interactive"
+              style={`--badge-solid:${badgeColor};`}
               role="button"
               tabindex="0"
               on:click={onClick.action}
@@ -371,7 +344,8 @@
             </span>
           {:else}
             <span
-              class="badge {tone} {variant} {effectiveType === 'mini' ? 'mini' : ''} {isComparisonAverage ? 'avg-grey' : ''} interactive"
+              class="badge {variant} {effectiveType === 'mini' ? 'mini' : ''} {isComparisonAverage ? 'avg-grey' : ''} interactive"
+              style={`--badge-solid:${badgeColor};`}
               role="note"
               aria-label={badge.label}
             >
@@ -441,8 +415,8 @@
         {#if bigStyle === 'seal'}
           {#if clickKind === 'link' && href}
             <a
-              class="seal {tone} {sealVariant}"
-              style={`--seal-size:${sealSize}px; --seal-font:${ringFontPx}px; --rotation:${rotationMs}ms;`}
+              class="seal {sealVariant}"
+              style={`--seal-solid:${badgeColor}; --seal-size:${sealSize}px; --seal-font:${ringFontPx}px; --rotation:${rotationMs}ms;`}
               href={href}
               target={external ? '_blank' : undefined}
               rel={external ? 'noopener noreferrer' : undefined}
@@ -464,8 +438,8 @@
             </a>
           {:else if clickKind === 'action' && onClick && 'action' in onClick}
             <span
-              class="seal {tone} {sealVariant}"
-              style={`--seal-size:${sealSize}px; --seal-font:${ringFontPx}px; --rotation:${rotationMs}ms;`}
+              class="seal {sealVariant}"
+              style={`--seal-solid:${badgeColor}; --seal-size:${sealSize}px; --seal-font:${ringFontPx}px; --rotation:${rotationMs}ms;`}
               role="button"
               tabindex="0"
               on:click={onClick.action}
@@ -488,8 +462,8 @@
             </span>
           {:else}
             <span
-              class="seal {tone} {sealVariant}"
-              style={`--seal-size:${sealSize}px; --seal-font:${ringFontPx}px; --rotation:${rotationMs}ms;`}
+              class="seal {sealVariant}"
+              style={`--seal-solid:${badgeColor}; --seal-size:${sealSize}px; --seal-font:${ringFontPx}px; --rotation:${rotationMs}ms;`}
               role="note"
               aria-label={badge.label}
             >
@@ -511,8 +485,8 @@
         {:else}
           {#if clickKind === 'link' && href}
             <a
-              class="prio {tone} {bigVariant} with-label"
-              style={`--prio-size:${roundRenderSize}px; --prio-text-size:${roundTextSize}px;`}
+              class="prio {bigVariant} with-label"
+              style={`--prio-solid:${badgeColor}; --prio-size:${roundRenderSize}px; --prio-text-size:${roundTextSize}px;`}
               href={href}
               target={external ? '_blank' : undefined}
               rel={external ? 'noopener noreferrer' : undefined}
@@ -533,8 +507,8 @@
             </a>
           {:else if clickKind === 'action' && onClick && 'action' in onClick}
             <span
-              class="prio {tone} {bigVariant} with-label"
-              style={`--prio-size:${roundRenderSize}px; --prio-text-size:${roundTextSize}px;`}
+              class="prio {bigVariant} with-label"
+              style={`--prio-solid:${badgeColor}; --prio-size:${roundRenderSize}px; --prio-text-size:${roundTextSize}px;`}
               role="button"
               tabindex="0"
               on:click={onClick.action}
@@ -556,8 +530,8 @@
             </span>
           {:else}
             <span
-              class="prio {tone} {bigVariant} with-label"
-              style={`--prio-size:${roundRenderSize}px; --prio-text-size:${roundTextSize}px;`}
+              class="prio {bigVariant} with-label"
+              style={`--prio-solid:${badgeColor}; --prio-size:${roundRenderSize}px; --prio-text-size:${roundTextSize}px;`}
               role="note"
               aria-label={badge.label}
             >
@@ -579,7 +553,8 @@
       {:else}
         {#if onClick && href}
           <a
-            class="badge {tone} {variant} {effectiveType === 'mini' ? 'mini' : ''} {isComparisonAverage ? 'avg-grey' : ''} interactive"
+            class="badge {variant} {effectiveType === 'mini' ? 'mini' : ''} {isComparisonAverage ? 'avg-grey' : ''} interactive"
+            style={`--badge-solid:${badgeColor};`}
             href={href}
             target={external ? '_blank' : undefined}
             rel={external ? 'noopener noreferrer' : undefined}
@@ -600,7 +575,8 @@
           </a>
         {:else}
           <span
-            class="badge {tone} {variant} {effectiveType === 'mini' ? 'mini' : ''} {isComparisonAverage ? 'avg-grey' : ''} interactive"
+            class="badge {variant} {effectiveType === 'mini' ? 'mini' : ''} {isComparisonAverage ? 'avg-grey' : ''} interactive"
+            style={`--badge-solid:${badgeColor};`}
             role="note"
             aria-label={badge.label}
           >
@@ -639,49 +615,17 @@
     transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease, box-shadow 120ms ease,
       transform 120ms ease;
 
-    /* Tokens (overridden by tone classes) */
-    --badge-border: rgba(17, 24, 39, 0.22);
-    --badge-fg: rgb(17, 24, 39);
-    --badge-bg: rgba(17, 24, 39, 0.08);
-    --badge-bg-hover: rgba(17, 24, 39, 0.12);
+    /* Tokens derived from the explicit `--badge-solid` color. */
     --badge-solid: rgb(17, 24, 39);
+    --badge-border: color-mix(in srgb, var(--badge-solid) 65%, transparent);
+    --badge-fg: color-mix(in srgb, var(--badge-solid) 72%, black);
+    --badge-bg: color-mix(in srgb, var(--badge-solid) 14%, transparent);
+    --badge-bg-hover: color-mix(in srgb, var(--badge-solid) 22%, transparent);
+    --badge-solid-hover: color-mix(in srgb, var(--badge-solid) 78%, black);
     --badge-gap: 3px;
     --badge-pad-y: 3px;
     --badge-pad-x: 6px;
     --badge-border-w: 1px;
-  }
-
-  /* Tone tokens (roughly aligned with MUI palette intent) */
-  .badge.neutral {
-    --badge-border: rgba(17, 24, 39, 0.22);
-    --badge-fg: rgb(17, 24, 39);
-    --badge-bg: rgba(17, 24, 39, 0.08);
-    --badge-bg-hover: rgba(17, 24, 39, 0.12);
-    --badge-solid: rgb(17, 24, 39);
-  }
-
-  .badge.success {
-    --badge-border: rgba(46, 125, 50, 0.65); /* ~MUI success.main */
-    --badge-fg: rgb(27, 94, 32); /* ~MUI success.dark */
-    --badge-bg: rgba(46, 125, 50, 0.14);
-    --badge-bg-hover: rgba(46, 125, 50, 0.22);
-    --badge-solid: rgb(46, 125, 50);
-  }
-
-  .badge.info {
-    --badge-border: rgba(2, 136, 209, 0.65); /* ~MUI info.main */
-    --badge-fg: rgb(1, 87, 155); /* ~MUI info.dark-ish */
-    --badge-bg: rgba(2, 136, 209, 0.14);
-    --badge-bg-hover: rgba(2, 136, 209, 0.22);
-    --badge-solid: rgb(2, 136, 209);
-  }
-
-  .badge.warning {
-    --badge-border: rgba(237, 108, 2, 0.7); /* ~MUI warning.main */
-    --badge-fg: rgb(191, 54, 12); /* ~MUI warning.dark-ish */
-    --badge-bg: rgba(237, 108, 2, 0.14);
-    --badge-bg-hover: rgba(237, 108, 2, 0.22);
-    --badge-solid: rgb(237, 108, 2);
   }
 
   /* Average comparison badge: match the atlas "average" grey color */
@@ -725,7 +669,7 @@
 
   /* Filled hover = darker solid (MUI-like) */
   .badge.filled.interactive:hover {
-    background: var(--badge-fg);
+    background: var(--badge-solid-hover);
   }
 
   /* MUI-ish focus ring */
@@ -839,7 +783,7 @@
       filter 160ms cubic-bezier(0.2, 0, 0, 1);
     --prio-solid: rgb(17, 24, 39);
     --prio-fg: #ffffff;
-    --prio-border: rgba(17, 24, 39, 0.22);
+    --prio-border: color-mix(in srgb, var(--prio-solid) 65%, transparent);
     --prio-text: #ffffff;
   }
 
@@ -874,26 +818,6 @@
     white-space: normal;
     overflow-wrap: anywhere;
     opacity: 0.95;
-  }
-
-  .prio.neutral {
-    --prio-solid: rgb(17, 24, 39);
-    --prio-border: rgba(17, 24, 39, 0.22);
-  }
-
-  .prio.success {
-    --prio-solid: rgb(46, 125, 50);
-    --prio-border: rgba(46, 125, 50, 0.65);
-  }
-
-  .prio.info {
-    --prio-solid: rgb(2, 136, 209);
-    --prio-border: rgba(2, 136, 209, 0.65);
-  }
-
-  .prio.warning {
-    --prio-solid: rgb(237, 108, 2);
-    --prio-border: rgba(237, 108, 2, 0.7);
   }
 
   .prio.solid {
@@ -948,30 +872,14 @@
     user-select: none;
     background: transparent;
     --seal-solid: rgb(17, 24, 39);
-    --seal-ring: rgba(17, 24, 39, 0.55);
-    --seal-line: rgba(17, 24, 39, 0.18);
+    --seal-ring: color-mix(in srgb, var(--seal-solid) 55%, transparent);
+    --seal-line: color-mix(in srgb, var(--seal-solid) 18%, transparent);
     --seal-ring-fg: var(--seal-solid);
   }
 
   a.seal {
     text-decoration: none;
     color: inherit;
-  }
-
-  .seal.success {
-    --seal-solid: rgb(46, 125, 50);
-    --seal-ring: rgba(46, 125, 50, 0.62);
-    --seal-line: rgba(46, 125, 50, 0.22);
-  }
-  .seal.info {
-    --seal-solid: rgb(2, 136, 209);
-    --seal-ring: rgba(2, 136, 209, 0.62);
-    --seal-line: rgba(2, 136, 209, 0.22);
-  }
-  .seal.warning {
-    --seal-solid: rgb(237, 108, 2);
-    --seal-ring: rgba(237, 108, 2, 0.68);
-    --seal-line: rgba(237, 108, 2, 0.24);
   }
 
   .seal.filled {

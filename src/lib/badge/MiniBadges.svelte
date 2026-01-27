@@ -17,27 +17,15 @@
    */
   export let expandDirection: 'left' | 'right' = 'left';
 
-  function normalizeIntent(value: unknown): string {
-    if (typeof value !== 'string') return '';
-    return value.normalize('NFKC').replace(/\s+/g, ' ').trim().toUpperCase();
-  }
-
-  function intentRank(value: unknown): number {
-    const intent = normalizeIntent(value);
-    if (intent === 'CONFIRMATION') return 0;
-    if (intent === 'INFORMATION') return 1;
-    if (intent === 'WARNING') return 2;
-    return 3;
-  }
-
-  // Order: Confirmation → Information → Warning (stable within group by label/id)
+  // Stable sort by label (and id as a tie-breaker).
   $: sortedBadges = [...badges].sort((a, b) => {
-    const ra = intentRank(a?.intent);
-    const rb = intentRank(b?.intent);
-    if (ra !== rb) return ra - rb;
     const la = String(a?.label ?? '');
     const lb = String(b?.label ?? '');
-    return la.localeCompare(lb);
+    const byLabel = la.localeCompare(lb);
+    if (byLabel !== 0) return byLabel;
+    const ia = String(a?.id ?? '');
+    const ib = String(b?.id ?? '');
+    return ia.localeCompare(ib);
   });
 
   function keyFor(badge: BadgeData): string | number {

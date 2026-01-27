@@ -24,9 +24,6 @@
     "package": "svelte-package",
     "prepack": "npm run package"
   },
-  "dependencies": {
-    "posthog-js": "^1.276.0"
-  },
   "devDependencies": {
     "@eslint/js": "^9.0.0",
     "@sveltejs/package": "^2.3.7",

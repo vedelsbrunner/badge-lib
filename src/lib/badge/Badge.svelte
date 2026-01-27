@@ -10,12 +10,9 @@
 </script>
 
 <script lang="ts">
-  import { onDestroy } from 'svelte';
-  import posthog from 'posthog-js';
   import FlowbiteTooltip from '../components/FlowbiteTooltip.svelte';
-  import { browser, getBasePath, getPathname } from '../runtime/platform';
+  import { getBasePath } from '../runtime/platform';
   import BadgeIcon from './icons/BadgeIcon.svelte';
-  import { recordBadgeInteraction } from './feedback';
   import type { BadgeData, BadgeHint, BadgeHintIcon, BadgeIntent, BadgeOnClick } from './types';
   import type { BadgeIconName } from './icons/BadgeIcon.svelte';
 
@@ -45,7 +42,6 @@
   export let variant: BadgeVariant = 'filled';
   export let mini: boolean = false;
   export let onClick: BadgeOnClick | null = null;
-  export let analytics: boolean = true;
 
   function toIntent(value: unknown): BadgeIntent | undefined {
     if (typeof value !== 'string') return undefined;
@@ -79,107 +75,6 @@
   $: effectiveType = mini ? 'mini' : type;
   $: badgeId = badge?.id != null ? String(badge.id) : String(badge?.label ?? '');
   $: isComparisonAverage = badgeId === 'comparison-average';
-
-  // ----- Analytics (PostHog) -----
-  let hoverStartMs: number | null = null;
-  let hoverMode: 'mouse' | 'focus' | null = null;
-  const MIN_INTERACTION_DWELL_MS = 1000;
-
-  function nowMs() {
-    // performance.now() is monotonic and ideal for durations; fallback is fine.
-    return typeof performance !== 'undefined' && typeof performance.now === 'function' ? performance.now() : Date.now();
-  }
-
-  function safeCapture(event: string, properties: Record<string, unknown> = {}) {
-    if (!analytics) return;
-    if (!browser) return;
-    try {
-      posthog.capture(event, properties);
-    } catch {
-      // analytics should never break UI
-    }
-  }
-
-  function baseProps(extra: Record<string, unknown> = {}) {
-    return {
-      badge_id: badgeId,
-      badge_label: badge?.label ?? null,
-      badge_type: badge?.type ?? null,
-      badge_intent: intent ?? null,
-      badge_render: effectiveType,
-      badge_click_kind: clickKind,
-      pathname: getPathname(),
-      ...extra
-    };
-  }
-
-  function startHover(mode: 'mouse' | 'focus') {
-    if (hoverStartMs != null) return;
-    hoverStartMs = nowMs();
-    hoverMode = mode;
-    safeCapture('badge_hover', baseProps({ mode }));
-  }
-
-  function endHover(mode: 'mouse' | 'focus', endedBy: 'leave' | 'destroy' = 'leave') {
-    if (hoverStartMs == null || hoverMode !== mode) return;
-    const durationMs = Math.max(0, nowMs() - hoverStartMs);
-    safeCapture('badge_hover_duration', baseProps({ mode, duration_ms: durationMs, ended_by: endedBy }));
-    // Only count a badge as "interacted" if the user dwelled on it long enough.
-    if (analytics && endedBy === 'leave' && durationMs >= MIN_INTERACTION_DWELL_MS) {
-      recordBadgeInteraction(
-        {
-          id: badgeId,
-          label: badge?.label ?? null,
-          render: effectiveType,
-          variant,
-          intent: intent ?? null,
-          icon: iconName ?? null,
-          bigStyle: effectiveType === 'big' ? bigStyle : null,
-          bigVariant: effectiveType === 'big' ? bigVariant : null,
-          bigSize: effectiveType === 'big' ? bigSize : null,
-          sealVariant: effectiveType === 'big' && bigStyle === 'seal' ? sealVariant : null,
-          sealSize: effectiveType === 'big' && bigStyle === 'seal' ? sealSize : null,
-          sealFontScale: effectiveType === 'big' && bigStyle === 'seal' ? sealFontScale : null,
-          rotationMs: effectiveType === 'big' && bigStyle === 'seal' ? rotationMs : null
-        },
-        3
-      );
-    }
-    hoverStartMs = null;
-    hoverMode = null;
-  }
-
-  function handleMouseEnter() {
-    startHover('mouse');
-  }
-
-  function handleMouseLeave() {
-    endHover('mouse');
-  }
-
-  function handleFocusIn() {
-    // optional: counts keyboard focus as "time spent" too (mode=focus)
-    startHover('focus');
-  }
-
-  function handleFocusOut() {
-    endHover('focus');
-  }
-
-  function handleClick(event: MouseEvent) {
-    safeCapture(
-      'badge_click',
-      baseProps({
-        button: typeof event.button === 'number' ? event.button : null
-      })
-    );
-  }
-
-  onDestroy(() => {
-    if (hoverStartMs != null && hoverMode) {
-      endHover(hoverMode, 'destroy');
-    }
-  });
 
   // ----- Normal/mini pill -----
   $: pillIconSize = effectiveType === 'mini' ? 22 : 20;
@@ -289,11 +184,6 @@
       <span
         slot="trigger"
         role="presentation"
-        on:mouseenter={handleMouseEnter}
-        on:mouseleave={handleMouseLeave}
-        on:focusin={handleFocusIn}
-        on:focusout={handleFocusOut}
-        on:click={handleClick}
         on:keydown={() => {}}
       >
         {#if effectiveType === 'big'}
@@ -545,11 +435,6 @@
   {:else}
     <span
       role="presentation"
-      on:mouseenter={handleMouseEnter}
-      on:mouseleave={handleMouseLeave}
-      on:focusin={handleFocusIn}
-      on:focusout={handleFocusOut}
-      on:click={handleClick}
       on:keydown={() => {}}
     >
       {#if effectiveType === 'big'}

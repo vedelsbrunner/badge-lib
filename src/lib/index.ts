@@ -6,5 +6,4 @@ export { default as BadgeIcon } from './badge/icons/BadgeIcon.svelte';
 
 export * from './badge/types';
 export * from './badge/badges';
-export * from './badge/feedback';
 

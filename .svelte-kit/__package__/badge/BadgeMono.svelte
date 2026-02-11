@@ -1,18 +1,12 @@
-<script context="module" lang="ts">
-  export type MonoVariant = 'filled' | 'outlined';
-</script>
+<script context="module"></script>
 
-<script lang="ts">
-  import BadgeTooltip from './_BadgeTooltip.svelte';
-  import BadgeIcon from './icons/BadgeIcon.svelte';
-  import type { BadgeData } from './types';
-
-  export let badge: BadgeData;
-  export let variant: MonoVariant = 'filled';
-
-  $: iconName = badge?.icon ?? null;
-  $: badgeColor = String(badge?.color ?? '').trim() || 'rgb(17, 24, 39)';
-  const iconSize = 20;
+<script>import BadgeTooltip from "./_BadgeTooltip.svelte";
+import BadgeIcon from "./icons/BadgeIcon.svelte";
+export let badge;
+export let variant = "filled";
+$: iconName = badge?.icon ?? null;
+$: badgeColor = String(badge?.color ?? "").trim() || "rgb(17, 24, 39)";
+const iconSize = 20;
 </script>
 
 {#if badge}

@@ -14,7 +14,7 @@
   /**
    * Controls whether the label expands left or right of the icon.
    */
-  export let expandDirection: 'left' | 'right' = 'left';
+  export let expandDirection: 'left' | 'right' = 'right';
 </script>
 
 <div

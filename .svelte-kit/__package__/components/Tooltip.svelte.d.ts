@@ -15,9 +15,9 @@ declare const __propDef: {
     exports?: {} | undefined;
     bindings?: string | undefined;
 };
-export type FlowbiteTooltipProps = typeof __propDef.props;
-export type FlowbiteTooltipEvents = typeof __propDef.events;
-export type FlowbiteTooltipSlots = typeof __propDef.slots;
-export default class FlowbiteTooltip extends SvelteComponent<FlowbiteTooltipProps, FlowbiteTooltipEvents, FlowbiteTooltipSlots> {
+export type TooltipProps = typeof __propDef.props;
+export type TooltipEvents = typeof __propDef.events;
+export type TooltipSlots = typeof __propDef.slots;
+export default class Tooltip extends SvelteComponent<TooltipProps, TooltipEvents, TooltipSlots> {
 }
 export {};

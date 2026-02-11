@@ -1,30 +1,15 @@
-<script context="module" lang="ts">
-  export type MiniVariant = 'filled' | 'outlined';
-</script>
+<script context="module"></script>
 
-<script lang="ts">
-  import BadgeTooltip from './_BadgeTooltip.svelte';
-  import BadgeIcon from './icons/BadgeIcon.svelte';
-  import type { BadgeData } from './types';
-
-  export let badge: BadgeData;
-  export let variant: MiniVariant = 'outlined';
-
-  /**
-   * If true, positions the mini badge fixed in the bottom-right corner.
-   * If false, it will flow inline and you can position the wrapper yourself.
-   */
-  export let fixed: boolean = false;
-  export let offsetPx: number = 16;
-
-  /**
-   * Controls whether the label expands left or right of the icon.
-   */
-  export let expandDirection: 'left' | 'right' = 'right';
-
-  $: iconName = badge?.icon ?? null;
-  $: badgeColor = String(badge?.color ?? '').trim() || 'rgb(17, 24, 39)';
-  const iconSize = 22;
+<script>import BadgeTooltip from "./_BadgeTooltip.svelte";
+import BadgeIcon from "./icons/BadgeIcon.svelte";
+export let badge;
+export let variant = "outlined";
+export let fixed = false;
+export let offsetPx = 16;
+export let expandDirection = "right";
+$: iconName = badge?.icon ?? null;
+$: badgeColor = String(badge?.color ?? "").trim() || "rgb(17, 24, 39)";
+const iconSize = 22;
 </script>
 
 <div

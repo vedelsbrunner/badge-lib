@@ -1,4 +1,4 @@
-import type { BadgeData } from './types';
+import type { BadgeData } from '../lib/badge/types';
 
 const COLOR_SUCCESS = 'rgb(46, 125, 50)';
 const COLOR_INFO = 'rgb(2, 136, 209)';
@@ -159,12 +159,12 @@ const SEF_CHART_BADGE_CONFIG: Record<
     label: 'Normalised distribution',
     describe: (area, compareTo) =>
       `Data zone distributions for ${area} is normalised for comparison against all data zone distributions across ${compareTo}.`
-    // `This distribution plot shows how datazones are spread across values of this factor. It compares ${area} with ${compareTo}.`
   },
   scatterplot: {
     id: 'sef-scatterplot',
     label: 'Scatterplot',
-    describe: (area, compareTo) => `Each dot represents a datazone inside ${area}. The cloud shows the distribution for ${compareTo}.`
+    describe: (area, compareTo) =>
+      `Each dot represents a datazone inside ${area}. The cloud shows the distribution for ${compareTo}.`
   }
 };
 

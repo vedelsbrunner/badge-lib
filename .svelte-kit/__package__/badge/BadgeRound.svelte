@@ -1,29 +1,21 @@
-<script context="module" lang="ts">
-  export type RoundVariant = 'solid' | 'ring' | 'double-ring' | 'stamp' | 'glow';
-</script>
+<script context="module"></script>
 
-<script lang="ts">
-  import BadgeTooltip from './_BadgeTooltip.svelte';
-  import BadgeIcon from './icons/BadgeIcon.svelte';
-  import type { BadgeData } from './types';
-
-  export let badge: BadgeData;
-  export let variant: RoundVariant = 'solid';
-  export let size: number = 44;
-
-  $: iconName = badge?.icon ?? null;
-  $: badgeColor = String(badge?.color ?? '').trim() || 'rgb(17, 24, 39)';
-
-  function fullLabel(label: unknown): string {
-    const cleaned = String(label ?? '').trim();
-    return cleaned || '—';
-  }
-
-  $: rawLabel = fullLabel(badge?.label);
-  $: labelLen = rawLabel.length;
-  $: renderSize = Math.min(104, Math.max(size, 70 + Math.max(0, labelLen - 12) * 1.4));
-  $: iconSize = Math.round(renderSize * 0.34);
-  $: textSize = labelLen <= 12 ? 12 : labelLen <= 18 ? 11 : labelLen <= 26 ? 10 : 9;
+<script>import BadgeTooltip from "./_BadgeTooltip.svelte";
+import BadgeIcon from "./icons/BadgeIcon.svelte";
+export let badge;
+export let variant = "solid";
+export let size = 44;
+$: iconName = badge?.icon ?? null;
+$: badgeColor = String(badge?.color ?? "").trim() || "rgb(17, 24, 39)";
+function fullLabel(label) {
+  const cleaned = String(label ?? "").trim();
+  return cleaned || "\u2014";
+}
+$: rawLabel = fullLabel(badge?.label);
+$: labelLen = rawLabel.length;
+$: renderSize = Math.min(104, Math.max(size, 70 + Math.max(0, labelLen - 12) * 1.4));
+$: iconSize = Math.round(renderSize * 0.34);
+$: textSize = labelLen <= 12 ? 12 : labelLen <= 18 ? 11 : labelLen <= 26 ? 10 : 9;
 </script>
 
 {#if badge}

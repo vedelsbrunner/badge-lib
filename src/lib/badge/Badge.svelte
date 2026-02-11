@@ -1,11 +1,10 @@
 <script context="module" lang="ts">
-  import type { MonoVariant } from './BadgeMono.svelte';
-  import type { MiniVariant } from './BadgeMini.svelte';
-  import type { RoundVariant } from './BadgeRound.svelte';
-  import type { RoundCircularTextVariant } from './BadgeRoundCircularText.svelte';
-
   export type BadgeType = 'mono' | 'mini' | 'round' | 'roundcirculartext';
-  export type BadgeVariant = MonoVariant | MiniVariant | RoundVariant | RoundCircularTextVariant;
+  export type BadgeVariant =
+    | import('./BadgeMono.svelte').MonoVariant
+    | import('./BadgeMini.svelte').MiniVariant
+    | import('./BadgeRound.svelte').RoundVariant
+    | import('./BadgeRoundCircularText.svelte').RoundCircularTextVariant;
 </script>
 
 <script lang="ts">
@@ -35,7 +34,7 @@
   // mini-only
   export let fixed: boolean = false;
   export let offsetPx: number = 16;
-  export let expandDirection: 'left' | 'right' = 'left';
+  export let expandDirection: 'left' | 'right' = 'right';
 
   // roundcirculartext-only
   export let ringText: string | null = null;

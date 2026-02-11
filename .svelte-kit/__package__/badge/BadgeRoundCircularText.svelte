@@ -1,34 +1,24 @@
-<script context="module" lang="ts">
-  export type RoundCircularTextVariant = 'outlined' | 'filled';
-</script>
+<script context="module"></script>
 
-<script lang="ts">
-  import BadgeTooltip from './_BadgeTooltip.svelte';
-  import BadgeIcon from './icons/BadgeIcon.svelte';
-  import type { BadgeData } from './types';
-
-  export let badge: BadgeData;
-  export let variant: RoundCircularTextVariant = 'outlined';
-  export let ringText: string | null = null;
-  export let repeat: number = 2;
-  export let separator: string = ' • ';
-  export let size: number = 76;
-  export let sealFontScale: number = 0.12;
-
-  $: iconName = badge?.icon ?? null;
-  $: badgeColor = String(badge?.color ?? '').trim() || 'rgb(17, 24, 39)';
-
-  function clamp(n: number, min: number, max: number) {
-    return Math.max(min, Math.min(max, n));
-  }
-
-  $: displayText = (ringText ?? badge?.label ?? '').trim() || '—';
-  $: repeatSafe = clamp(Math.floor(repeat || 1), 1, 10);
-  $: chars = [...Array(repeatSafe)]
-    .map(() => [...displayText.toUpperCase()].concat([...separator.toUpperCase()]))
-    .flat();
-  $: ringFontPx = Math.round(size * sealFontScale);
-  $: centerIcon = Math.round(size * 0.3);
+<script>import BadgeTooltip from "./_BadgeTooltip.svelte";
+import BadgeIcon from "./icons/BadgeIcon.svelte";
+export let badge;
+export let variant = "outlined";
+export let ringText = null;
+export let repeat = 2;
+export let separator = " \u2022 ";
+export let size = 76;
+export let sealFontScale = 0.12;
+$: iconName = badge?.icon ?? null;
+$: badgeColor = String(badge?.color ?? "").trim() || "rgb(17, 24, 39)";
+function clamp(n, min, max) {
+  return Math.max(min, Math.min(max, n));
+}
+$: displayText = (ringText ?? badge?.label ?? "").trim() || "\u2014";
+$: repeatSafe = clamp(Math.floor(repeat || 1), 1, 10);
+$: chars = [...Array(repeatSafe)].map(() => [...displayText.toUpperCase()].concat([...separator.toUpperCase()])).flat();
+$: ringFontPx = Math.round(size * sealFontScale);
+$: centerIcon = Math.round(size * 0.3);
 </script>
 
 {#if badge}

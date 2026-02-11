@@ -1,6 +1,6 @@
 <script lang="ts">
+  import { Badge } from './lib';
   import {
-    Badge,
     BACKGROUND_READING_BADGE,
     BOX_PLOTS_BADGE,
     COMPARISON_AVERAGE_BADGE,
@@ -9,7 +9,7 @@
     MODELLED_DATA_BADGE,
     OPEN_DATA_BADGE,
     RAW_DATA_AVAILABLE_BADGE
-  } from './lib';
+  } from './demo/badges';
 </script>
 
 <main>
@@ -45,6 +45,86 @@
       <Badge type="round" badge={BACKGROUND_READING_BADGE} variant="ring" size={54} />
       <Badge type="roundcirculartext" badge={OPEN_DATA_BADGE} variant="outlined" size={88} ringText="Open data" />
       <Badge type="roundcirculartext" badge={MODELLED_DATA_BADGE} variant="filled" size={88} ringText="Modelled" />
+    </div>
+  </section>
+
+  <section>
+    <h2>Web component</h2>
+    <div class="row big">
+      <vis-badge
+        type="mono"
+        variant="filled"
+        label={MAJOR_FINDING_BADGE.label}
+        color={MAJOR_FINDING_BADGE.color}
+        icon={MAJOR_FINDING_BADGE.icon}
+        description={MAJOR_FINDING_BADGE.description}
+      />
+      <vis-badge
+        type="mono"
+        variant="outlined"
+        label={OPEN_DATA_BADGE.label}
+        color={OPEN_DATA_BADGE.color}
+        icon={OPEN_DATA_BADGE.icon}
+        description={OPEN_DATA_BADGE.description}
+      />
+      <vis-badge
+        type="mini"
+        variant="outlined"
+        label={INTERACTIVE_BADGE.label}
+        color={INTERACTIVE_BADGE.color}
+        icon={INTERACTIVE_BADGE.icon}
+        description={INTERACTIVE_BADGE.description}
+      />
+      <vis-badge
+        type="mini"
+        variant="outlined"
+        label={MODELLED_DATA_BADGE.label}
+        color={MODELLED_DATA_BADGE.color}
+        icon={MODELLED_DATA_BADGE.icon}
+        description={MODELLED_DATA_BADGE.description}
+      />
+      <vis-badge
+        type="round"
+        variant="solid"
+        size={54}
+        label={MAJOR_FINDING_BADGE.label}
+        color={MAJOR_FINDING_BADGE.color}
+        icon={MAJOR_FINDING_BADGE.icon}
+        description={MAJOR_FINDING_BADGE.description}
+      />
+      <vis-badge
+        type="round"
+        variant="ring"
+        size={54}
+        label={BACKGROUND_READING_BADGE.label}
+        color={BACKGROUND_READING_BADGE.color}
+        icon={BACKGROUND_READING_BADGE.icon}
+        description={BACKGROUND_READING_BADGE.description}
+      />
+      <div>
+        <vis-badge
+          type="roundcirculartext"
+          variant="outlined"
+          size={88}
+          ringText="Open data"
+          label={OPEN_DATA_BADGE.label}
+          color={OPEN_DATA_BADGE.color}
+          icon={OPEN_DATA_BADGE.icon}
+          description={OPEN_DATA_BADGE.description}
+        />
+      </div>
+      <div>
+        <vis-badge
+          type="roundcirculartext"
+          variant="filled"
+          size={88}
+          ringText="Modelled"
+          label={MODELLED_DATA_BADGE.label}
+          color={MODELLED_DATA_BADGE.color}
+          icon={MODELLED_DATA_BADGE.icon}
+          description={MODELLED_DATA_BADGE.description}
+        />
+      </div>
     </div>
   </section>
 

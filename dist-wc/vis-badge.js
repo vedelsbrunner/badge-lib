@@ -1,64 +1,64 @@
-var qe = Object.defineProperty;
-var We = (n, e, t) => e in n ? qe(n, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : n[e] = t;
-var O = (n, e, t) => We(n, typeof e != "symbol" ? e + "" : e, t);
-function ne() {
+var at = Object.defineProperty;
+var ft = (n, e, t) => e in n ? at(n, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : n[e] = t;
+var F = (n, e, t) => ft(n, typeof e != "symbol" ? e + "" : e, t);
+function ae() {
 }
-function Je(n, e) {
+function ct(n, e) {
   for (const t in e) n[t] = e[t];
   return (
     /** @type {T & S} */
     n
   );
 }
-function Be(n) {
+function We(n) {
   return n();
 }
-function _e() {
+function ye() {
   return /* @__PURE__ */ Object.create(null);
 }
-function U(n) {
-  n.forEach(Be);
+function K(n) {
+  n.forEach(We);
 }
-function Ae(n) {
+function Ue(n) {
   return typeof n == "function";
 }
-function L(n, e) {
+function Z(n, e) {
   return n != n ? e == e : n !== e || n && typeof n == "object" || typeof n == "function";
 }
-function Ge(n) {
+function ut(n) {
   return Object.keys(n).length === 0;
 }
-function oe(n, e, t, i) {
+function he(n, e, t, i) {
   if (n) {
-    const r = Le(n, e, t, i);
-    return n[0](r);
+    const l = Xe(n, e, t, i);
+    return n[0](l);
   }
 }
-function Le(n, e, t, i) {
-  return n[1] && i ? Je(t.ctx.slice(), n[1](i(e))) : t.ctx;
+function Xe(n, e, t, i) {
+  return n[1] && i ? ct(t.ctx.slice(), n[1](i(e))) : t.ctx;
 }
-function fe(n, e, t, i) {
+function ge(n, e, t, i) {
   if (n[2] && i) {
-    const r = n[2](i(t));
+    const l = n[2](i(t));
     if (e.dirty === void 0)
-      return r;
-    if (typeof r == "object") {
-      const l = [], s = Math.max(e.dirty.length, r.length);
-      for (let o = 0; o < s; o += 1)
-        l[o] = e.dirty[o] | r[o];
       return l;
+    if (typeof l == "object") {
+      const r = [], o = Math.max(e.dirty.length, l.length);
+      for (let a = 0; a < o; a += 1)
+        r[a] = e.dirty[a] | l[a];
+      return r;
     }
-    return e.dirty | r;
+    return e.dirty | l;
   }
   return e.dirty;
 }
-function ce(n, e, t, i, r, l) {
-  if (r) {
-    const s = Le(e, t, i, l);
-    n.p(s, r);
+function pe(n, e, t, i, l, r) {
+  if (l) {
+    const o = Xe(e, t, i, r);
+    n.p(o, l);
   }
 }
-function ue(n) {
+function be(n) {
   if (n.ctx.length > 32) {
     const e = [], t = n.ctx.length / 32;
     for (let i = 0; i < t; i++)
@@ -67,17 +67,21 @@ function ue(n) {
   }
   return -1;
 }
-function w(n, e) {
+const dt = typeof window < "u" ? window : typeof globalThis < "u" ? globalThis : (
+  // @ts-ignore Node typings have this
+  global
+);
+function m(n, e) {
   n.appendChild(e);
 }
-function G(n, e, t) {
-  const i = Ke(n);
+function le(n, e, t) {
+  const i = ht(n);
   if (!i.getElementById(e)) {
-    const r = y("style");
-    r.id = e, r.textContent = t, Qe(i, r);
+    const l = B("style");
+    l.id = e, l.textContent = t, gt(i, l);
   }
 }
-function Ke(n) {
+function ht(n) {
   if (!n) return document;
   const e = n.getRootNode ? n.getRootNode() : n.ownerDocument;
   return e && /** @type {ShadowRoot} */
@@ -86,51 +90,51 @@ function Ke(n) {
     e
   ) : n.ownerDocument;
 }
-function Qe(n, e) {
-  return w(
+function gt(n, e) {
+  return m(
     /** @type {Document} */
     n.head || n,
     e
   ), e.sheet;
 }
-function M(n, e, t) {
+function y(n, e, t) {
   n.insertBefore(e, t || null);
 }
-function j(n) {
+function v(n) {
   n.parentNode && n.parentNode.removeChild(n);
 }
-function y(n) {
+function B(n) {
   return document.createElement(n);
 }
-function D(n) {
+function k(n) {
   return document.createElementNS("http://www.w3.org/2000/svg", n);
 }
-function I(n) {
+function H(n) {
   return document.createTextNode(n);
 }
-function H() {
-  return I(" ");
+function V() {
+  return H(" ");
 }
-function K() {
-  return I("");
+function O() {
+  return H("");
 }
-function X(n, e, t, i) {
+function A(n, e, t, i) {
   return n.addEventListener(e, t, i), () => n.removeEventListener(e, t, i);
 }
-function a(n, e, t) {
+function s(n, e, t) {
   t == null ? n.removeAttribute(e) : n.getAttribute(e) !== t && n.setAttribute(e, t);
 }
-function et(n) {
+function pt(n) {
   return Array.from(n.childNodes);
 }
 function Q(n, e) {
   e = "" + e, n.data !== e && (n.data = /** @type {string} */
   e);
 }
-function ee(n, e, t, i) {
+function se(n, e, t, i) {
   t == null ? n.style.removeProperty(e) : n.style.setProperty(e, t, "");
 }
-function tt(n) {
+function bt(n) {
   const e = {};
   return n.childNodes.forEach(
     /** @param {Element} node */
@@ -139,140 +143,143 @@ function tt(n) {
     }
   ), e;
 }
-let be;
-function te(n) {
-  be = n;
+let ke;
+function oe(n) {
+  ke = n;
 }
-const W = [], ve = [];
-let J = [];
-const $e = [], nt = /* @__PURE__ */ Promise.resolve();
-let he = !1;
-function it() {
-  he || (he = !0, nt.then(m));
+const ie = [], _e = [];
+let ne = [];
+const $e = [], Ge = /* @__PURE__ */ Promise.resolve();
+let ve = !1;
+function Je() {
+  ve || (ve = !0, Ge.then(_));
 }
-function pe(n) {
-  J.push(n);
+function _t() {
+  return Je(), Ge;
 }
-const ge = /* @__PURE__ */ new Set();
-let q = 0;
-function m() {
-  if (q !== 0)
+function we(n) {
+  ne.push(n);
+}
+const me = /* @__PURE__ */ new Set();
+let te = 0;
+function _() {
+  if (te !== 0)
     return;
-  const n = be;
+  const n = ke;
   do {
     try {
-      for (; q < W.length; ) {
-        const e = W[q];
-        q++, te(e), rt(e.$$);
+      for (; te < ie.length; ) {
+        const e = ie[te];
+        te++, oe(e), mt(e.$$);
       }
     } catch (e) {
-      throw W.length = 0, q = 0, e;
+      throw ie.length = 0, te = 0, e;
     }
-    for (te(null), W.length = 0, q = 0; ve.length; ) ve.pop()();
-    for (let e = 0; e < J.length; e += 1) {
-      const t = J[e];
-      ge.has(t) || (ge.add(t), t());
+    for (oe(null), ie.length = 0, te = 0; _e.length; ) _e.pop()();
+    for (let e = 0; e < ne.length; e += 1) {
+      const t = ne[e];
+      me.has(t) || (me.add(t), t());
     }
-    J.length = 0;
-  } while (W.length);
+    ne.length = 0;
+  } while (ie.length);
   for (; $e.length; )
     $e.pop()();
-  he = !1, ge.clear(), te(n);
+  ve = !1, me.clear(), oe(n);
 }
-function rt(n) {
+function mt(n) {
   if (n.fragment !== null) {
-    n.update(), U(n.before_update);
+    n.update(), K(n.before_update);
     const e = n.dirty;
-    n.dirty = [-1], n.fragment && n.fragment.p(n.ctx, e), n.after_update.forEach(pe);
+    n.dirty = [-1], n.fragment && n.fragment.p(n.ctx, e), n.after_update.forEach(we);
   }
 }
-function lt(n) {
+function vt(n) {
   const e = [], t = [];
-  J.forEach((i) => n.indexOf(i) === -1 ? e.push(i) : t.push(i)), t.forEach((i) => i()), J = e;
+  ne.forEach((i) => n.indexOf(i) === -1 ? e.push(i) : t.push(i)), t.forEach((i) => i()), ne = e;
 }
-const se = /* @__PURE__ */ new Set();
-let R;
-function B() {
-  R = {
+const ue = /* @__PURE__ */ new Set();
+let Y;
+function I() {
+  Y = {
     r: 0,
     c: [],
-    p: R
+    p: Y
     // parent group
   };
 }
-function A() {
-  R.r || U(R.c), R = R.p;
+function L() {
+  Y.r || K(Y.c), Y = Y.p;
 }
-function x(n, e) {
-  n && n.i && (se.delete(n), n.i(e));
+function $(n, e) {
+  n && n.i && (ue.delete(n), n.i(e));
 }
-function k(n, e, t, i) {
+function C(n, e, t, i) {
   if (n && n.o) {
-    if (se.has(n)) return;
-    se.add(n), R.c.push(() => {
-      se.delete(n), i && (t && n.d(1), i());
+    if (ue.has(n)) return;
+    ue.add(n), Y.c.push(() => {
+      ue.delete(n), i && (t && n.d(1), i());
     }), n.o(e);
   } else i && i();
 }
-function we(n) {
+function xe(n) {
   return (n == null ? void 0 : n.length) !== void 0 ? n : Array.from(n);
 }
-function st(n, e) {
+function wt(n, e) {
   n.d(1), e.delete(n.key);
 }
-function at(n, e, t, i, r, l, s, o, f, u, c, b) {
-  let _ = n.length, d = l.length, g = _;
-  const v = {};
-  for (; g--; ) v[n[g].key] = g;
-  const z = [], h = /* @__PURE__ */ new Map(), p = /* @__PURE__ */ new Map(), $ = [];
-  for (g = d; g--; ) {
-    const S = b(r, l, g), F = t(S);
-    let N = s.get(F);
-    N ? $.push(() => N.p(S, e)) : (N = u(F, S), N.c()), h.set(F, z[g] = N), F in v && p.set(F, Math.abs(g - v[F]));
+function kt(n, e, t, i, l, r, o, a, f, c, u, d) {
+  let p = n.length, h = r.length, g = p;
+  const x = {};
+  for (; g--; ) x[n[g].key] = g;
+  const T = [], b = /* @__PURE__ */ new Map(), S = /* @__PURE__ */ new Map(), z = [];
+  for (g = h; g--; ) {
+    const w = d(l, r, g), D = t(w);
+    let j = o.get(D);
+    j ? z.push(() => j.p(w, e)) : (j = c(D, w), j.c()), b.set(D, T[g] = j), D in x && S.set(D, Math.abs(g - x[D]));
   }
-  const E = /* @__PURE__ */ new Set(), me = /* @__PURE__ */ new Set();
-  function de(S) {
-    x(S, 1), S.m(o, c), s.set(S.key, S), c = S.first, d--;
+  const M = /* @__PURE__ */ new Set(), q = /* @__PURE__ */ new Set();
+  function X(w) {
+    $(w, 1), w.m(a, u), o.set(w.key, w), u = w.first, h--;
   }
-  for (; _ && d; ) {
-    const S = z[d - 1], F = n[_ - 1], N = S.key, le = F.key;
-    S === F ? (c = S.first, _--, d--) : h.has(le) ? !s.has(N) || E.has(N) ? de(S) : me.has(le) ? _-- : p.get(N) > p.get(le) ? (me.add(N), de(S)) : (E.add(le), _--) : (f(F, s), _--);
+  for (; p && h; ) {
+    const w = T[h - 1], D = n[p - 1], j = w.key, ee = D.key;
+    w === D ? (u = w.first, p--, h--) : b.has(ee) ? !o.has(j) || M.has(j) ? X(w) : q.has(ee) ? p-- : S.get(j) > S.get(ee) ? (q.add(j), X(w)) : (M.add(ee), p--) : (f(D, o), p--);
   }
-  for (; _--; ) {
-    const S = n[_];
-    h.has(S.key) || f(S, s);
+  for (; p--; ) {
+    const w = n[p];
+    b.has(w.key) || f(w, o);
   }
-  for (; d; ) de(z[d - 1]);
-  return U($), z;
+  for (; h; ) X(T[h - 1]);
+  return K(z), T;
 }
-function P(n) {
+function E(n) {
   n && n.c();
 }
-function C(n, e, t) {
-  const { fragment: i, after_update: r } = n.$$;
-  i && i.m(e, t), pe(() => {
-    const l = n.$$.on_mount.map(Be).filter(Ae);
-    n.$$.on_destroy ? n.$$.on_destroy.push(...l) : U(l), n.$$.on_mount = [];
-  }), r.forEach(pe);
+function P(n, e, t) {
+  const { fragment: i, after_update: l } = n.$$;
+  i && i.m(e, t), we(() => {
+    const r = n.$$.on_mount.map(We).filter(Ue);
+    n.$$.on_destroy ? n.$$.on_destroy.push(...r) : K(r), n.$$.on_mount = [];
+  }), l.forEach(we);
 }
-function T(n, e) {
+function N(n, e) {
   const t = n.$$;
-  t.fragment !== null && (lt(t.after_update), U(t.on_destroy), t.fragment && t.fragment.d(e), t.on_destroy = t.fragment = null, t.ctx = []);
+  t.fragment !== null && (vt(t.after_update), K(t.on_destroy), t.fragment && t.fragment.d(e), t.on_destroy = t.fragment = null, t.ctx = []);
 }
-function ot(n, e) {
-  n.$$.dirty[0] === -1 && (W.push(n), it(), n.$$.dirty.fill(0)), n.$$.dirty[e / 31 | 0] |= 1 << e % 31;
+function yt(n, e) {
+  n.$$.dirty[0] === -1 && (ie.push(n), Je(), n.$$.dirty.fill(0)), n.$$.dirty[e / 31 | 0] |= 1 << e % 31;
 }
-function Y(n, e, t, i, r, l, s = null, o = [-1]) {
-  const f = be;
-  te(n);
-  const u = n.$$ = {
+function R(n, e, t, i, l, r, o = null, a = [-1]) {
+  const f = ke;
+  oe(n);
+  const c = n.$$ = {
     fragment: null,
     ctx: [],
     // state
-    props: l,
-    update: ne,
-    not_equal: r,
-    bound: _e(),
+    props: r,
+    update: ae,
+    not_equal: l,
+    bound: ye(),
     // lifecycle
     on_mount: [],
     on_destroy: [],
@@ -281,85 +288,85 @@ function Y(n, e, t, i, r, l, s = null, o = [-1]) {
     after_update: [],
     context: new Map(e.context || (f ? f.$$.context : [])),
     // everything else
-    callbacks: _e(),
-    dirty: o,
+    callbacks: ye(),
+    dirty: a,
     skip_bound: !1,
     root: e.target || f.$$.root
   };
-  s && s(u.root);
-  let c = !1;
-  if (u.ctx = t ? t(n, e.props || {}, (b, _, ...d) => {
-    const g = d.length ? d[0] : _;
-    return u.ctx && r(u.ctx[b], u.ctx[b] = g) && (!u.skip_bound && u.bound[b] && u.bound[b](g), c && ot(n, b)), _;
-  }) : [], u.update(), c = !0, U(u.before_update), u.fragment = i ? i(u.ctx) : !1, e.target) {
+  o && o(c.root);
+  let u = !1;
+  if (c.ctx = t ? t(n, e.props || {}, (d, p, ...h) => {
+    const g = h.length ? h[0] : p;
+    return c.ctx && l(c.ctx[d], c.ctx[d] = g) && (!c.skip_bound && c.bound[d] && c.bound[d](g), u && yt(n, d)), p;
+  }) : [], c.update(), u = !0, K(c.before_update), c.fragment = i ? i(c.ctx) : !1, e.target) {
     if (e.hydrate) {
-      const b = et(e.target);
-      u.fragment && u.fragment.l(b), b.forEach(j);
+      const d = pt(e.target);
+      c.fragment && c.fragment.l(d), d.forEach(v);
     } else
-      u.fragment && u.fragment.c();
-    e.intro && x(n.$$.fragment), C(n, e.target, e.anchor), m();
+      c.fragment && c.fragment.c();
+    e.intro && $(n.$$.fragment), P(n, e.target, e.anchor), _();
   }
-  te(f);
+  oe(f);
 }
 let Ye;
 typeof HTMLElement == "function" && (Ye = class extends HTMLElement {
   constructor(e, t, i) {
     super();
     /** The Svelte component constructor */
-    O(this, "$$ctor");
+    F(this, "$$ctor");
     /** Slots */
-    O(this, "$$s");
+    F(this, "$$s");
     /** The Svelte component instance */
-    O(this, "$$c");
+    F(this, "$$c");
     /** Whether or not the custom element is connected */
-    O(this, "$$cn", !1);
+    F(this, "$$cn", !1);
     /** Component props data */
-    O(this, "$$d", {});
+    F(this, "$$d", {});
     /** `true` if currently in the process of reflecting component props back to attributes */
-    O(this, "$$r", !1);
+    F(this, "$$r", !1);
     /** @type {Record<string, CustomElementPropDefinition>} Props definition (name, reflected, type etc) */
-    O(this, "$$p_d", {});
+    F(this, "$$p_d", {});
     /** @type {Record<string, Function[]>} Event listeners */
-    O(this, "$$l", {});
+    F(this, "$$l", {});
     /** @type {Map<Function, Function>} Event listener unsubscribe functions */
-    O(this, "$$l_u", /* @__PURE__ */ new Map());
+    F(this, "$$l_u", /* @__PURE__ */ new Map());
     this.$$ctor = e, this.$$s = t, i && this.attachShadow({ mode: "open" });
   }
   addEventListener(e, t, i) {
     if (this.$$l[e] = this.$$l[e] || [], this.$$l[e].push(t), this.$$c) {
-      const r = this.$$c.$on(e, t);
-      this.$$l_u.set(t, r);
+      const l = this.$$c.$on(e, t);
+      this.$$l_u.set(t, l);
     }
     super.addEventListener(e, t, i);
   }
   removeEventListener(e, t, i) {
     if (super.removeEventListener(e, t, i), this.$$c) {
-      const r = this.$$l_u.get(t);
-      r && (r(), this.$$l_u.delete(t));
+      const l = this.$$l_u.get(t);
+      l && (l(), this.$$l_u.delete(t));
     }
     if (this.$$l[e]) {
-      const r = this.$$l[e].indexOf(t);
-      r >= 0 && this.$$l[e].splice(r, 1);
+      const l = this.$$l[e].indexOf(t);
+      l >= 0 && this.$$l[e].splice(l, 1);
     }
   }
   async connectedCallback() {
     if (this.$$cn = !0, !this.$$c) {
-      let t = function(s) {
+      let t = function(o) {
         return () => {
-          let o;
+          let a;
           return {
             c: function() {
-              o = y("slot"), s !== "default" && a(o, "name", s);
+              a = B("slot"), o !== "default" && s(a, "name", o);
             },
             /**
              * @param {HTMLElement} target
              * @param {HTMLElement} [anchor]
              */
-            m: function(c, b) {
-              M(c, o, b);
+            m: function(u, d) {
+              y(u, a, d);
             },
-            d: function(c) {
-              c && j(o);
+            d: function(u) {
+              u && v(a);
             }
           };
         };
@@ -367,15 +374,15 @@ typeof HTMLElement == "function" && (Ye = class extends HTMLElement {
       var e = t;
       if (await Promise.resolve(), !this.$$cn || this.$$c)
         return;
-      const i = {}, r = tt(this);
-      for (const s of this.$$s)
-        s in r && (i[s] = [t(s)]);
-      for (const s of this.attributes) {
-        const o = this.$$g_p(s.name);
-        o in this.$$d || (this.$$d[o] = ae(o, s.value, this.$$p_d, "toProp"));
+      const i = {}, l = bt(this);
+      for (const o of this.$$s)
+        o in l && (i[o] = [t(o)]);
+      for (const o of this.attributes) {
+        const a = this.$$g_p(o.name);
+        a in this.$$d || (this.$$d[a] = de(a, o.value, this.$$p_d, "toProp"));
       }
-      for (const s in this.$$p_d)
-        !(s in this.$$d) && this[s] !== void 0 && (this.$$d[s] = this[s], delete this[s]);
+      for (const o in this.$$p_d)
+        !(o in this.$$d) && this[o] !== void 0 && (this.$$d[o] = this[o], delete this[o]);
       this.$$c = new this.$$ctor({
         target: this.shadowRoot || this,
         props: {
@@ -386,25 +393,25 @@ typeof HTMLElement == "function" && (Ye = class extends HTMLElement {
           }
         }
       });
-      const l = () => {
+      const r = () => {
         this.$$r = !0;
-        for (const s in this.$$p_d)
-          if (this.$$d[s] = this.$$c.$$.ctx[this.$$c.$$.props[s]], this.$$p_d[s].reflect) {
-            const o = ae(
-              s,
-              this.$$d[s],
+        for (const o in this.$$p_d)
+          if (this.$$d[o] = this.$$c.$$.ctx[this.$$c.$$.props[o]], this.$$p_d[o].reflect) {
+            const a = de(
+              o,
+              this.$$d[o],
               this.$$p_d,
               "toAttribute"
             );
-            o == null ? this.removeAttribute(this.$$p_d[s].attribute || s) : this.setAttribute(this.$$p_d[s].attribute || s, o);
+            a == null ? this.removeAttribute(this.$$p_d[o].attribute || o) : this.setAttribute(this.$$p_d[o].attribute || o, a);
           }
         this.$$r = !1;
       };
-      this.$$c.$$.after_update.push(l), l();
-      for (const s in this.$$l)
-        for (const o of this.$$l[s]) {
-          const f = this.$$c.$on(s, o);
-          this.$$l_u.set(o, f);
+      this.$$c.$$.after_update.push(r), r();
+      for (const o in this.$$l)
+        for (const a of this.$$l[o]) {
+          const f = this.$$c.$on(o, a);
+          this.$$l_u.set(a, f);
         }
       this.$$l = {};
     }
@@ -412,8 +419,8 @@ typeof HTMLElement == "function" && (Ye = class extends HTMLElement {
   // We don't need this when working within Svelte code, but for compatibility of people using this outside of Svelte
   // and setting attributes through setAttribute etc, this is helpful
   attributeChangedCallback(e, t, i) {
-    var r;
-    this.$$r || (e = this.$$g_p(e), this.$$d[e] = ae(e, i, this.$$p_d, "toProp"), (r = this.$$c) == null || r.$set({ [e]: this.$$d[e] }));
+    var l;
+    this.$$r || (e = this.$$g_p(e), this.$$d[e] = de(e, i, this.$$p_d, "toProp"), (l = this.$$c) == null || l.$set({ [e]: this.$$d[e] }));
   }
   disconnectedCallback() {
     this.$$cn = !1, Promise.resolve().then(() => {
@@ -426,13 +433,13 @@ typeof HTMLElement == "function" && (Ye = class extends HTMLElement {
     ) || e;
   }
 });
-function ae(n, e, t, i) {
-  var l;
-  const r = (l = t[n]) == null ? void 0 : l.type;
-  if (e = r === "Boolean" && typeof e != "boolean" ? e != null : e, !i || !t[n])
+function de(n, e, t, i) {
+  var r;
+  const l = (r = t[n]) == null ? void 0 : r.type;
+  if (e = l === "Boolean" && typeof e != "boolean" ? e != null : e, !i || !t[n])
     return e;
   if (i === "toAttribute")
-    switch (r) {
+    switch (l) {
       case "Object":
       case "Array":
         return e == null ? null : JSON.stringify(e);
@@ -444,7 +451,7 @@ function ae(n, e, t, i) {
         return e;
     }
   else
-    switch (r) {
+    switch (l) {
       case "Object":
       case "Array":
         return e && JSON.parse(e);
@@ -456,38 +463,38 @@ function ae(n, e, t, i) {
         return e;
     }
 }
-function Z(n, e, t, i, r, l) {
-  let s = class extends Ye {
+function W(n, e, t, i, l, r) {
+  let o = class extends Ye {
     constructor() {
-      super(n, t, r), this.$$p_d = e;
+      super(n, t, l), this.$$p_d = e;
     }
     static get observedAttributes() {
       return Object.keys(e).map(
-        (o) => (e[o].attribute || o).toLowerCase()
+        (a) => (e[a].attribute || a).toLowerCase()
       );
     }
   };
-  return Object.keys(e).forEach((o) => {
-    Object.defineProperty(s.prototype, o, {
+  return Object.keys(e).forEach((a) => {
+    Object.defineProperty(o.prototype, a, {
       get() {
-        return this.$$c && o in this.$$c ? this.$$c[o] : this.$$d[o];
+        return this.$$c && a in this.$$c ? this.$$c[a] : this.$$d[a];
       },
       set(f) {
-        var u;
-        f = ae(o, f, e), this.$$d[o] = f, (u = this.$$c) == null || u.$set({ [o]: f });
+        var c;
+        f = de(a, f, e), this.$$d[a] = f, (c = this.$$c) == null || c.$set({ [a]: f });
       }
     });
-  }), i.forEach((o) => {
-    Object.defineProperty(s.prototype, o, {
+  }), i.forEach((a) => {
+    Object.defineProperty(o.prototype, a, {
       get() {
         var f;
-        return (f = this.$$c) == null ? void 0 : f[o];
+        return (f = this.$$c) == null ? void 0 : f[a];
       }
     });
-  }), n.element = /** @type {any} */
-  s, s;
+  }), r && (o = r(o)), n.element = /** @type {any} */
+  o, o;
 }
-class V {
+class U {
   constructor() {
     /**
      * ### PRIVATE API
@@ -496,7 +503,7 @@ class V {
      *
      * @type {any}
      */
-    O(this, "$$");
+    F(this, "$$");
     /**
      * ### PRIVATE API
      *
@@ -504,11 +511,11 @@ class V {
      *
      * @type {any}
      */
-    O(this, "$$set");
+    F(this, "$$set");
   }
   /** @returns {void} */
   $destroy() {
-    T(this, 1), this.$destroy = ne;
+    N(this, 1), this.$destroy = ae;
   }
   /**
    * @template {Extract<keyof Events, string>} K
@@ -517,12 +524,12 @@ class V {
    * @returns {() => void}
    */
   $on(e, t) {
-    if (!Ae(t))
-      return ne;
+    if (!Ue(t))
+      return ae;
     const i = this.$$.callbacks[e] || (this.$$.callbacks[e] = []);
     return i.push(t), () => {
-      const r = i.indexOf(t);
-      r !== -1 && i.splice(r, 1);
+      const l = i.indexOf(t);
+      l !== -1 && i.splice(l, 1);
     };
   }
   /**
@@ -530,214 +537,1787 @@ class V {
    * @returns {void}
    */
   $set(e) {
-    this.$$set && !Ge(e) && (this.$$.skip_bound = !0, this.$$set(e), this.$$.skip_bound = !1);
+    this.$$set && !ut(e) && (this.$$.skip_bound = !0, this.$$set(e), this.$$.skip_bound = !1);
   }
 }
-const ft = "4";
-typeof window < "u" && (window.__svelte || (window.__svelte = { v: /* @__PURE__ */ new Set() })).v.add(ft);
-function ct(n) {
-  G(n, "svelte-13ccxme", ".tooltipWrap.svelte-13ccxme.svelte-13ccxme{position:relative;display:inline-flex;align-items:center}.trigger.svelte-13ccxme.svelte-13ccxme{display:inline-flex;align-items:center}.tooltip.svelte-13ccxme.svelte-13ccxme{display:none;position:absolute;z-index:2000;width:max-content;max-width:min(280px, 64vw);padding:7px 9px;border-radius:9px;border:1px solid rgba(17, 24, 39, 0.14);background:rgba(17, 24, 39, 0.96);color:#ffffff;box-shadow:0 10px 24px rgba(17, 24, 39, 0.2);font-size:12px;line-height:1.3;opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity 130ms ease, transform 130ms ease}.tooltip.open.svelte-13ccxme.svelte-13ccxme{display:block;opacity:1;transform:translateY(0);pointer-events:auto}.tooltip.top.svelte-13ccxme.svelte-13ccxme{left:50%;bottom:calc(100% + 10px);transform:translateX(-50%) translateY(-6px)}.tooltip.top.open.svelte-13ccxme.svelte-13ccxme{transform:translateX(-50%) translateY(0)}.tooltip.bottom.svelte-13ccxme.svelte-13ccxme{left:50%;top:calc(100% + 10px);transform:translateX(-50%) translateY(6px)}.tooltip.bottom.open.svelte-13ccxme.svelte-13ccxme{transform:translateX(-50%) translateY(0)}.tooltip.left.svelte-13ccxme.svelte-13ccxme{right:calc(100% + 10px);top:50%;transform:translateY(-50%) translateX(-6px)}.tooltip.left.open.svelte-13ccxme.svelte-13ccxme{transform:translateY(-50%) translateX(0)}.tooltip.right.svelte-13ccxme.svelte-13ccxme{left:calc(100% + 10px);top:50%;transform:translateY(-50%) translateX(6px)}.tooltip.right.open.svelte-13ccxme.svelte-13ccxme{transform:translateY(-50%) translateX(0)}.arrow.svelte-13ccxme.svelte-13ccxme{position:absolute;width:8px;height:8px;background:rgba(17, 24, 39, 0.96);border-left:1px solid rgba(17, 24, 39, 0.14);border-top:1px solid rgba(17, 24, 39, 0.14);transform:rotate(45deg)}.tooltip.top.svelte-13ccxme .arrow.svelte-13ccxme{left:50%;bottom:-4px;margin-left:-4px}.tooltip.bottom.svelte-13ccxme .arrow.svelte-13ccxme{left:50%;top:-4px;margin-left:-4px;transform:rotate(225deg)}.tooltip.left.svelte-13ccxme .arrow.svelte-13ccxme{top:50%;right:-4px;margin-top:-4px;transform:rotate(135deg)}.tooltip.right.svelte-13ccxme .arrow.svelte-13ccxme{top:50%;left:-4px;margin-top:-4px;transform:rotate(-45deg)}");
+const $t = "4";
+typeof window < "u" && (window.__svelte || (window.__svelte = { v: /* @__PURE__ */ new Set() })).v.add($t);
+const { window: Se } = dt;
+function xt(n) {
+  le(n, "svelte-10mh9hx", ".tooltipWrap.svelte-10mh9hx.svelte-10mh9hx{position:relative;display:inline-flex;align-items:center}.trigger.svelte-10mh9hx.svelte-10mh9hx{display:inline-flex;align-items:center}.tooltip.svelte-10mh9hx.svelte-10mh9hx{display:block;position:fixed;z-index:2000;width:max-content;max-width:min(280px, 64vw);padding:7px 9px;border-radius:9px;border:1px solid rgba(17, 24, 39, 0.14);background:rgba(17, 24, 39, 0.96);color:#ffffff;box-shadow:0 10px 24px rgba(17, 24, 39, 0.2);font-size:12px;line-height:1.3;opacity:0;visibility:hidden;transform:translateY(-6px);pointer-events:none;transition:opacity 130ms ease, transform 130ms ease}.tooltip.open.svelte-10mh9hx.svelte-10mh9hx{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}.arrow.svelte-10mh9hx.svelte-10mh9hx{position:absolute;width:8px;height:8px;background:rgba(17, 24, 39, 0.96);border-left:1px solid rgba(17, 24, 39, 0.14);border-top:1px solid rgba(17, 24, 39, 0.14);transform:rotate(45deg)}.tooltip.top.svelte-10mh9hx .arrow.svelte-10mh9hx{bottom:-4px}.tooltip.bottom.svelte-10mh9hx .arrow.svelte-10mh9hx{top:-4px;transform:rotate(225deg)}.tooltip.left.svelte-10mh9hx .arrow.svelte-10mh9hx{right:-4px;transform:rotate(135deg)}.tooltip.right.svelte-10mh9hx .arrow.svelte-10mh9hx{left:-4px;transform:rotate(-45deg)}");
 }
-const ut = (n) => ({}), xe = (n) => ({}), dt = (n) => ({}), ke = (n) => ({});
-function gt(n) {
-  let e, t, i, r, l, s, o, f, u, c, b, _;
-  const d = (
+const St = (n) => ({}), ze = (n) => ({}), zt = (n) => ({}), Me = (n) => ({});
+function Mt(n) {
+  let e, t, i, l, r, o, a, f, c, u, d, p;
+  const h = (
     /*#slots*/
-    n[6].trigger
-  ), g = oe(
-    d,
+    n[12].trigger
+  ), g = he(
+    h,
     n,
     /*$$scope*/
-    n[5],
-    ke
-  ), v = (
+    n[11],
+    Me
+  ), x = (
     /*#slots*/
-    n[6].content
-  ), z = oe(
-    v,
+    n[12].content
+  ), T = he(
+    x,
     n,
     /*$$scope*/
-    n[5],
-    xe
+    n[11],
+    ze
   );
   return {
     c() {
-      e = y("span"), t = y("span"), g && g.c(), i = H(), r = y("span"), l = y("span"), z && z.c(), s = H(), o = y("span"), a(t, "class", "trigger svelte-13ccxme"), a(l, "class", "content"), a(o, "class", "arrow svelte-13ccxme"), a(o, "aria-hidden", "true"), a(r, "class", f = "tooltip " + /*open*/
-      (n[1] ? "open" : "") + " " + /*placement*/
-      n[0] + " svelte-13ccxme"), a(r, "role", "tooltip"), a(r, "aria-hidden", u = !/*open*/
-      n[1]), a(e, "class", "tooltipWrap svelte-13ccxme"), a(e, "role", "group");
+      e = B("span"), t = B("span"), g && g.c(), i = V(), l = B("span"), r = B("span"), T && T.c(), o = V(), a = B("span"), s(t, "class", "trigger svelte-10mh9hx"), s(r, "class", "content"), s(a, "class", "arrow svelte-10mh9hx"), s(a, "aria-hidden", "true"), s(
+        a,
+        "style",
+        /*arrowStyle*/
+        n[5]
+      ), s(l, "class", f = "tooltip " + /*open*/
+      (n[0] ? "open" : "") + " " + /*effectivePlacement*/
+      n[3] + " svelte-10mh9hx"), s(l, "role", "tooltip"), s(l, "aria-hidden", c = !/*open*/
+      n[0]), s(
+        l,
+        "style",
+        /*tooltipStyle*/
+        n[4]
+      ), s(e, "class", "tooltipWrap svelte-10mh9hx"), s(e, "role", "group");
     },
-    m(h, p) {
-      M(h, e, p), w(e, t), g && g.m(t, null), w(e, i), w(e, r), w(r, l), z && z.m(l, null), w(r, s), w(r, o), c = !0, b || (_ = [
-        X(
+    m(b, S) {
+      y(b, e, S), m(e, t), g && g.m(t, null), n[13](t), m(e, i), m(e, l), m(l, r), T && T.m(r, null), m(l, o), m(l, a), n[14](l), u = !0, d || (p = [
+        A(
+          Se,
+          "resize",
+          /*onWindowChange*/
+          n[8]
+        ),
+        A(
+          Se,
+          "scroll",
+          /*onWindowChange*/
+          n[8]
+        ),
+        A(
           e,
           "mouseenter",
           /*onEnter*/
-          n[2]
+          n[6]
         ),
-        X(
+        A(
           e,
           "mouseleave",
           /*onLeave*/
-          n[3]
+          n[7]
         ),
-        X(
+        A(
           e,
           "focusin",
           /*onEnter*/
-          n[2]
+          n[6]
         ),
-        X(
+        A(
           e,
           "focusout",
           /*onLeave*/
-          n[3]
+          n[7]
         )
-      ], b = !0);
+      ], d = !0);
     },
-    p(h, [p]) {
-      g && g.p && (!c || p & /*$$scope*/
-      32) && ce(
+    p(b, [S]) {
+      g && g.p && (!u || S & /*$$scope*/
+      2048) && pe(
         g,
-        d,
         h,
+        b,
         /*$$scope*/
-        h[5],
-        c ? fe(
-          d,
+        b[11],
+        u ? ge(
+          h,
           /*$$scope*/
-          h[5],
-          p,
-          dt
-        ) : ue(
+          b[11],
+          S,
+          zt
+        ) : be(
           /*$$scope*/
-          h[5]
+          b[11]
         ),
-        ke
-      ), z && z.p && (!c || p & /*$$scope*/
-      32) && ce(
-        z,
-        v,
-        h,
+        Me
+      ), T && T.p && (!u || S & /*$$scope*/
+      2048) && pe(
+        T,
+        x,
+        b,
         /*$$scope*/
-        h[5],
-        c ? fe(
-          v,
+        b[11],
+        u ? ge(
+          x,
           /*$$scope*/
-          h[5],
-          p,
-          ut
-        ) : ue(
+          b[11],
+          S,
+          St
+        ) : be(
           /*$$scope*/
-          h[5]
+          b[11]
         ),
-        xe
-      ), (!c || p & /*open, placement*/
-      3 && f !== (f = "tooltip " + /*open*/
-      (h[1] ? "open" : "") + " " + /*placement*/
-      h[0] + " svelte-13ccxme")) && a(r, "class", f), (!c || p & /*open*/
-      2 && u !== (u = !/*open*/
-      h[1])) && a(r, "aria-hidden", u);
+        ze
+      ), (!u || S & /*arrowStyle*/
+      32) && s(
+        a,
+        "style",
+        /*arrowStyle*/
+        b[5]
+      ), (!u || S & /*open, effectivePlacement*/
+      9 && f !== (f = "tooltip " + /*open*/
+      (b[0] ? "open" : "") + " " + /*effectivePlacement*/
+      b[3] + " svelte-10mh9hx")) && s(l, "class", f), (!u || S & /*open*/
+      1 && c !== (c = !/*open*/
+      b[0])) && s(l, "aria-hidden", c), (!u || S & /*tooltipStyle*/
+      16) && s(
+        l,
+        "style",
+        /*tooltipStyle*/
+        b[4]
+      );
     },
-    i(h) {
-      c || (x(g, h), x(z, h), c = !0);
+    i(b) {
+      u || ($(g, b), $(T, b), u = !0);
     },
-    o(h) {
-      k(g, h), k(z, h), c = !1;
+    o(b) {
+      C(g, b), C(T, b), u = !1;
     },
-    d(h) {
-      h && j(e), g && g.d(h), z && z.d(h), b = !1, U(_);
+    d(b) {
+      b && v(e), g && g.d(b), n[13](null), T && T.d(b), n[14](null), d = !1, K(p);
     }
   };
 }
-function ht(n, e, t) {
-  let { $$slots: i = {}, $$scope: r } = e, { placement: l = "top" } = e, { openDelayMs: s = 80 } = e, o = !1, f = null;
-  function u() {
-    f && clearTimeout(f), f = setTimeout(() => t(1, o = !0), s);
-  }
-  function c() {
-    f && clearTimeout(f), f = null, t(1, o = !1);
-  }
-  return n.$$set = (b) => {
-    "placement" in b && t(0, l = b.placement), "openDelayMs" in b && t(4, s = b.openDelayMs), "$$scope" in b && t(5, r = b.$$scope);
-  }, [l, o, u, c, s, r, i];
+const G = 10, J = 8;
+function ce(n, e, t) {
+  return Math.max(e, Math.min(t, n));
 }
-class Ze extends V {
+function Ct(n, e, t) {
+  const i = window.innerWidth, l = window.innerHeight, r = e.top - G - t.height >= J, o = e.bottom + G + t.height <= l - J, a = e.left - G - t.width >= J, f = e.right + G + t.width <= i - J;
+  return n === "top" && !r && o ? "bottom" : n === "bottom" && !o && r ? "top" : n === "left" && !a && f ? "right" : n === "right" && !f && a ? "left" : n;
+}
+function Bt(n, e, t) {
+  let { $$slots: i = {}, $$scope: l } = e, { placement: r = "top" } = e, { openDelayMs: o = 80 } = e, a = !1, f = null, c = null, u = null, d = r, p = "", h = "";
+  function g() {
+    f && clearTimeout(f), f = setTimeout(() => t(0, a = !0), o);
+  }
+  function x() {
+    f && clearTimeout(f), f = null, t(0, a = !1);
+  }
+  async function T() {
+    if (!a || !c || !u) return;
+    await _t();
+    const M = c.getBoundingClientRect(), q = u.getBoundingClientRect(), X = window.innerWidth, w = window.innerHeight;
+    t(3, d = Ct(r, M, q));
+    let D = 0, j = 0;
+    d === "top" ? (j = M.top - G - q.height, D = M.left + M.width / 2 - q.width / 2) : d === "bottom" ? (j = M.bottom + G, D = M.left + M.width / 2 - q.width / 2) : d === "left" ? (j = M.top + M.height / 2 - q.height / 2, D = M.left - G - q.width) : (j = M.top + M.height / 2 - q.height / 2, D = M.right + G), D = ce(D, J, X - q.width - J), j = ce(j, J, w - q.height - J);
+    const ee = M.left + M.width / 2, rt = M.top + M.height / 2, st = ce(ee - D - 4, 10, q.width - 10), ot = ce(rt - j - 4, 10, q.height - 10);
+    t(5, h = d === "top" || d === "bottom" ? `left:${st}px;` : `top:${ot}px;`), t(4, p = `left:${Math.round(D)}px;top:${Math.round(j)}px;`);
+  }
+  function b() {
+    T();
+  }
+  function S(M) {
+    _e[M ? "unshift" : "push"](() => {
+      c = M, t(1, c);
+    });
+  }
+  function z(M) {
+    _e[M ? "unshift" : "push"](() => {
+      u = M, t(2, u);
+    });
+  }
+  return n.$$set = (M) => {
+    "placement" in M && t(9, r = M.placement), "openDelayMs" in M && t(10, o = M.openDelayMs), "$$scope" in M && t(11, l = M.$$scope);
+  }, n.$$.update = () => {
+    n.$$.dirty & /*open*/
+    1 && a && T(), n.$$.dirty & /*open, placement*/
+    513 && (a || (t(4, p = ""), t(5, h = ""), t(3, d = r)));
+  }, [
+    a,
+    c,
+    u,
+    d,
+    p,
+    h,
+    g,
+    x,
+    b,
+    r,
+    o,
+    l,
+    i,
+    S,
+    z
+  ];
+}
+class Ke extends U {
   constructor(e) {
-    super(), Y(this, e, ht, gt, L, { placement: 0, openDelayMs: 4 }, ct);
+    super(), R(this, e, Bt, Mt, Z, { placement: 9, openDelayMs: 10 }, xt);
   }
   get placement() {
-    return this.$$.ctx[0];
+    return this.$$.ctx[9];
   }
   set placement(e) {
-    this.$$set({ placement: e }), m();
+    this.$$set({ placement: e }), _();
   }
   get openDelayMs() {
-    return this.$$.ctx[4];
+    return this.$$.ctx[10];
   }
   set openDelayMs(e) {
-    this.$$set({ openDelayMs: e }), m();
+    this.$$set({ openDelayMs: e }), _();
   }
 }
-Z(Ze, { placement: {}, openDelayMs: {} }, ["trigger", "content"], [], !0);
-function pt(n) {
-  G(n, "svelte-17e38qg", ".desc.svelte-17e38qg{display:block}");
+W(Ke, { placement: {}, openDelayMs: {} }, ["trigger", "content"], [], !0);
+function Tt(n) {
+  let e;
+  return {
+    c() {
+      e = B("span"), se(e, "display", "inline-block"), se(
+        e,
+        "width",
+        /*size*/
+        n[1] + "px"
+      ), se(
+        e,
+        "height",
+        /*size*/
+        n[1] + "px"
+      ), s(e, "aria-hidden", "true");
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*size*/
+      2 && se(
+        e,
+        "width",
+        /*size*/
+        t[1] + "px"
+      ), i & /*size*/
+      2 && se(
+        e,
+        "height",
+        /*size*/
+        t[1] + "px"
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
 }
-const bt = (n) => ({}), ye = (n) => ({}), mt = (n) => ({}), ze = (n) => ({});
-function _t(n) {
+function Dt(n) {
+  let e, t, i, l, r, o, a = (
+    /*bg*/
+    n[2] && Ce(n)
+  );
+  return {
+    c() {
+      e = k("svg"), a && a.c(), t = k("g"), i = k("path"), l = k("path"), r = k("path"), s(i, "d", "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"), s(l, "d", "M7 10l5 5 5-5"), s(r, "d", "M12 15V3"), s(t, "transform", "translate(12 12) scale(0.68) translate(-12 -12)"), s(
+        e,
+        "width",
+        /*size*/
+        n[1]
+      ), s(
+        e,
+        "height",
+        /*size*/
+        n[1]
+      ), s(e, "viewBox", "0 0 24 24"), s(e, "fill", "none"), s(e, "aria-hidden", "true"), s(e, "stroke", o = /*fg*/
+      n[3] ?? "currentColor"), s(e, "stroke-width", "2"), s(e, "stroke-linecap", "round"), s(e, "stroke-linejoin", "round");
+    },
+    m(f, c) {
+      y(f, e, c), a && a.m(e, null), m(e, t), m(t, i), m(t, l), m(t, r);
+    },
+    p(f, c) {
+      /*bg*/
+      f[2] ? a ? a.p(f, c) : (a = Ce(f), a.c(), a.m(e, t)) : a && (a.d(1), a = null), c & /*size*/
+      2 && s(
+        e,
+        "width",
+        /*size*/
+        f[1]
+      ), c & /*size*/
+      2 && s(
+        e,
+        "height",
+        /*size*/
+        f[1]
+      ), c & /*fg*/
+      8 && o !== (o = /*fg*/
+      f[3] ?? "currentColor") && s(e, "stroke", o);
+    },
+    d(f) {
+      f && v(e), a && a.d();
+    }
+  };
+}
+function jt(n) {
+  let e, t, i, l, r, o;
+  return {
+    c() {
+      e = k("svg"), t = k("g"), i = k("path"), r = k("path"), s(i, "d", "M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"), s(i, "fill", l = /*bg*/
+      n[2] ?? "none"), s(
+        i,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      ), s(r, "d", "m9 12 2 2 4-4"), s(t, "transform", "translate(12 12) scale(0.86) translate(-12 -12)"), s(
+        e,
+        "width",
+        /*size*/
+        n[1]
+      ), s(
+        e,
+        "height",
+        /*size*/
+        n[1]
+      ), s(e, "viewBox", "0 0 24 24"), s(e, "fill", "none"), s(e, "aria-hidden", "true"), s(e, "stroke", o = /*fg*/
+      n[3] ?? "currentColor"), s(e, "stroke-width", "2"), s(e, "stroke-linecap", "round"), s(e, "stroke-linejoin", "round");
+    },
+    m(a, f) {
+      y(a, e, f), m(e, t), m(t, i), m(t, r);
+    },
+    p(a, f) {
+      f & /*bg*/
+      4 && l !== (l = /*bg*/
+      a[2] ?? "none") && s(i, "fill", l), f & /*bgOpacity*/
+      16 && s(
+        i,
+        "opacity",
+        /*bgOpacity*/
+        a[4]
+      ), f & /*size*/
+      2 && s(
+        e,
+        "width",
+        /*size*/
+        a[1]
+      ), f & /*size*/
+      2 && s(
+        e,
+        "height",
+        /*size*/
+        a[1]
+      ), f & /*fg*/
+      8 && o !== (o = /*fg*/
+      a[3] ?? "currentColor") && s(e, "stroke", o);
+    },
+    d(a) {
+      a && v(e);
+    }
+  };
+}
+function qt(n) {
+  let e, t, i, l, r, o;
+  function a(u, d) {
+    return (
+      /*bg*/
+      u[2] ? Zt : Vt
+    );
+  }
+  let f = a(n), c = f(n);
+  return {
+    c() {
+      e = k("svg"), c.c(), t = k("g"), i = k("ellipse"), l = k("path"), r = k("path"), s(i, "cx", "12"), s(i, "cy", "5"), s(i, "rx", "9"), s(i, "ry", "3"), s(l, "d", "M3 5v14c0 1.7 4 3 9 3s9-1.3 9-3V5"), s(r, "d", "M3 12c0 1.7 4 3 9 3s9-1.3 9-3"), s(t, "transform", "translate(12 12) scale(0.68) translate(-12 -12)"), s(
+        e,
+        "width",
+        /*size*/
+        n[1]
+      ), s(
+        e,
+        "height",
+        /*size*/
+        n[1]
+      ), s(e, "viewBox", "0 0 24 24"), s(e, "fill", "none"), s(e, "aria-hidden", "true"), s(e, "stroke", o = /*fg*/
+      n[3] ?? "currentColor"), s(e, "stroke-width", "2"), s(e, "stroke-linecap", "round"), s(e, "stroke-linejoin", "round");
+    },
+    m(u, d) {
+      y(u, e, d), c.m(e, null), m(e, t), m(t, i), m(t, l), m(t, r);
+    },
+    p(u, d) {
+      f === (f = a(u)) && c ? c.p(u, d) : (c.d(1), c = f(u), c && (c.c(), c.m(e, t))), d & /*size*/
+      2 && s(
+        e,
+        "width",
+        /*size*/
+        u[1]
+      ), d & /*size*/
+      2 && s(
+        e,
+        "height",
+        /*size*/
+        u[1]
+      ), d & /*fg*/
+      8 && o !== (o = /*fg*/
+      u[3] ?? "currentColor") && s(e, "stroke", o);
+    },
+    d(u) {
+      u && v(e), c.d();
+    }
+  };
+}
+function Pt(n) {
+  let e, t, i, l, r, o, a;
+  function f(d, p) {
+    return (
+      /*bg*/
+      d[2] ? Ut : Wt
+    );
+  }
+  let c = f(n), u = c(n);
+  return {
+    c() {
+      e = k("svg"), u.c(), t = k("g"), i = k("polyline"), l = k("polyline"), r = k("line"), o = k("line"), s(i, "points", "15 3 21 3 21 9"), s(l, "points", "9 21 3 21 3 15"), s(r, "x1", "21"), s(r, "y1", "3"), s(r, "x2", "14"), s(r, "y2", "10"), s(o, "x1", "3"), s(o, "y1", "21"), s(o, "x2", "10"), s(o, "y2", "14"), s(t, "transform", "translate(12 12) scale(0.68) translate(-12 -12)"), s(
+        e,
+        "width",
+        /*size*/
+        n[1]
+      ), s(
+        e,
+        "height",
+        /*size*/
+        n[1]
+      ), s(e, "viewBox", "0 0 24 24"), s(e, "fill", "none"), s(e, "aria-hidden", "true"), s(e, "stroke", a = /*fg*/
+      n[3] ?? "currentColor"), s(e, "stroke-width", "2"), s(e, "stroke-linecap", "round"), s(e, "stroke-linejoin", "round");
+    },
+    m(d, p) {
+      y(d, e, p), u.m(e, null), m(e, t), m(t, i), m(t, l), m(t, r), m(t, o);
+    },
+    p(d, p) {
+      c === (c = f(d)) && u ? u.p(d, p) : (u.d(1), u = c(d), u && (u.c(), u.m(e, t))), p & /*size*/
+      2 && s(
+        e,
+        "width",
+        /*size*/
+        d[1]
+      ), p & /*size*/
+      2 && s(
+        e,
+        "height",
+        /*size*/
+        d[1]
+      ), p & /*fg*/
+      8 && a !== (a = /*fg*/
+      d[3] ?? "currentColor") && s(e, "stroke", a);
+    },
+    d(d) {
+      d && v(e), u.d();
+    }
+  };
+}
+function Nt(n) {
+  let e, t, i, l, r, o, a, f;
+  function c(p, h) {
+    return (
+      /*bg*/
+      p[2] ? Yt : Jt
+    );
+  }
+  let u = c(n), d = u(n);
+  return {
+    c() {
+      e = k("svg"), d.c(), t = k("g"), i = k("path"), l = k("path"), r = k("path"), o = k("path"), a = k("path"), s(i, "d", "M14 4.1 12 6"), s(l, "d", "m5.1 8-2.9-.8"), s(r, "d", "m6 12-1.9 2"), s(o, "d", "M7.2 2.2 8 5.1"), s(a, "d", "M9.037 9.69a.498.498 0 0 1 .653-.653l11 4.5a.5.5 0 0 1-.074.949l-4.349 1.041a1 1 0 0 0-.74.739l-1.04 4.35a.5.5 0 0 1-.95.074z"), s(t, "transform", "translate(12 12) scale(0.68) translate(-12 -12)"), s(
+        e,
+        "width",
+        /*size*/
+        n[1]
+      ), s(
+        e,
+        "height",
+        /*size*/
+        n[1]
+      ), s(e, "viewBox", "0 0 24 24"), s(e, "fill", "none"), s(e, "aria-hidden", "true"), s(e, "stroke", f = /*fg*/
+      n[3] ?? "currentColor"), s(e, "stroke-width", "2"), s(e, "stroke-linecap", "round"), s(e, "stroke-linejoin", "round");
+    },
+    m(p, h) {
+      y(p, e, h), d.m(e, null), m(e, t), m(t, i), m(t, l), m(t, r), m(t, o), m(t, a);
+    },
+    p(p, h) {
+      u === (u = c(p)) && d ? d.p(p, h) : (d.d(1), d = u(p), d && (d.c(), d.m(e, t))), h & /*size*/
+      2 && s(
+        e,
+        "width",
+        /*size*/
+        p[1]
+      ), h & /*size*/
+      2 && s(
+        e,
+        "height",
+        /*size*/
+        p[1]
+      ), h & /*fg*/
+      8 && f !== (f = /*fg*/
+      p[3] ?? "currentColor") && s(e, "stroke", f);
+    },
+    d(p) {
+      p && v(e), d.d();
+    }
+  };
+}
+function Et(n) {
+  let e, t, i, l, r;
+  function o(c, u) {
+    return (
+      /*bg*/
+      c[2] ? ti : ei
+    );
+  }
+  let a = o(n), f = a(n);
+  return {
+    c() {
+      e = k("svg"), f.c(), t = k("path"), l = k("path"), s(t, "d", "M12 10.2a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"), s(t, "fill", i = /*fg*/
+      n[3] ?? "currentColor"), s(l, "d", "M11 11.5h2V18h-2v-6.5Z"), s(l, "fill", r = /*fg*/
+      n[3] ?? "currentColor"), s(
+        e,
+        "width",
+        /*size*/
+        n[1]
+      ), s(
+        e,
+        "height",
+        /*size*/
+        n[1]
+      ), s(e, "viewBox", "0 0 24 24"), s(e, "fill", "none"), s(e, "aria-hidden", "true");
+    },
+    m(c, u) {
+      y(c, e, u), f.m(e, null), m(e, t), m(e, l);
+    },
+    p(c, u) {
+      a === (a = o(c)) && f ? f.p(c, u) : (f.d(1), f = a(c), f && (f.c(), f.m(e, t))), u & /*fg*/
+      8 && i !== (i = /*fg*/
+      c[3] ?? "currentColor") && s(t, "fill", i), u & /*fg*/
+      8 && r !== (r = /*fg*/
+      c[3] ?? "currentColor") && s(l, "fill", r), u & /*size*/
+      2 && s(
+        e,
+        "width",
+        /*size*/
+        c[1]
+      ), u & /*size*/
+      2 && s(
+        e,
+        "height",
+        /*size*/
+        c[1]
+      );
+    },
+    d(c) {
+      c && v(e), f.d();
+    }
+  };
+}
+function Ot(n) {
+  let e, t, i, l, r;
+  function o(c, u) {
+    return (
+      /*bg*/
+      c[2] ? ri : li
+    );
+  }
+  let a = o(n), f = a(n);
+  return {
+    c() {
+      e = k("svg"), f.c(), t = k("path"), l = k("path"), s(t, "d", "M12 10.2a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"), s(t, "fill", i = /*fg*/
+      n[3] ?? "currentColor"), s(l, "d", "M11 11.5h2V18h-2v-6.5Z"), s(l, "fill", r = /*fg*/
+      n[3] ?? "currentColor"), s(
+        e,
+        "width",
+        /*size*/
+        n[1]
+      ), s(
+        e,
+        "height",
+        /*size*/
+        n[1]
+      ), s(e, "viewBox", "0 0 24 24"), s(e, "fill", "none"), s(e, "aria-hidden", "true");
+    },
+    m(c, u) {
+      y(c, e, u), f.m(e, null), m(e, t), m(e, l);
+    },
+    p(c, u) {
+      a === (a = o(c)) && f ? f.p(c, u) : (f.d(1), f = a(c), f && (f.c(), f.m(e, t))), u & /*fg*/
+      8 && i !== (i = /*fg*/
+      c[3] ?? "currentColor") && s(t, "fill", i), u & /*fg*/
+      8 && r !== (r = /*fg*/
+      c[3] ?? "currentColor") && s(l, "fill", r), u & /*size*/
+      2 && s(
+        e,
+        "width",
+        /*size*/
+        c[1]
+      ), u & /*size*/
+      2 && s(
+        e,
+        "height",
+        /*size*/
+        c[1]
+      );
+    },
+    d(c) {
+      c && v(e), f.d();
+    }
+  };
+}
+function Ft(n) {
+  let e, t, i, l, r, o, a;
+  return {
+    c() {
+      e = k("svg"), t = k("path"), l = k("path"), o = k("path"), s(t, "d", "M12 3.5c.4 0 .8.2 1 .6l9 15.6c.4.7-.1 1.6-1 1.6H3c-.9 0-1.4-.9-1-1.6l9-15.6c.2-.4.6-.6 1-.6Z"), s(t, "fill", i = /*bg*/
+      n[2] ?? "currentColor"), s(
+        t,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      ), s(l, "d", "M12 8a1 1 0 0 1 1 1l-.3 5.5a.7.7 0 0 1-1.4 0L11 9a1 1 0 0 1 1-1Z"), s(l, "fill", r = /*fg*/
+      n[3] ?? "currentColor"), s(o, "d", "M12 18a1.25 1.25 0 1 1 0-2.5A1.25 1.25 0 0 1 12 18Z"), s(o, "fill", a = /*fg*/
+      n[3] ?? "currentColor"), s(
+        e,
+        "width",
+        /*size*/
+        n[1]
+      ), s(
+        e,
+        "height",
+        /*size*/
+        n[1]
+      ), s(e, "viewBox", "0 0 24 24"), s(e, "fill", "none"), s(e, "aria-hidden", "true");
+    },
+    m(f, c) {
+      y(f, e, c), m(e, t), m(e, l), m(e, o);
+    },
+    p(f, c) {
+      c & /*bg*/
+      4 && i !== (i = /*bg*/
+      f[2] ?? "currentColor") && s(t, "fill", i), c & /*bgOpacity*/
+      16 && s(
+        t,
+        "opacity",
+        /*bgOpacity*/
+        f[4]
+      ), c & /*fg*/
+      8 && r !== (r = /*fg*/
+      f[3] ?? "currentColor") && s(l, "fill", r), c & /*fg*/
+      8 && a !== (a = /*fg*/
+      f[3] ?? "currentColor") && s(o, "fill", a), c & /*size*/
+      2 && s(
+        e,
+        "width",
+        /*size*/
+        f[1]
+      ), c & /*size*/
+      2 && s(
+        e,
+        "height",
+        /*size*/
+        f[1]
+      );
+    },
+    d(f) {
+      f && v(e);
+    }
+  };
+}
+function It(n) {
+  let e, t, i;
+  function l(a, f) {
+    return (
+      /*bg*/
+      a[2] ? fi : ai
+    );
+  }
+  let r = l(n), o = r(n);
+  return {
+    c() {
+      e = k("svg"), o.c(), t = k("path"), s(t, "d", "M9.2 12.5 7.5 10.8a1 1 0 0 0-1.4 1.4l2.4 2.4a1 1 0 0 0 1.4 0l7-7a1 1 0 1 0-1.4-1.4l-6.3 6.3Z"), s(t, "fill", i = /*fg*/
+      n[3] ?? "currentColor"), s(
+        e,
+        "width",
+        /*size*/
+        n[1]
+      ), s(
+        e,
+        "height",
+        /*size*/
+        n[1]
+      ), s(e, "viewBox", "0 0 24 24"), s(e, "fill", "none"), s(e, "aria-hidden", "true");
+    },
+    m(a, f) {
+      y(a, e, f), o.m(e, null), m(e, t);
+    },
+    p(a, f) {
+      r === (r = l(a)) && o ? o.p(a, f) : (o.d(1), o = r(a), o && (o.c(), o.m(e, t))), f & /*fg*/
+      8 && i !== (i = /*fg*/
+      a[3] ?? "currentColor") && s(t, "fill", i), f & /*size*/
+      2 && s(
+        e,
+        "width",
+        /*size*/
+        a[1]
+      ), f & /*size*/
+      2 && s(
+        e,
+        "height",
+        /*size*/
+        a[1]
+      );
+    },
+    d(a) {
+      a && v(e), o.d();
+    }
+  };
+}
+function Ce(n) {
+  let e;
+  function t(r, o) {
+    return (
+      /*bgShape*/
+      r[5] === "square" ? At : Lt
+    );
+  }
+  let i = t(n), l = i(n);
+  return {
+    c() {
+      l.c(), e = O();
+    },
+    m(r, o) {
+      l.m(r, o), y(r, e, o);
+    },
+    p(r, o) {
+      i === (i = t(r)) && l ? l.p(r, o) : (l.d(1), l = i(r), l && (l.c(), l.m(e.parentNode, e)));
+    },
+    d(r) {
+      r && v(e), l.d(r);
+    }
+  };
+}
+function Lt(n) {
+  let e;
+  return {
+    c() {
+      e = k("circle"), s(e, "cx", "12"), s(e, "cy", "12"), s(e, "r", "10"), s(
+        e,
+        "fill",
+        /*bg*/
+        n[2]
+      ), s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      ), s(e, "stroke", "none");
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*bg*/
+      4 && s(
+        e,
+        "fill",
+        /*bg*/
+        t[2]
+      ), i & /*bgOpacity*/
+      16 && s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        t[4]
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
+}
+function At(n) {
+  let e;
+  return {
+    c() {
+      e = k("rect"), s(e, "x", "3"), s(e, "y", "3"), s(e, "width", "18"), s(e, "height", "18"), s(e, "rx", "0"), s(
+        e,
+        "fill",
+        /*bg*/
+        n[2]
+      ), s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      ), s(e, "stroke", "none");
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*bg*/
+      4 && s(
+        e,
+        "fill",
+        /*bg*/
+        t[2]
+      ), i & /*bgOpacity*/
+      16 && s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        t[4]
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
+}
+function Vt(n) {
+  let e;
+  return {
+    c() {
+      e = k("path"), s(e, "d", "M3 3h18v18H3V3Z"), s(e, "fill", "currentColor"), s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      ), s(e, "stroke", "none");
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*bgOpacity*/
+      16 && s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        t[4]
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
+}
+function Zt(n) {
+  let e;
+  function t(r, o) {
+    return (
+      /*bgShape*/
+      r[5] === "square" ? Rt : Ht
+    );
+  }
+  let i = t(n), l = i(n);
+  return {
+    c() {
+      l.c(), e = O();
+    },
+    m(r, o) {
+      l.m(r, o), y(r, e, o);
+    },
+    p(r, o) {
+      i === (i = t(r)) && l ? l.p(r, o) : (l.d(1), l = i(r), l && (l.c(), l.m(e.parentNode, e)));
+    },
+    d(r) {
+      r && v(e), l.d(r);
+    }
+  };
+}
+function Ht(n) {
+  let e;
+  return {
+    c() {
+      e = k("circle"), s(e, "cx", "12"), s(e, "cy", "12"), s(e, "r", "10"), s(
+        e,
+        "fill",
+        /*bg*/
+        n[2]
+      ), s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      ), s(e, "stroke", "none");
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*bg*/
+      4 && s(
+        e,
+        "fill",
+        /*bg*/
+        t[2]
+      ), i & /*bgOpacity*/
+      16 && s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        t[4]
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
+}
+function Rt(n) {
+  let e;
+  return {
+    c() {
+      e = k("rect"), s(e, "x", "3"), s(e, "y", "3"), s(e, "width", "18"), s(e, "height", "18"), s(e, "rx", "0"), s(
+        e,
+        "fill",
+        /*bg*/
+        n[2]
+      ), s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      ), s(e, "stroke", "none");
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*bg*/
+      4 && s(
+        e,
+        "fill",
+        /*bg*/
+        t[2]
+      ), i & /*bgOpacity*/
+      16 && s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        t[4]
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
+}
+function Wt(n) {
+  let e;
+  return {
+    c() {
+      e = k("path"), s(e, "d", "M3 3h18v18H3V3Z"), s(e, "fill", "currentColor"), s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      ), s(e, "stroke", "none");
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*bgOpacity*/
+      16 && s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        t[4]
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
+}
+function Ut(n) {
+  let e;
+  function t(r, o) {
+    return (
+      /*bgShape*/
+      r[5] === "square" ? Gt : Xt
+    );
+  }
+  let i = t(n), l = i(n);
+  return {
+    c() {
+      l.c(), e = O();
+    },
+    m(r, o) {
+      l.m(r, o), y(r, e, o);
+    },
+    p(r, o) {
+      i === (i = t(r)) && l ? l.p(r, o) : (l.d(1), l = i(r), l && (l.c(), l.m(e.parentNode, e)));
+    },
+    d(r) {
+      r && v(e), l.d(r);
+    }
+  };
+}
+function Xt(n) {
+  let e;
+  return {
+    c() {
+      e = k("circle"), s(e, "cx", "12"), s(e, "cy", "12"), s(e, "r", "10"), s(
+        e,
+        "fill",
+        /*bg*/
+        n[2]
+      ), s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      ), s(e, "stroke", "none");
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*bg*/
+      4 && s(
+        e,
+        "fill",
+        /*bg*/
+        t[2]
+      ), i & /*bgOpacity*/
+      16 && s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        t[4]
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
+}
+function Gt(n) {
+  let e;
+  return {
+    c() {
+      e = k("rect"), s(e, "x", "3"), s(e, "y", "3"), s(e, "width", "18"), s(e, "height", "18"), s(e, "rx", "0"), s(
+        e,
+        "fill",
+        /*bg*/
+        n[2]
+      ), s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      ), s(e, "stroke", "none");
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*bg*/
+      4 && s(
+        e,
+        "fill",
+        /*bg*/
+        t[2]
+      ), i & /*bgOpacity*/
+      16 && s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        t[4]
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
+}
+function Jt(n) {
+  let e;
+  return {
+    c() {
+      e = k("path"), s(e, "d", "M3 3h18v18H3V3Z"), s(e, "fill", "currentColor"), s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      ), s(e, "stroke", "none");
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*bgOpacity*/
+      16 && s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        t[4]
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
+}
+function Yt(n) {
+  let e;
+  function t(r, o) {
+    return (
+      /*bgShape*/
+      r[5] === "square" ? Qt : Kt
+    );
+  }
+  let i = t(n), l = i(n);
+  return {
+    c() {
+      l.c(), e = O();
+    },
+    m(r, o) {
+      l.m(r, o), y(r, e, o);
+    },
+    p(r, o) {
+      i === (i = t(r)) && l ? l.p(r, o) : (l.d(1), l = i(r), l && (l.c(), l.m(e.parentNode, e)));
+    },
+    d(r) {
+      r && v(e), l.d(r);
+    }
+  };
+}
+function Kt(n) {
+  let e;
+  return {
+    c() {
+      e = k("circle"), s(e, "cx", "12"), s(e, "cy", "12"), s(e, "r", "10"), s(
+        e,
+        "fill",
+        /*bg*/
+        n[2]
+      ), s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      ), s(e, "stroke", "none");
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*bg*/
+      4 && s(
+        e,
+        "fill",
+        /*bg*/
+        t[2]
+      ), i & /*bgOpacity*/
+      16 && s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        t[4]
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
+}
+function Qt(n) {
+  let e;
+  return {
+    c() {
+      e = k("rect"), s(e, "x", "3"), s(e, "y", "3"), s(e, "width", "18"), s(e, "height", "18"), s(e, "rx", "0"), s(
+        e,
+        "fill",
+        /*bg*/
+        n[2]
+      ), s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      ), s(e, "stroke", "none");
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*bg*/
+      4 && s(
+        e,
+        "fill",
+        /*bg*/
+        t[2]
+      ), i & /*bgOpacity*/
+      16 && s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        t[4]
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
+}
+function ei(n) {
+  let e;
+  return {
+    c() {
+      e = k("path"), s(e, "d", "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"), s(e, "fill", "currentColor"), s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      );
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*bgOpacity*/
+      16 && s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        t[4]
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
+}
+function ti(n) {
+  let e;
+  function t(r, o) {
+    return (
+      /*bgShape*/
+      r[5] === "square" ? ni : ii
+    );
+  }
+  let i = t(n), l = i(n);
+  return {
+    c() {
+      l.c(), e = O();
+    },
+    m(r, o) {
+      l.m(r, o), y(r, e, o);
+    },
+    p(r, o) {
+      i === (i = t(r)) && l ? l.p(r, o) : (l.d(1), l = i(r), l && (l.c(), l.m(e.parentNode, e)));
+    },
+    d(r) {
+      r && v(e), l.d(r);
+    }
+  };
+}
+function ii(n) {
+  let e;
+  return {
+    c() {
+      e = k("circle"), s(e, "cx", "12"), s(e, "cy", "12"), s(e, "r", "10"), s(
+        e,
+        "fill",
+        /*bg*/
+        n[2]
+      ), s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      );
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*bg*/
+      4 && s(
+        e,
+        "fill",
+        /*bg*/
+        t[2]
+      ), i & /*bgOpacity*/
+      16 && s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        t[4]
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
+}
+function ni(n) {
+  let e;
+  return {
+    c() {
+      e = k("rect"), s(e, "x", "3"), s(e, "y", "3"), s(e, "width", "18"), s(e, "height", "18"), s(e, "rx", "0"), s(
+        e,
+        "fill",
+        /*bg*/
+        n[2]
+      ), s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      );
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*bg*/
+      4 && s(
+        e,
+        "fill",
+        /*bg*/
+        t[2]
+      ), i & /*bgOpacity*/
+      16 && s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        t[4]
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
+}
+function li(n) {
+  let e;
+  return {
+    c() {
+      e = k("path"), s(e, "d", "M3 3h18v18H3V3Z"), s(e, "fill", "currentColor"), s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      );
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*bgOpacity*/
+      16 && s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        t[4]
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
+}
+function ri(n) {
+  let e;
+  function t(r, o) {
+    return (
+      /*bgShape*/
+      r[5] === "square" ? oi : si
+    );
+  }
+  let i = t(n), l = i(n);
+  return {
+    c() {
+      l.c(), e = O();
+    },
+    m(r, o) {
+      l.m(r, o), y(r, e, o);
+    },
+    p(r, o) {
+      i === (i = t(r)) && l ? l.p(r, o) : (l.d(1), l = i(r), l && (l.c(), l.m(e.parentNode, e)));
+    },
+    d(r) {
+      r && v(e), l.d(r);
+    }
+  };
+}
+function si(n) {
+  let e;
+  return {
+    c() {
+      e = k("circle"), s(e, "cx", "12"), s(e, "cy", "12"), s(e, "r", "10"), s(
+        e,
+        "fill",
+        /*bg*/
+        n[2]
+      ), s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      );
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*bg*/
+      4 && s(
+        e,
+        "fill",
+        /*bg*/
+        t[2]
+      ), i & /*bgOpacity*/
+      16 && s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        t[4]
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
+}
+function oi(n) {
+  let e;
+  return {
+    c() {
+      e = k("rect"), s(e, "x", "3"), s(e, "y", "3"), s(e, "width", "18"), s(e, "height", "18"), s(e, "rx", "0"), s(
+        e,
+        "fill",
+        /*bg*/
+        n[2]
+      ), s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      );
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*bg*/
+      4 && s(
+        e,
+        "fill",
+        /*bg*/
+        t[2]
+      ), i & /*bgOpacity*/
+      16 && s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        t[4]
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
+}
+function ai(n) {
+  let e;
+  return {
+    c() {
+      e = k("path"), s(e, "d", "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"), s(e, "fill", "currentColor"), s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      );
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*bgOpacity*/
+      16 && s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        t[4]
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
+}
+function fi(n) {
+  let e;
+  function t(r, o) {
+    return (
+      /*bgShape*/
+      r[5] === "square" ? ui : ci
+    );
+  }
+  let i = t(n), l = i(n);
+  return {
+    c() {
+      l.c(), e = O();
+    },
+    m(r, o) {
+      l.m(r, o), y(r, e, o);
+    },
+    p(r, o) {
+      i === (i = t(r)) && l ? l.p(r, o) : (l.d(1), l = i(r), l && (l.c(), l.m(e.parentNode, e)));
+    },
+    d(r) {
+      r && v(e), l.d(r);
+    }
+  };
+}
+function ci(n) {
+  let e;
+  return {
+    c() {
+      e = k("circle"), s(e, "cx", "12"), s(e, "cy", "12"), s(e, "r", "10"), s(
+        e,
+        "fill",
+        /*bg*/
+        n[2]
+      ), s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      );
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*bg*/
+      4 && s(
+        e,
+        "fill",
+        /*bg*/
+        t[2]
+      ), i & /*bgOpacity*/
+      16 && s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        t[4]
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
+}
+function ui(n) {
+  let e;
+  return {
+    c() {
+      e = k("rect"), s(e, "x", "3"), s(e, "y", "3"), s(e, "width", "18"), s(e, "height", "18"), s(e, "rx", "0"), s(
+        e,
+        "fill",
+        /*bg*/
+        n[2]
+      ), s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        n[4]
+      );
+    },
+    m(t, i) {
+      y(t, e, i);
+    },
+    p(t, i) {
+      i & /*bg*/
+      4 && s(
+        e,
+        "fill",
+        /*bg*/
+        t[2]
+      ), i & /*bgOpacity*/
+      16 && s(
+        e,
+        "opacity",
+        /*bgOpacity*/
+        t[4]
+      );
+    },
+    d(t) {
+      t && v(e);
+    }
+  };
+}
+function di(n) {
+  let e;
+  function t(r, o) {
+    return (
+      /*name*/
+      r[0] === "Confirmation" ? It : (
+        /*name*/
+        r[0] === "Warning" ? Ft : (
+          /*name*/
+          r[0] === "Info" ? Ot : (
+            /*name*/
+            r[0] === "InfoCircle" ? Et : (
+              /*name*/
+              r[0] === "Interactive" ? Nt : (
+                /*name*/
+                r[0] === "Expand" ? Pt : (
+                  /*name*/
+                  r[0] === "OpenData" ? qt : (
+                    /*name*/
+                    r[0] === "badge-check" ? jt : (
+                      /*name*/
+                      r[0] === "Download" ? Dt : Tt
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+    );
+  }
+  let i = t(n), l = i(n);
+  return {
+    c() {
+      l.c(), e = O();
+    },
+    m(r, o) {
+      l.m(r, o), y(r, e, o);
+    },
+    p(r, [o]) {
+      i === (i = t(r)) && l ? l.p(r, o) : (l.d(1), l = i(r), l && (l.c(), l.m(e.parentNode, e)));
+    },
+    i: ae,
+    o: ae,
+    d(r) {
+      r && v(e), l.d(r);
+    }
+  };
+}
+function hi(n, e, t) {
+  let { name: i } = e, { size: l = 0 } = e, { bg: r = null } = e, { fg: o = null } = e, { bgOpacity: a = 0.14 } = e, { bgShape: f = "round" } = e;
+  return n.$$set = (c) => {
+    "name" in c && t(0, i = c.name), "size" in c && t(1, l = c.size), "bg" in c && t(2, r = c.bg), "fg" in c && t(3, o = c.fg), "bgOpacity" in c && t(4, a = c.bgOpacity), "bgShape" in c && t(5, f = c.bgShape);
+  }, [i, l, r, o, a, f];
+}
+class re extends U {
+  constructor(e) {
+    super(), R(this, e, hi, di, Z, {
+      name: 0,
+      size: 1,
+      bg: 2,
+      fg: 3,
+      bgOpacity: 4,
+      bgShape: 5
+    });
+  }
+  get name() {
+    return this.$$.ctx[0];
+  }
+  set name(e) {
+    this.$$set({ name: e }), _();
+  }
+  get size() {
+    return this.$$.ctx[1];
+  }
+  set size(e) {
+    this.$$set({ size: e }), _();
+  }
+  get bg() {
+    return this.$$.ctx[2];
+  }
+  set bg(e) {
+    this.$$set({ bg: e }), _();
+  }
+  get fg() {
+    return this.$$.ctx[3];
+  }
+  set fg(e) {
+    this.$$set({ fg: e }), _();
+  }
+  get bgOpacity() {
+    return this.$$.ctx[4];
+  }
+  set bgOpacity(e) {
+    this.$$set({ bgOpacity: e }), _();
+  }
+  get bgShape() {
+    return this.$$.ctx[5];
+  }
+  set bgShape(e) {
+    this.$$set({ bgShape: e }), _();
+  }
+}
+W(re, { name: {}, size: {}, bg: {}, fg: {}, bgOpacity: {}, bgShape: {} }, [], [], !0);
+function gi(n) {
+  le(n, "svelte-1r1mjkg", ".desc.svelte-1r1mjkg{display:block}.actionHint.svelte-1r1mjkg{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:7px;padding-top:7px;border-top:1px solid rgba(255, 255, 255, 0.18);opacity:0.92;font-size:11px;line-height:1.2;width:100%;text-align:center;font-weight:650;letter-spacing:0.06em;text-transform:uppercase}.actionIcon.svelte-1r1mjkg{display:inline-flex;align-items:center;justify-content:center}");
+}
+const pi = (n) => ({}), Be = (n) => ({}), bi = (n) => ({}), Te = (n) => ({});
+function _i(n) {
   let e;
   const t = (
     /*#slots*/
-    n[5].trigger
-  ), i = oe(
+    n[6].trigger
+  ), i = he(
     t,
     n,
     /*$$scope*/
-    n[6],
-    ye
+    n[7],
+    Be
   );
   return {
     c() {
       i && i.c();
     },
-    m(r, l) {
-      i && i.m(r, l), e = !0;
+    m(l, r) {
+      i && i.m(l, r), e = !0;
     },
-    p(r, l) {
-      i && i.p && (!e || l & /*$$scope*/
-      64) && ce(
+    p(l, r) {
+      i && i.p && (!e || r & /*$$scope*/
+      128) && pe(
         i,
         t,
-        r,
+        l,
         /*$$scope*/
-        r[6],
-        e ? fe(
+        l[7],
+        e ? ge(
           t,
           /*$$scope*/
-          r[6],
-          l,
-          bt
-        ) : ue(
+          l[7],
+          r,
+          pi
+        ) : be(
           /*$$scope*/
-          r[6]
+          l[7]
         ),
-        ye
+        Be
       );
     },
-    i(r) {
-      e || (x(i, r), e = !0);
+    i(l) {
+      e || ($(i, l), e = !0);
     },
-    o(r) {
-      k(i, r), e = !1;
+    o(l) {
+      C(i, l), e = !1;
     },
-    d(r) {
-      i && i.d(r);
+    d(l) {
+      i && i.d(l);
     }
   };
 }
-function vt(n) {
+function mi(n) {
   let e, t;
-  return e = new Ze({
+  return e = new Ke({
     props: {
       placement: (
         /*placement*/
@@ -748,639 +2328,344 @@ function vt(n) {
         n[2]
       ),
       $$slots: {
-        content: [wt],
-        trigger: [$t]
+        content: [wi],
+        trigger: [vi]
       },
       $$scope: { ctx: n }
     }
   }), {
     c() {
-      P(e.$$.fragment);
+      E(e.$$.fragment);
     },
-    m(i, r) {
-      C(e, i, r), t = !0;
+    m(i, l) {
+      P(e, i, l), t = !0;
     },
-    p(i, r) {
-      const l = {};
-      r & /*placement*/
-      2 && (l.placement = /*placement*/
-      i[1]), r & /*openDelayMs*/
-      4 && (l.openDelayMs = /*openDelayMs*/
-      i[2]), r & /*$$scope, badge, contentMode*/
-      73 && (l.$$scope = { dirty: r, ctx: i }), e.$set(l);
+    p(i, l) {
+      const r = {};
+      l & /*placement*/
+      2 && (r.placement = /*placement*/
+      i[1]), l & /*openDelayMs*/
+      4 && (r.openDelayMs = /*openDelayMs*/
+      i[2]), l & /*$$scope, badge, hintIcon, contentMode*/
+      153 && (r.$$scope = { dirty: l, ctx: i }), e.$set(r);
     },
     i(i) {
-      t || (x(e.$$.fragment, i), t = !0);
+      t || ($(e.$$.fragment, i), t = !0);
     },
     o(i) {
-      k(e.$$.fragment, i), t = !1;
+      C(e.$$.fragment, i), t = !1;
     },
     d(i) {
-      T(e, i);
+      N(e, i);
     }
   };
 }
-function $t(n) {
+function vi(n) {
   let e, t;
   const i = (
     /*#slots*/
-    n[5].trigger
-  ), r = oe(
+    n[6].trigger
+  ), l = he(
     i,
     n,
     /*$$scope*/
-    n[6],
-    ze
+    n[7],
+    Te
   );
   return {
     c() {
-      e = y("span"), r && r.c(), a(e, "slot", "trigger");
+      e = B("span"), l && l.c(), s(e, "slot", "trigger");
     },
-    m(l, s) {
-      M(l, e, s), r && r.m(e, null), t = !0;
+    m(r, o) {
+      y(r, e, o), l && l.m(e, null), t = !0;
     },
-    p(l, s) {
-      r && r.p && (!t || s & /*$$scope*/
-      64) && ce(
-        r,
-        i,
+    p(r, o) {
+      l && l.p && (!t || o & /*$$scope*/
+      128) && pe(
         l,
+        i,
+        r,
         /*$$scope*/
-        l[6],
-        t ? fe(
+        r[7],
+        t ? ge(
           i,
           /*$$scope*/
-          l[6],
-          s,
-          mt
-        ) : ue(
+          r[7],
+          o,
+          bi
+        ) : be(
           /*$$scope*/
-          l[6]
+          r[7]
         ),
-        ze
+        Te
       );
     },
-    i(l) {
-      t || (x(r, l), t = !0);
+    i(r) {
+      t || ($(l, r), t = !0);
     },
-    o(l) {
-      k(r, l), t = !1;
+    o(r) {
+      C(l, r), t = !1;
     },
-    d(l) {
-      l && j(e), r && r.d(l);
+    d(r) {
+      r && v(e), l && l.d(r);
     }
   };
 }
-function je(n) {
+function De(n) {
   let e, t = (
     /*badge*/
     n[0].label + ""
   ), i;
   return {
     c() {
-      e = y("strong"), i = I(t);
+      e = B("strong"), i = H(t);
     },
-    m(r, l) {
-      M(r, e, l), w(e, i);
+    m(l, r) {
+      y(l, e, r), m(e, i);
     },
-    p(r, l) {
-      l & /*badge*/
+    p(l, r) {
+      r & /*badge*/
       1 && t !== (t = /*badge*/
-      r[0].label + "") && Q(i, t);
+      l[0].label + "") && Q(i, t);
     },
-    d(r) {
-      r && j(e);
+    d(l) {
+      l && v(e);
     }
   };
 }
-function wt(n) {
-  let e, t, i, r = (
+function je(n) {
+  let e, t = (
     /*badge*/
     n[0].description + ""
-  ), l, s = (
-    /*contentMode*/
-    n[3] === "labelAndDescription" && je(n)
+  ), i;
+  return {
+    c() {
+      e = B("span"), i = H(t), s(e, "class", "desc svelte-1r1mjkg");
+    },
+    m(l, r) {
+      y(l, e, r), m(e, i);
+    },
+    p(l, r) {
+      r & /*badge*/
+      1 && t !== (t = /*badge*/
+      l[0].description + "") && Q(i, t);
+    },
+    d(l) {
+      l && v(e);
+    }
+  };
+}
+function qe(n) {
+  let e, t, i, l = (
+    /*badge*/
+    n[0].actionText + ""
+  ), r, o, a = (
+    /*hintIcon*/
+    n[4] && Pe(n)
   );
   return {
     c() {
-      e = y("span"), s && s.c(), t = H(), i = y("span"), l = I(r), a(i, "class", "desc svelte-17e38qg"), a(e, "slot", "content");
+      e = B("span"), a && a.c(), t = V(), i = B("span"), r = H(l), s(i, "class", "actionText"), s(e, "class", "actionHint svelte-1r1mjkg"), s(e, "aria-hidden", "true");
     },
-    m(o, f) {
-      M(o, e, f), s && s.m(e, null), w(e, t), w(e, i), w(i, l);
+    m(f, c) {
+      y(f, e, c), a && a.m(e, null), m(e, t), m(e, i), m(i, r), o = !0;
     },
-    p(o, f) {
-      /*contentMode*/
-      o[3] === "labelAndDescription" ? s ? s.p(o, f) : (s = je(o), s.c(), s.m(e, t)) : s && (s.d(1), s = null), f & /*badge*/
-      1 && r !== (r = /*badge*/
-      o[0].description + "") && Q(l, r);
-    },
-    d(o) {
-      o && j(e), s && s.d();
-    }
-  };
-}
-function xt(n) {
-  let e, t, i, r;
-  const l = [vt, _t], s = [];
-  function o(f, u) {
-    return (
-      /*showTooltip*/
-      f[4] ? 0 : 1
-    );
-  }
-  return e = o(n), t = s[e] = l[e](n), {
-    c() {
-      t.c(), i = K();
-    },
-    m(f, u) {
-      s[e].m(f, u), M(f, i, u), r = !0;
-    },
-    p(f, [u]) {
-      let c = e;
-      e = o(f), e === c ? s[e].p(f, u) : (B(), k(s[c], 1, 1, () => {
-        s[c] = null;
-      }), A(), t = s[e], t ? t.p(f, u) : (t = s[e] = l[e](f), t.c()), x(t, 1), t.m(i.parentNode, i));
+    p(f, c) {
+      /*hintIcon*/
+      f[4] ? a ? (a.p(f, c), c & /*hintIcon*/
+      16 && $(a, 1)) : (a = Pe(f), a.c(), $(a, 1), a.m(e, t)) : a && (I(), C(a, 1, 1, () => {
+        a = null;
+      }), L()), (!o || c & /*badge*/
+      1) && l !== (l = /*badge*/
+      f[0].actionText + "") && Q(r, l);
     },
     i(f) {
-      r || (x(t), r = !0);
+      o || ($(a), o = !0);
     },
     o(f) {
-      k(t), r = !1;
+      C(a), o = !1;
     },
     d(f) {
-      f && j(i), s[e].d(f);
+      f && v(e), a && a.d();
     }
   };
 }
-function kt(n, e, t) {
-  let i, { $$slots: r = {}, $$scope: l } = e, { badge: s } = e, { placement: o = "top" } = e, { openDelayMs: f = 80 } = e, { contentMode: u = "description" } = e;
-  return n.$$set = (c) => {
-    "badge" in c && t(0, s = c.badge), "placement" in c && t(1, o = c.placement), "openDelayMs" in c && t(2, f = c.openDelayMs), "contentMode" in c && t(3, u = c.contentMode), "$$scope" in c && t(6, l = c.$$scope);
+function Pe(n) {
+  let e, t, i;
+  return t = new re({
+    props: {
+      name: (
+        /*hintIcon*/
+        n[4]
+      ),
+      size: 14,
+      fg: "rgba(255, 255, 255, 0.92)",
+      bg: null,
+      bgOpacity: 0
+    }
+  }), {
+    c() {
+      e = B("span"), E(t.$$.fragment), s(e, "class", "actionIcon svelte-1r1mjkg");
+    },
+    m(l, r) {
+      y(l, e, r), P(t, e, null), i = !0;
+    },
+    p(l, r) {
+      const o = {};
+      r & /*hintIcon*/
+      16 && (o.name = /*hintIcon*/
+      l[4]), t.$set(o);
+    },
+    i(l) {
+      i || ($(t.$$.fragment, l), i = !0);
+    },
+    o(l) {
+      C(t.$$.fragment, l), i = !1;
+    },
+    d(l) {
+      l && v(e), N(t);
+    }
+  };
+}
+function wi(n) {
+  let e, t, i, l, r = (
+    /*contentMode*/
+    n[3] === "labelAndDescription" && De(n)
+  ), o = (
+    /*badge*/
+    n[0].description && je(n)
+  ), a = (
+    /*badge*/
+    n[0].actionText && qe(n)
+  );
+  return {
+    c() {
+      e = B("span"), r && r.c(), t = V(), o && o.c(), i = V(), a && a.c(), s(e, "slot", "content");
+    },
+    m(f, c) {
+      y(f, e, c), r && r.m(e, null), m(e, t), o && o.m(e, null), m(e, i), a && a.m(e, null), l = !0;
+    },
+    p(f, c) {
+      /*contentMode*/
+      f[3] === "labelAndDescription" ? r ? r.p(f, c) : (r = De(f), r.c(), r.m(e, t)) : r && (r.d(1), r = null), /*badge*/
+      f[0].description ? o ? o.p(f, c) : (o = je(f), o.c(), o.m(e, i)) : o && (o.d(1), o = null), /*badge*/
+      f[0].actionText ? a ? (a.p(f, c), c & /*badge*/
+      1 && $(a, 1)) : (a = qe(f), a.c(), $(a, 1), a.m(e, null)) : a && (I(), C(a, 1, 1, () => {
+        a = null;
+      }), L());
+    },
+    i(f) {
+      l || ($(a), l = !0);
+    },
+    o(f) {
+      C(a), l = !1;
+    },
+    d(f) {
+      f && v(e), r && r.d(), o && o.d(), a && a.d();
+    }
+  };
+}
+function ki(n) {
+  let e, t, i, l;
+  const r = [mi, _i], o = [];
+  function a(f, c) {
+    return (
+      /*showTooltip*/
+      f[5] ? 0 : 1
+    );
+  }
+  return e = a(n), t = o[e] = r[e](n), {
+    c() {
+      t.c(), i = O();
+    },
+    m(f, c) {
+      o[e].m(f, c), y(f, i, c), l = !0;
+    },
+    p(f, [c]) {
+      let u = e;
+      e = a(f), e === u ? o[e].p(f, c) : (I(), C(o[u], 1, 1, () => {
+        o[u] = null;
+      }), L(), t = o[e], t ? t.p(f, c) : (t = o[e] = r[e](f), t.c()), $(t, 1), t.m(i.parentNode, i));
+    },
+    i(f) {
+      l || ($(t), l = !0);
+    },
+    o(f) {
+      C(t), l = !1;
+    },
+    d(f) {
+      f && v(i), o[e].d(f);
+    }
+  };
+}
+function yi(n, e, t) {
+  let i, l, { $$slots: r = {}, $$scope: o } = e, { badge: a } = e, { placement: f = "top" } = e, { openDelayMs: c = 80 } = e, { contentMode: u = "description" } = e;
+  return n.$$set = (d) => {
+    "badge" in d && t(0, a = d.badge), "placement" in d && t(1, f = d.placement), "openDelayMs" in d && t(2, c = d.openDelayMs), "contentMode" in d && t(3, u = d.contentMode), "$$scope" in d && t(7, o = d.$$scope);
   }, n.$$.update = () => {
     n.$$.dirty & /*badge*/
-    1 && t(4, i = !!(s != null && s.description));
-  }, [s, o, f, u, i, r, l];
+    1 && t(5, i = !!(a != null && a.description || a != null && a.actionText)), n.$$.dirty & /*badge*/
+    1 && t(4, l = (a == null ? void 0 : a.actionIcon) ?? null);
+  }, [
+    a,
+    f,
+    c,
+    u,
+    l,
+    i,
+    r,
+    o
+  ];
 }
-class ie extends V {
+class fe extends U {
   constructor(e) {
-    super(), Y(
+    super(), R(
       this,
       e,
-      kt,
-      xt,
-      L,
+      yi,
+      ki,
+      Z,
       {
         badge: 0,
         placement: 1,
         openDelayMs: 2,
         contentMode: 3
       },
-      pt
+      gi
     );
   }
   get badge() {
     return this.$$.ctx[0];
   }
   set badge(e) {
-    this.$$set({ badge: e }), m();
+    this.$$set({ badge: e }), _();
   }
   get placement() {
     return this.$$.ctx[1];
   }
   set placement(e) {
-    this.$$set({ placement: e }), m();
+    this.$$set({ placement: e }), _();
   }
   get openDelayMs() {
     return this.$$.ctx[2];
   }
   set openDelayMs(e) {
-    this.$$set({ openDelayMs: e }), m();
+    this.$$set({ openDelayMs: e }), _();
   }
   get contentMode() {
     return this.$$.ctx[3];
   }
   set contentMode(e) {
-    this.$$set({ contentMode: e }), m();
+    this.$$set({ contentMode: e }), _();
   }
 }
-Z(ie, { badge: {}, placement: {}, openDelayMs: {}, contentMode: {} }, ["trigger"], [], !0);
-function yt(n) {
-  let e;
-  return {
-    c() {
-      e = y("span"), ee(e, "display", "inline-block"), ee(
-        e,
-        "width",
-        /*size*/
-        n[1] + "px"
-      ), ee(
-        e,
-        "height",
-        /*size*/
-        n[1] + "px"
-      ), a(e, "aria-hidden", "true");
-    },
-    m(t, i) {
-      M(t, e, i);
-    },
-    p(t, i) {
-      i & /*size*/
-      2 && ee(
-        e,
-        "width",
-        /*size*/
-        t[1] + "px"
-      ), i & /*size*/
-      2 && ee(
-        e,
-        "height",
-        /*size*/
-        t[1] + "px"
-      );
-    },
-    d(t) {
-      t && j(e);
-    }
-  };
+W(fe, { badge: {}, placement: {}, openDelayMs: {}, contentMode: {} }, ["trigger"], [], !0);
+function $i(n) {
+  le(n, "svelte-jjnksu", ".badge.svelte-jjnksu{display:inline-flex;align-items:center;gap:var(--badge-gap);padding:var(--badge-pad-y) var(--badge-pad-x);border-radius:16px;border:var(--badge-border-w) solid transparent;font-weight:550;font-size:12px;line-height:1;user-select:none;outline:none;transition:background-color 120ms ease, border-color 120ms ease, color 120ms ease;--badge-solid:rgb(17, 24, 39);--badge-border:color-mix(in srgb, var(--badge-solid) 65%, transparent);--badge-fg:color-mix(in srgb, var(--badge-solid) 72%, black);--badge-bg:color-mix(in srgb, var(--badge-solid) 14%, transparent);--badge-gap:3px;--badge-pad-y:3px;--badge-pad-x:6px;--badge-border-w:1px}.badge.filled.svelte-jjnksu{background:var(--badge-solid);border-color:transparent;color:#ffffff}.badge.outlined.svelte-jjnksu{background:transparent;border-color:var(--badge-border);color:var(--badge-fg)}.icon.svelte-jjnksu{display:inline-flex;align-items:center;justify-content:center}.label.svelte-jjnksu{white-space:nowrap}");
 }
-function zt(n) {
-  let e, t, i, r, l, s;
-  return {
-    c() {
-      e = D("svg"), t = D("g"), i = D("path"), l = D("path"), a(i, "d", "M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"), a(i, "fill", r = /*bg*/
-      n[2] ?? "none"), a(
-        i,
-        "opacity",
-        /*bgOpacity*/
-        n[4]
-      ), a(l, "d", "m9 12 2 2 4-4"), a(t, "transform", "translate(12 12) scale(0.86) translate(-12 -12)"), a(
-        e,
-        "width",
-        /*size*/
-        n[1]
-      ), a(
-        e,
-        "height",
-        /*size*/
-        n[1]
-      ), a(e, "viewBox", "0 0 24 24"), a(e, "fill", "none"), a(e, "aria-hidden", "true"), a(e, "stroke", s = /*fg*/
-      n[3] ?? "currentColor"), a(e, "stroke-width", "2"), a(e, "stroke-linecap", "round"), a(e, "stroke-linejoin", "round");
-    },
-    m(o, f) {
-      M(o, e, f), w(e, t), w(t, i), w(t, l);
-    },
-    p(o, f) {
-      f & /*bg*/
-      4 && r !== (r = /*bg*/
-      o[2] ?? "none") && a(i, "fill", r), f & /*bgOpacity*/
-      16 && a(
-        i,
-        "opacity",
-        /*bgOpacity*/
-        o[4]
-      ), f & /*size*/
-      2 && a(
-        e,
-        "width",
-        /*size*/
-        o[1]
-      ), f & /*size*/
-      2 && a(
-        e,
-        "height",
-        /*size*/
-        o[1]
-      ), f & /*fg*/
-      8 && s !== (s = /*fg*/
-      o[3] ?? "currentColor") && a(e, "stroke", s);
-    },
-    d(o) {
-      o && j(e);
-    }
-  };
-}
-function jt(n) {
-  let e, t, i, r, l, s, o, f, u, c;
-  return {
-    c() {
-      e = D("svg"), t = D("path"), r = D("g"), l = D("path"), s = D("path"), o = D("path"), f = D("path"), u = D("path"), a(t, "d", "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"), a(t, "fill", i = /*bg*/
-      n[2] ?? "currentColor"), a(
-        t,
-        "opacity",
-        /*bgOpacity*/
-        n[4]
-      ), a(t, "stroke", "none"), a(l, "d", "M14 4.1 12 6"), a(s, "d", "m5.1 8-2.9-.8"), a(o, "d", "m6 12-1.9 2"), a(f, "d", "M7.2 2.2 8 5.1"), a(u, "d", "M9.037 9.69a.498.498 0 0 1 .653-.653l11 4.5a.5.5 0 0 1-.074.949l-4.349 1.041a1 1 0 0 0-.74.739l-1.04 4.35a.5.5 0 0 1-.95.074z"), a(r, "transform", "translate(12 12) scale(0.86) translate(-12 -12)"), a(
-        e,
-        "width",
-        /*size*/
-        n[1]
-      ), a(
-        e,
-        "height",
-        /*size*/
-        n[1]
-      ), a(e, "viewBox", "0 0 24 24"), a(e, "fill", "none"), a(e, "aria-hidden", "true"), a(e, "stroke", c = /*fg*/
-      n[3] ?? "currentColor"), a(e, "stroke-width", "2"), a(e, "stroke-linecap", "round"), a(e, "stroke-linejoin", "round");
-    },
-    m(b, _) {
-      M(b, e, _), w(e, t), w(e, r), w(r, l), w(r, s), w(r, o), w(r, f), w(r, u);
-    },
-    p(b, _) {
-      _ & /*bg*/
-      4 && i !== (i = /*bg*/
-      b[2] ?? "currentColor") && a(t, "fill", i), _ & /*bgOpacity*/
-      16 && a(
-        t,
-        "opacity",
-        /*bgOpacity*/
-        b[4]
-      ), _ & /*size*/
-      2 && a(
-        e,
-        "width",
-        /*size*/
-        b[1]
-      ), _ & /*size*/
-      2 && a(
-        e,
-        "height",
-        /*size*/
-        b[1]
-      ), _ & /*fg*/
-      8 && c !== (c = /*fg*/
-      b[3] ?? "currentColor") && a(e, "stroke", c);
-    },
-    d(b) {
-      b && j(e);
-    }
-  };
-}
-function Mt(n) {
-  let e, t, i, r, l, s, o;
-  return {
-    c() {
-      e = D("svg"), t = D("path"), r = D("path"), s = D("path"), a(t, "d", "M3 3h18v18H3V3Z"), a(t, "fill", i = /*bg*/
-      n[2] ?? "currentColor"), a(
-        t,
-        "opacity",
-        /*bgOpacity*/
-        n[4]
-      ), a(r, "d", "M12 10.2a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"), a(r, "fill", l = /*fg*/
-      n[3] ?? "currentColor"), a(s, "d", "M11 11.5h2V18h-2v-6.5Z"), a(s, "fill", o = /*fg*/
-      n[3] ?? "currentColor"), a(
-        e,
-        "width",
-        /*size*/
-        n[1]
-      ), a(
-        e,
-        "height",
-        /*size*/
-        n[1]
-      ), a(e, "viewBox", "0 0 24 24"), a(e, "fill", "none"), a(e, "aria-hidden", "true");
-    },
-    m(f, u) {
-      M(f, e, u), w(e, t), w(e, r), w(e, s);
-    },
-    p(f, u) {
-      u & /*bg*/
-      4 && i !== (i = /*bg*/
-      f[2] ?? "currentColor") && a(t, "fill", i), u & /*bgOpacity*/
-      16 && a(
-        t,
-        "opacity",
-        /*bgOpacity*/
-        f[4]
-      ), u & /*fg*/
-      8 && l !== (l = /*fg*/
-      f[3] ?? "currentColor") && a(r, "fill", l), u & /*fg*/
-      8 && o !== (o = /*fg*/
-      f[3] ?? "currentColor") && a(s, "fill", o), u & /*size*/
-      2 && a(
-        e,
-        "width",
-        /*size*/
-        f[1]
-      ), u & /*size*/
-      2 && a(
-        e,
-        "height",
-        /*size*/
-        f[1]
-      );
-    },
-    d(f) {
-      f && j(e);
-    }
-  };
-}
-function Dt(n) {
-  let e, t, i, r, l, s, o;
-  return {
-    c() {
-      e = D("svg"), t = D("path"), r = D("path"), s = D("path"), a(t, "d", "M12 3.5c.4 0 .8.2 1 .6l9 15.6c.4.7-.1 1.6-1 1.6H3c-.9 0-1.4-.9-1-1.6l9-15.6c.2-.4.6-.6 1-.6Z"), a(t, "fill", i = /*bg*/
-      n[2] ?? "currentColor"), a(
-        t,
-        "opacity",
-        /*bgOpacity*/
-        n[4]
-      ), a(r, "d", "M12 8a1 1 0 0 1 1 1l-.3 5.5a.7.7 0 0 1-1.4 0L11 9a1 1 0 0 1 1-1Z"), a(r, "fill", l = /*fg*/
-      n[3] ?? "currentColor"), a(s, "d", "M12 18a1.25 1.25 0 1 1 0-2.5A1.25 1.25 0 0 1 12 18Z"), a(s, "fill", o = /*fg*/
-      n[3] ?? "currentColor"), a(
-        e,
-        "width",
-        /*size*/
-        n[1]
-      ), a(
-        e,
-        "height",
-        /*size*/
-        n[1]
-      ), a(e, "viewBox", "0 0 24 24"), a(e, "fill", "none"), a(e, "aria-hidden", "true");
-    },
-    m(f, u) {
-      M(f, e, u), w(e, t), w(e, r), w(e, s);
-    },
-    p(f, u) {
-      u & /*bg*/
-      4 && i !== (i = /*bg*/
-      f[2] ?? "currentColor") && a(t, "fill", i), u & /*bgOpacity*/
-      16 && a(
-        t,
-        "opacity",
-        /*bgOpacity*/
-        f[4]
-      ), u & /*fg*/
-      8 && l !== (l = /*fg*/
-      f[3] ?? "currentColor") && a(r, "fill", l), u & /*fg*/
-      8 && o !== (o = /*fg*/
-      f[3] ?? "currentColor") && a(s, "fill", o), u & /*size*/
-      2 && a(
-        e,
-        "width",
-        /*size*/
-        f[1]
-      ), u & /*size*/
-      2 && a(
-        e,
-        "height",
-        /*size*/
-        f[1]
-      );
-    },
-    d(f) {
-      f && j(e);
-    }
-  };
-}
-function St(n) {
-  let e, t, i, r, l;
-  return {
-    c() {
-      e = D("svg"), t = D("path"), r = D("path"), a(t, "d", "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"), a(t, "fill", i = /*bg*/
-      n[2] ?? "currentColor"), a(
-        t,
-        "opacity",
-        /*bgOpacity*/
-        n[4]
-      ), a(r, "d", "M9.2 12.5 7.5 10.8a1 1 0 0 0-1.4 1.4l2.4 2.4a1 1 0 0 0 1.4 0l7-7a1 1 0 1 0-1.4-1.4l-6.3 6.3Z"), a(r, "fill", l = /*fg*/
-      n[3] ?? "currentColor"), a(
-        e,
-        "width",
-        /*size*/
-        n[1]
-      ), a(
-        e,
-        "height",
-        /*size*/
-        n[1]
-      ), a(e, "viewBox", "0 0 24 24"), a(e, "fill", "none"), a(e, "aria-hidden", "true");
-    },
-    m(s, o) {
-      M(s, e, o), w(e, t), w(e, r);
-    },
-    p(s, o) {
-      o & /*bg*/
-      4 && i !== (i = /*bg*/
-      s[2] ?? "currentColor") && a(t, "fill", i), o & /*bgOpacity*/
-      16 && a(
-        t,
-        "opacity",
-        /*bgOpacity*/
-        s[4]
-      ), o & /*fg*/
-      8 && l !== (l = /*fg*/
-      s[3] ?? "currentColor") && a(r, "fill", l), o & /*size*/
-      2 && a(
-        e,
-        "width",
-        /*size*/
-        s[1]
-      ), o & /*size*/
-      2 && a(
-        e,
-        "height",
-        /*size*/
-        s[1]
-      );
-    },
-    d(s) {
-      s && j(e);
-    }
-  };
-}
-function Ct(n) {
-  let e;
-  function t(l, s) {
-    return (
-      /*name*/
-      l[0] === "Confirmation" ? St : (
-        /*name*/
-        l[0] === "Warning" ? Dt : (
-          /*name*/
-          l[0] === "Info" ? Mt : (
-            /*name*/
-            l[0] === "Interactive" ? jt : (
-              /*name*/
-              l[0] === "badge-check" ? zt : yt
-            )
-          )
-        )
-      )
-    );
-  }
-  let i = t(n), r = i(n);
-  return {
-    c() {
-      r.c(), e = K();
-    },
-    m(l, s) {
-      r.m(l, s), M(l, e, s);
-    },
-    p(l, [s]) {
-      i === (i = t(l)) && r ? r.p(l, s) : (r.d(1), r = i(l), r && (r.c(), r.m(e.parentNode, e)));
-    },
-    i: ne,
-    o: ne,
-    d(l) {
-      l && j(e), r.d(l);
-    }
-  };
-}
-function Tt(n, e, t) {
-  let { name: i } = e, { size: r = 0 } = e, { bg: l = null } = e, { fg: s = null } = e, { bgOpacity: o = 0.14 } = e;
-  return n.$$set = (f) => {
-    "name" in f && t(0, i = f.name), "size" in f && t(1, r = f.size), "bg" in f && t(2, l = f.bg), "fg" in f && t(3, s = f.fg), "bgOpacity" in f && t(4, o = f.bgOpacity);
-  }, [i, r, l, s, o];
-}
-class re extends V {
-  constructor(e) {
-    super(), Y(this, e, Tt, Ct, L, {
-      name: 0,
-      size: 1,
-      bg: 2,
-      fg: 3,
-      bgOpacity: 4
-    });
-  }
-  get name() {
-    return this.$$.ctx[0];
-  }
-  set name(e) {
-    this.$$set({ name: e }), m();
-  }
-  get size() {
-    return this.$$.ctx[1];
-  }
-  set size(e) {
-    this.$$set({ size: e }), m();
-  }
-  get bg() {
-    return this.$$.ctx[2];
-  }
-  set bg(e) {
-    this.$$set({ bg: e }), m();
-  }
-  get fg() {
-    return this.$$.ctx[3];
-  }
-  set fg(e) {
-    this.$$set({ fg: e }), m();
-  }
-  get bgOpacity() {
-    return this.$$.ctx[4];
-  }
-  set bgOpacity(e) {
-    this.$$set({ bgOpacity: e }), m();
-  }
-}
-Z(re, { name: {}, size: {}, bg: {}, fg: {}, bgOpacity: {} }, [], [], !0);
-function Pt(n) {
-  G(n, "svelte-jjnksu", ".badge.svelte-jjnksu{display:inline-flex;align-items:center;gap:var(--badge-gap);padding:var(--badge-pad-y) var(--badge-pad-x);border-radius:16px;border:var(--badge-border-w) solid transparent;font-weight:550;font-size:12px;line-height:1;user-select:none;outline:none;transition:background-color 120ms ease, border-color 120ms ease, color 120ms ease;--badge-solid:rgb(17, 24, 39);--badge-border:color-mix(in srgb, var(--badge-solid) 65%, transparent);--badge-fg:color-mix(in srgb, var(--badge-solid) 72%, black);--badge-bg:color-mix(in srgb, var(--badge-solid) 14%, transparent);--badge-gap:3px;--badge-pad-y:3px;--badge-pad-x:6px;--badge-border-w:1px}.badge.filled.svelte-jjnksu{background:var(--badge-solid);border-color:transparent;color:#ffffff}.badge.outlined.svelte-jjnksu{background:transparent;border-color:var(--badge-border);color:var(--badge-fg)}.icon.svelte-jjnksu{display:inline-flex;align-items:center;justify-content:center}.label.svelte-jjnksu{white-space:nowrap}");
-}
-function Me(n) {
+function Ne(n) {
   let e, t;
-  return e = new ie({
+  return e = new fe({
     props: {
       badge: (
         /*badge*/
@@ -1389,35 +2674,35 @@ function Me(n) {
       placement: "top",
       openDelayMs: 80,
       contentMode: "description",
-      $$slots: { trigger: [Ot] },
+      $$slots: { trigger: [xi] },
       $$scope: { ctx: n }
     }
   }), {
     c() {
-      P(e.$$.fragment);
+      E(e.$$.fragment);
     },
-    m(i, r) {
-      C(e, i, r), t = !0;
+    m(i, l) {
+      P(e, i, l), t = !0;
     },
-    p(i, r) {
-      const l = {};
-      r & /*badge*/
-      1 && (l.badge = /*badge*/
-      i[0]), r & /*$$scope, variant, badgeColor, badge, iconName*/
-      31 && (l.$$scope = { dirty: r, ctx: i }), e.$set(l);
+    p(i, l) {
+      const r = {};
+      l & /*badge*/
+      1 && (r.badge = /*badge*/
+      i[0]), l & /*$$scope, variant, badgeColor, badge, iconName*/
+      31 && (r.$$scope = { dirty: l, ctx: i }), e.$set(r);
     },
     i(i) {
-      t || (x(e.$$.fragment, i), t = !0);
+      t || ($(e.$$.fragment, i), t = !0);
     },
     o(i) {
-      k(e.$$.fragment, i), t = !1;
+      C(e.$$.fragment, i), t = !1;
     },
     d(i) {
-      T(e, i);
+      N(e, i);
     }
   };
 }
-function De(n) {
+function Ee(n) {
   let e, t, i;
   return t = new re({
     props: {
@@ -1425,7 +2710,7 @@ function De(n) {
         /*iconName*/
         n[3]
       ),
-      size: Ft,
+      size: zi,
       bg: (
         /*variant*/
         n[1] === "outlined" ? "var(--badge-solid)" : "#ffffff"
@@ -1438,143 +2723,143 @@ function De(n) {
     }
   }), {
     c() {
-      e = y("span"), P(t.$$.fragment), a(e, "class", "icon svelte-jjnksu"), a(e, "aria-hidden", "true");
+      e = B("span"), E(t.$$.fragment), s(e, "class", "icon svelte-jjnksu"), s(e, "aria-hidden", "true");
     },
-    m(r, l) {
-      M(r, e, l), C(t, e, null), i = !0;
+    m(l, r) {
+      y(l, e, r), P(t, e, null), i = !0;
     },
-    p(r, l) {
-      const s = {};
-      l & /*iconName*/
-      8 && (s.name = /*iconName*/
-      r[3]), l & /*variant*/
-      2 && (s.bg = /*variant*/
-      r[1] === "outlined" ? "var(--badge-solid)" : "#ffffff"), l & /*variant*/
-      2 && (s.fg = /*variant*/
-      r[1] === "outlined" ? "#ffffff" : "var(--badge-solid)"), t.$set(s);
+    p(l, r) {
+      const o = {};
+      r & /*iconName*/
+      8 && (o.name = /*iconName*/
+      l[3]), r & /*variant*/
+      2 && (o.bg = /*variant*/
+      l[1] === "outlined" ? "var(--badge-solid)" : "#ffffff"), r & /*variant*/
+      2 && (o.fg = /*variant*/
+      l[1] === "outlined" ? "#ffffff" : "var(--badge-solid)"), t.$set(o);
     },
-    i(r) {
-      i || (x(t.$$.fragment, r), i = !0);
+    i(l) {
+      i || ($(t.$$.fragment, l), i = !0);
     },
-    o(r) {
-      k(t.$$.fragment, r), i = !1;
+    o(l) {
+      C(t.$$.fragment, l), i = !1;
     },
-    d(r) {
-      r && j(e), T(t);
+    d(l) {
+      l && v(e), N(t);
     }
   };
 }
-function Ot(n) {
-  let e, t, i, r, l = (
+function xi(n) {
+  let e, t, i, l, r = (
     /*badge*/
     n[0].label + ""
-  ), s, o, f, u, c, b, _, d = (
+  ), o, a, f, c, u, d, p, h = (
     /*iconName*/
-    n[3] && De(n)
+    n[3] && Ee(n)
   );
   return {
     c() {
-      e = y("span"), t = y("span"), d && d.c(), i = H(), r = y("span"), s = I(l), a(r, "class", "label svelte-jjnksu"), a(t, "class", o = "badge " + /*variant*/
-      n[1] + " svelte-jjnksu"), a(t, "style", f = `--badge-solid:${/*badgeColor*/
-      n[2]};`), a(t, "role", "note"), a(t, "aria-label", u = /*badge*/
-      n[0].label), a(e, "slot", "trigger"), a(e, "role", "presentation");
+      e = B("span"), t = B("span"), h && h.c(), i = V(), l = B("span"), o = H(r), s(l, "class", "label svelte-jjnksu"), s(t, "class", a = "badge " + /*variant*/
+      n[1] + " svelte-jjnksu"), s(t, "style", f = `--badge-solid:${/*badgeColor*/
+      n[2]};`), s(t, "role", "note"), s(t, "aria-label", c = /*badge*/
+      n[0].label), s(e, "slot", "trigger"), s(e, "role", "presentation");
     },
-    m(g, v) {
-      M(g, e, v), w(e, t), d && d.m(t, null), w(t, i), w(t, r), w(r, s), c = !0, b || (_ = X(e, "keydown", Nt), b = !0);
+    m(g, x) {
+      y(g, e, x), m(e, t), h && h.m(t, null), m(t, i), m(t, l), m(l, o), u = !0, d || (p = A(e, "keydown", Mi), d = !0);
     },
-    p(g, v) {
+    p(g, x) {
       /*iconName*/
-      g[3] ? d ? (d.p(g, v), v & /*iconName*/
-      8 && x(d, 1)) : (d = De(g), d.c(), x(d, 1), d.m(t, i)) : d && (B(), k(d, 1, 1, () => {
-        d = null;
-      }), A()), (!c || v & /*badge*/
-      1) && l !== (l = /*badge*/
-      g[0].label + "") && Q(s, l), (!c || v & /*variant*/
-      2 && o !== (o = "badge " + /*variant*/
-      g[1] + " svelte-jjnksu")) && a(t, "class", o), (!c || v & /*badgeColor*/
+      g[3] ? h ? (h.p(g, x), x & /*iconName*/
+      8 && $(h, 1)) : (h = Ee(g), h.c(), $(h, 1), h.m(t, i)) : h && (I(), C(h, 1, 1, () => {
+        h = null;
+      }), L()), (!u || x & /*badge*/
+      1) && r !== (r = /*badge*/
+      g[0].label + "") && Q(o, r), (!u || x & /*variant*/
+      2 && a !== (a = "badge " + /*variant*/
+      g[1] + " svelte-jjnksu")) && s(t, "class", a), (!u || x & /*badgeColor*/
       4 && f !== (f = `--badge-solid:${/*badgeColor*/
-      g[2]};`)) && a(t, "style", f), (!c || v & /*badge*/
-      1 && u !== (u = /*badge*/
-      g[0].label)) && a(t, "aria-label", u);
+      g[2]};`)) && s(t, "style", f), (!u || x & /*badge*/
+      1 && c !== (c = /*badge*/
+      g[0].label)) && s(t, "aria-label", c);
     },
     i(g) {
-      c || (x(d), c = !0);
+      u || ($(h), u = !0);
     },
     o(g) {
-      k(d), c = !1;
+      C(h), u = !1;
     },
     d(g) {
-      g && j(e), d && d.d(), b = !1, _();
+      g && v(e), h && h.d(), d = !1, p();
     }
   };
 }
-function Et(n) {
+function Si(n) {
   let e, t, i = (
     /*badge*/
-    n[0] && Me(n)
+    n[0] && Ne(n)
   );
   return {
     c() {
-      i && i.c(), e = K();
+      i && i.c(), e = O();
     },
-    m(r, l) {
-      i && i.m(r, l), M(r, e, l), t = !0;
+    m(l, r) {
+      i && i.m(l, r), y(l, e, r), t = !0;
     },
-    p(r, [l]) {
+    p(l, [r]) {
       /*badge*/
-      r[0] ? i ? (i.p(r, l), l & /*badge*/
-      1 && x(i, 1)) : (i = Me(r), i.c(), x(i, 1), i.m(e.parentNode, e)) : i && (B(), k(i, 1, 1, () => {
+      l[0] ? i ? (i.p(l, r), r & /*badge*/
+      1 && $(i, 1)) : (i = Ne(l), i.c(), $(i, 1), i.m(e.parentNode, e)) : i && (I(), C(i, 1, 1, () => {
         i = null;
-      }), A());
+      }), L());
     },
-    i(r) {
-      t || (x(i), t = !0);
+    i(l) {
+      t || ($(i), t = !0);
     },
-    o(r) {
-      k(i), t = !1;
+    o(l) {
+      C(i), t = !1;
     },
-    d(r) {
-      r && j(e), i && i.d(r);
+    d(l) {
+      l && v(e), i && i.d(l);
     }
   };
 }
-const Ft = 20, Nt = () => {
+const zi = 20, Mi = () => {
 };
-function Bt(n, e, t) {
-  let i, r, { badge: l } = e, { variant: s = "filled" } = e;
-  return n.$$set = (o) => {
-    "badge" in o && t(0, l = o.badge), "variant" in o && t(1, s = o.variant);
+function Ci(n, e, t) {
+  let i, l, { badge: r } = e, { variant: o = "filled" } = e;
+  return n.$$set = (a) => {
+    "badge" in a && t(0, r = a.badge), "variant" in a && t(1, o = a.variant);
   }, n.$$.update = () => {
     n.$$.dirty & /*badge*/
-    1 && t(3, i = (l == null ? void 0 : l.icon) ?? null), n.$$.dirty & /*badge*/
-    1 && t(2, r = String((l == null ? void 0 : l.color) ?? "").trim() || "rgb(17, 24, 39)");
-  }, [l, s, r, i];
+    1 && t(3, i = (r == null ? void 0 : r.icon) ?? null), n.$$.dirty & /*badge*/
+    1 && t(2, l = String((r == null ? void 0 : r.color) ?? "").trim() || "rgb(17, 24, 39)");
+  }, [r, o, l, i];
 }
-class Ve extends V {
+class Qe extends U {
   constructor(e) {
-    super(), Y(this, e, Bt, Et, L, { badge: 0, variant: 1 }, Pt);
+    super(), R(this, e, Ci, Si, Z, { badge: 0, variant: 1 }, $i);
   }
   get badge() {
     return this.$$.ctx[0];
   }
   set badge(e) {
-    this.$$set({ badge: e }), m();
+    this.$$set({ badge: e }), _();
   }
   get variant() {
     return this.$$.ctx[1];
   }
   set variant(e) {
-    this.$$set({ variant: e }), m();
+    this.$$set({ variant: e }), _();
   }
 }
-Z(Ve, { badge: {}, variant: {} }, [], [], !0);
-function At(n) {
-  G(n, "svelte-bj5eke", `.wrap.fixed.svelte-bj5eke.svelte-bj5eke{position:fixed;z-index:50}.wrap.svelte-bj5eke.svelte-bj5eke{display:inline-flex;align-items:center;justify-content:flex-end;pointer-events:auto}.wrap.left.svelte-bj5eke .badge.mini{flex-direction:row-reverse}.badge.svelte-bj5eke.svelte-bj5eke{display:inline-flex;align-items:center;gap:var(--badge-gap);padding:var(--badge-pad-y) var(--badge-pad-x);border-radius:16px;border:var(--badge-border-w) solid transparent;font-weight:550;font-size:12px;line-height:1;user-select:none;outline:none;transition:background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease,
-      padding 320ms cubic-bezier(0.2, 0, 0, 1);--badge-solid:rgb(17, 24, 39);--badge-border:color-mix(in srgb, var(--badge-solid) 65%, transparent);--badge-fg:color-mix(in srgb, var(--badge-solid) 72%, black);--badge-gap:3px;--badge-pad-y:3px;--badge-pad-x:6px;--badge-border-w:1px}.badge.filled.svelte-bj5eke.svelte-bj5eke{background:var(--badge-solid);border-color:transparent;color:#ffffff}.badge.outlined.svelte-bj5eke.svelte-bj5eke{background:transparent;border-color:var(--badge-border);color:var(--badge-fg)}.icon.svelte-bj5eke.svelte-bj5eke{display:inline-flex;align-items:center;justify-content:center}.label.svelte-bj5eke.svelte-bj5eke{white-space:nowrap}.badge.mini.svelte-bj5eke.svelte-bj5eke{--badge-gap:0px;--badge-pad-y:0px;--badge-pad-x:0px;--badge-border-w:0px;border-color:transparent;background:transparent;font-size:11px}.badge.mini.svelte-bj5eke .label.svelte-bj5eke{max-width:0;opacity:0;overflow:hidden;line-height:1.2;padding-bottom:1px;transition:max-width 320ms cubic-bezier(0.2, 0, 0, 1), opacity 200ms ease}.badge.mini.svelte-bj5eke.svelte-bj5eke:hover,.badge.mini.svelte-bj5eke.svelte-bj5eke:focus-visible{--badge-gap:2px;--badge-pad-y:2px;--badge-pad-x:5px;--badge-border-w:1px}.badge.mini.outlined.svelte-bj5eke.svelte-bj5eke:hover,.badge.mini.outlined.svelte-bj5eke.svelte-bj5eke:focus-visible{border-color:var(--badge-border)}.badge.mini.svelte-bj5eke:hover .label.svelte-bj5eke,.badge.mini.svelte-bj5eke:focus-visible .label.svelte-bj5eke{max-width:220px;opacity:1}`);
+W(Qe, { badge: {}, variant: {} }, [], [], !0);
+function Bi(n) {
+  le(n, "svelte-bhqsp8", `.wrap.fixed.svelte-bhqsp8.svelte-bhqsp8{position:fixed;z-index:50}.wrap.svelte-bhqsp8.svelte-bhqsp8{display:inline-flex;align-items:center;justify-content:flex-end;pointer-events:auto}.wrap.left.svelte-bhqsp8 .badge.mini{flex-direction:row-reverse}.badge.svelte-bhqsp8.svelte-bhqsp8{display:inline-flex;align-items:center;gap:var(--badge-gap);padding:var(--badge-pad-y) var(--badge-pad-x);border-radius:16px;border:var(--badge-border-w) solid transparent;font-weight:550;font-size:12px;line-height:1;user-select:none;outline:none;transition:background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease,
+      padding 320ms cubic-bezier(0.2, 0, 0, 1);--badge-solid:rgb(17, 24, 39);--badge-border:color-mix(in srgb, var(--badge-solid) 65%, transparent);--badge-fg:color-mix(in srgb, var(--badge-solid) 72%, black);--badge-gap:3px;--badge-pad-y:3px;--badge-pad-x:6px;--badge-border-w:1px;--mini-icon-bg:var(--badge-solid);--mini-icon-fg:#ffffff}.badge.filled.svelte-bhqsp8.svelte-bhqsp8{background:var(--badge-solid);border-color:transparent;color:#ffffff}.badge.outlined.svelte-bhqsp8.svelte-bhqsp8{background:transparent;border-color:var(--badge-border);color:var(--badge-fg)}.icon.svelte-bhqsp8.svelte-bhqsp8{display:inline-flex;align-items:center;justify-content:center}.label.svelte-bhqsp8.svelte-bhqsp8{white-space:nowrap}.badge.mini.svelte-bhqsp8.svelte-bhqsp8{--badge-gap:0px;--badge-pad-y:0px;--badge-pad-x:0px;--badge-border-w:0px;border-color:transparent;background:transparent;font-size:11px}.badge.mini.svelte-bhqsp8 .label.svelte-bhqsp8{max-width:0;opacity:0;overflow:hidden;line-height:1.2;padding-bottom:1px;transition:max-width 320ms cubic-bezier(0.2, 0, 0, 1), opacity 200ms ease}.badge.mini.svelte-bhqsp8.svelte-bhqsp8:hover,.badge.mini.svelte-bhqsp8.svelte-bhqsp8:focus-visible{--badge-gap:2px;--badge-pad-y:2px;--badge-pad-x:5px;--badge-border-w:1px}.badge.mini.outlined.svelte-bhqsp8.svelte-bhqsp8:hover,.badge.mini.outlined.svelte-bhqsp8.svelte-bhqsp8:focus-visible{border-color:var(--badge-border)}.badge.mini.filled.svelte-bhqsp8.svelte-bhqsp8:hover,.badge.mini.filled.svelte-bhqsp8.svelte-bhqsp8:focus-visible{background:var(--badge-solid);border-color:transparent;color:#ffffff;--mini-icon-bg:#ffffff;--mini-icon-fg:var(--badge-solid)}.badge.mini.svelte-bhqsp8:hover .label.svelte-bhqsp8,.badge.mini.svelte-bhqsp8:focus-visible .label.svelte-bhqsp8{max-width:220px;opacity:1}`);
 }
-function Se(n) {
+function Oe(n) {
   let e, t;
-  return e = new ie({
+  return e = new fe({
     props: {
       badge: (
         /*badge*/
@@ -1583,236 +2868,248 @@ function Se(n) {
       placement: "top",
       openDelayMs: 420,
       contentMode: "description",
-      $$slots: { trigger: [Lt] },
+      $$slots: { trigger: [Ti] },
       $$scope: { ctx: n }
     }
   }), {
     c() {
-      P(e.$$.fragment);
+      E(e.$$.fragment);
     },
-    m(i, r) {
-      C(e, i, r), t = !0;
+    m(i, l) {
+      P(e, i, l), t = !0;
     },
-    p(i, r) {
-      const l = {};
-      r & /*badge*/
-      1 && (l.badge = /*badge*/
-      i[0]), r & /*$$scope, variant, badgeColor, badge, iconName*/
-      227 && (l.$$scope = { dirty: r, ctx: i }), e.$set(l);
+    p(i, l) {
+      const r = {};
+      l & /*badge*/
+      1 && (r.badge = /*badge*/
+      i[0]), l & /*$$scope, variant, badgeColor, badge, iconName, iconBgShape*/
+      455 && (r.$$scope = { dirty: l, ctx: i }), e.$set(r);
     },
     i(i) {
-      t || (x(e.$$.fragment, i), t = !0);
+      t || ($(e.$$.fragment, i), t = !0);
     },
     o(i) {
-      k(e.$$.fragment, i), t = !1;
+      C(e.$$.fragment, i), t = !1;
     },
     d(i) {
-      T(e, i);
+      N(e, i);
     }
   };
 }
-function Ce(n) {
+function Fe(n) {
   let e, t, i;
   return t = new re({
     props: {
       name: (
         /*iconName*/
-        n[6]
+        n[7]
       ),
-      size: Zt,
-      bg: (
-        /*variant*/
-        n[1] === "outlined" ? "var(--badge-solid)" : "#ffffff"
-      ),
-      fg: (
-        /*variant*/
-        n[1] === "outlined" ? "#ffffff" : "var(--badge-solid)"
-      ),
-      bgOpacity: 1
+      size: ji,
+      bg: "var(--mini-icon-bg)",
+      fg: "var(--mini-icon-fg)",
+      bgOpacity: 1,
+      bgShape: (
+        /*iconBgShape*/
+        n[2]
+      )
     }
   }), {
     c() {
-      e = y("span"), P(t.$$.fragment), a(e, "class", "icon svelte-bj5eke"), a(e, "aria-hidden", "true");
+      e = B("span"), E(t.$$.fragment), s(e, "class", "icon svelte-bhqsp8"), s(e, "aria-hidden", "true");
     },
-    m(r, l) {
-      M(r, e, l), C(t, e, null), i = !0;
+    m(l, r) {
+      y(l, e, r), P(t, e, null), i = !0;
     },
-    p(r, l) {
-      const s = {};
-      l & /*iconName*/
-      64 && (s.name = /*iconName*/
-      r[6]), l & /*variant*/
-      2 && (s.bg = /*variant*/
-      r[1] === "outlined" ? "var(--badge-solid)" : "#ffffff"), l & /*variant*/
-      2 && (s.fg = /*variant*/
-      r[1] === "outlined" ? "#ffffff" : "var(--badge-solid)"), t.$set(s);
+    p(l, r) {
+      const o = {};
+      r & /*iconName*/
+      128 && (o.name = /*iconName*/
+      l[7]), r & /*iconBgShape*/
+      4 && (o.bgShape = /*iconBgShape*/
+      l[2]), t.$set(o);
     },
-    i(r) {
-      i || (x(t.$$.fragment, r), i = !0);
+    i(l) {
+      i || ($(t.$$.fragment, l), i = !0);
     },
-    o(r) {
-      k(t.$$.fragment, r), i = !1;
+    o(l) {
+      C(t.$$.fragment, l), i = !1;
     },
-    d(r) {
-      r && j(e), T(t);
+    d(l) {
+      l && v(e), N(t);
     }
   };
 }
-function Lt(n) {
-  let e, t, i, r, l = (
+function Ti(n) {
+  let e, t, i, l, r = (
     /*badge*/
     n[0].label + ""
-  ), s, o, f, u, c, b, _, d = (
+  ), o, a, f, c, u, d, p, h = (
     /*iconName*/
-    n[6] && Ce(n)
+    n[7] && Fe(n)
   );
   return {
     c() {
-      e = y("span"), t = y("span"), d && d.c(), i = H(), r = y("span"), s = I(l), a(r, "class", "label svelte-bj5eke"), a(t, "class", o = "badge mini " + /*variant*/
-      n[1] + " svelte-bj5eke"), a(t, "style", f = `--badge-solid:${/*badgeColor*/
-      n[5]};`), a(t, "role", "note"), a(t, "aria-label", u = /*badge*/
-      n[0].label), a(e, "slot", "trigger"), a(e, "role", "presentation");
+      e = B("span"), t = B("span"), h && h.c(), i = V(), l = B("span"), o = H(r), s(l, "class", "label svelte-bhqsp8"), s(t, "class", a = "badge mini " + /*variant*/
+      n[1] + " svelte-bhqsp8"), s(t, "style", f = `--badge-solid:${/*badgeColor*/
+      n[6]};`), s(t, "role", "note"), s(t, "aria-label", c = /*badge*/
+      n[0].label), s(e, "slot", "trigger"), s(e, "role", "presentation");
     },
-    m(g, v) {
-      M(g, e, v), w(e, t), d && d.m(t, null), w(t, i), w(t, r), w(r, s), c = !0, b || (_ = X(e, "keydown", Vt), b = !0);
+    m(g, x) {
+      y(g, e, x), m(e, t), h && h.m(t, null), m(t, i), m(t, l), m(l, o), u = !0, d || (p = A(e, "keydown", qi), d = !0);
     },
-    p(g, v) {
+    p(g, x) {
       /*iconName*/
-      g[6] ? d ? (d.p(g, v), v & /*iconName*/
-      64 && x(d, 1)) : (d = Ce(g), d.c(), x(d, 1), d.m(t, i)) : d && (B(), k(d, 1, 1, () => {
-        d = null;
-      }), A()), (!c || v & /*badge*/
-      1) && l !== (l = /*badge*/
-      g[0].label + "") && Q(s, l), (!c || v & /*variant*/
-      2 && o !== (o = "badge mini " + /*variant*/
-      g[1] + " svelte-bj5eke")) && a(t, "class", o), (!c || v & /*badgeColor*/
-      32 && f !== (f = `--badge-solid:${/*badgeColor*/
-      g[5]};`)) && a(t, "style", f), (!c || v & /*badge*/
-      1 && u !== (u = /*badge*/
-      g[0].label)) && a(t, "aria-label", u);
+      g[7] ? h ? (h.p(g, x), x & /*iconName*/
+      128 && $(h, 1)) : (h = Fe(g), h.c(), $(h, 1), h.m(t, i)) : h && (I(), C(h, 1, 1, () => {
+        h = null;
+      }), L()), (!u || x & /*badge*/
+      1) && r !== (r = /*badge*/
+      g[0].label + "") && Q(o, r), (!u || x & /*variant*/
+      2 && a !== (a = "badge mini " + /*variant*/
+      g[1] + " svelte-bhqsp8")) && s(t, "class", a), (!u || x & /*badgeColor*/
+      64 && f !== (f = `--badge-solid:${/*badgeColor*/
+      g[6]};`)) && s(t, "style", f), (!u || x & /*badge*/
+      1 && c !== (c = /*badge*/
+      g[0].label)) && s(t, "aria-label", c);
     },
     i(g) {
-      c || (x(d), c = !0);
+      u || ($(h), u = !0);
     },
     o(g) {
-      k(d), c = !1;
+      C(h), u = !1;
     },
     d(g) {
-      g && j(e), d && d.d(), b = !1, _();
+      g && v(e), h && h.d(), d = !1, p();
     }
   };
 }
-function Yt(n) {
-  let e, t, i, r, l = (
+function Di(n) {
+  let e, t, i, l, r = (
     /*badge*/
-    n[0] && Se(n)
+    n[0] && Oe(n)
   );
   return {
     c() {
-      e = y("div"), l && l.c(), a(e, "class", t = "wrap " + /*fixed*/
-      (n[2] ? "fixed" : "") + " " + /*expandDirection*/
-      n[4] + " svelte-bj5eke"), a(e, "style", i = /*fixed*/
-      n[2] ? `right:${/*offsetPx*/
-      n[3]}px;bottom:${/*offsetPx*/
-      n[3]}px;` : void 0), a(e, "aria-label", "Mini badge");
+      e = B("div"), r && r.c(), s(e, "class", t = "wrap " + /*fixed*/
+      (n[3] ? "fixed" : "") + " " + /*expandDirection*/
+      n[5] + " svelte-bhqsp8"), s(e, "style", i = /*fixed*/
+      n[3] ? `right:${/*offsetPx*/
+      n[4]}px;bottom:${/*offsetPx*/
+      n[4]}px;` : void 0), s(e, "aria-label", "Mini badge");
     },
-    m(s, o) {
-      M(s, e, o), l && l.m(e, null), r = !0;
+    m(o, a) {
+      y(o, e, a), r && r.m(e, null), l = !0;
     },
-    p(s, [o]) {
+    p(o, [a]) {
       /*badge*/
-      s[0] ? l ? (l.p(s, o), o & /*badge*/
-      1 && x(l, 1)) : (l = Se(s), l.c(), x(l, 1), l.m(e, null)) : l && (B(), k(l, 1, 1, () => {
-        l = null;
-      }), A()), (!r || o & /*fixed, expandDirection*/
-      20 && t !== (t = "wrap " + /*fixed*/
-      (s[2] ? "fixed" : "") + " " + /*expandDirection*/
-      s[4] + " svelte-bj5eke")) && a(e, "class", t), (!r || o & /*fixed, offsetPx*/
-      12 && i !== (i = /*fixed*/
-      s[2] ? `right:${/*offsetPx*/
-      s[3]}px;bottom:${/*offsetPx*/
-      s[3]}px;` : void 0)) && a(e, "style", i);
+      o[0] ? r ? (r.p(o, a), a & /*badge*/
+      1 && $(r, 1)) : (r = Oe(o), r.c(), $(r, 1), r.m(e, null)) : r && (I(), C(r, 1, 1, () => {
+        r = null;
+      }), L()), (!l || a & /*fixed, expandDirection*/
+      40 && t !== (t = "wrap " + /*fixed*/
+      (o[3] ? "fixed" : "") + " " + /*expandDirection*/
+      o[5] + " svelte-bhqsp8")) && s(e, "class", t), (!l || a & /*fixed, offsetPx*/
+      24 && i !== (i = /*fixed*/
+      o[3] ? `right:${/*offsetPx*/
+      o[4]}px;bottom:${/*offsetPx*/
+      o[4]}px;` : void 0)) && s(e, "style", i);
     },
-    i(s) {
-      r || (x(l), r = !0);
+    i(o) {
+      l || ($(r), l = !0);
     },
-    o(s) {
-      k(l), r = !1;
+    o(o) {
+      C(r), l = !1;
     },
-    d(s) {
-      s && j(e), l && l.d();
+    d(o) {
+      o && v(e), r && r.d();
     }
   };
 }
-const Zt = 22, Vt = () => {
+const ji = 24, qi = () => {
 };
-function Xt(n, e, t) {
-  let i, r, { badge: l } = e, { variant: s = "outlined" } = e, { fixed: o = !1 } = e, { offsetPx: f = 16 } = e, { expandDirection: u = "right" } = e;
-  return n.$$set = (c) => {
-    "badge" in c && t(0, l = c.badge), "variant" in c && t(1, s = c.variant), "fixed" in c && t(2, o = c.fixed), "offsetPx" in c && t(3, f = c.offsetPx), "expandDirection" in c && t(4, u = c.expandDirection);
+function Pi(n, e, t) {
+  let i, l, { badge: r } = e, { variant: o = "outlined" } = e, { iconBgShape: a = "round" } = e, { fixed: f = !1 } = e, { offsetPx: c = 16 } = e, { expandDirection: u = "right" } = e;
+  return n.$$set = (d) => {
+    "badge" in d && t(0, r = d.badge), "variant" in d && t(1, o = d.variant), "iconBgShape" in d && t(2, a = d.iconBgShape), "fixed" in d && t(3, f = d.fixed), "offsetPx" in d && t(4, c = d.offsetPx), "expandDirection" in d && t(5, u = d.expandDirection);
   }, n.$$.update = () => {
     n.$$.dirty & /*badge*/
-    1 && t(6, i = (l == null ? void 0 : l.icon) ?? null), n.$$.dirty & /*badge*/
-    1 && t(5, r = String((l == null ? void 0 : l.color) ?? "").trim() || "rgb(17, 24, 39)");
-  }, [l, s, o, f, u, r, i];
+    1 && t(7, i = (r == null ? void 0 : r.icon) ?? null), n.$$.dirty & /*badge*/
+    1 && t(6, l = String((r == null ? void 0 : r.color) ?? "").trim() || "rgb(17, 24, 39)");
+  }, [
+    r,
+    o,
+    a,
+    f,
+    c,
+    u,
+    l,
+    i
+  ];
 }
-class Xe extends V {
+class et extends U {
   constructor(e) {
-    super(), Y(
+    super(), R(
       this,
       e,
-      Xt,
-      Yt,
-      L,
+      Pi,
+      Di,
+      Z,
       {
         badge: 0,
         variant: 1,
-        fixed: 2,
-        offsetPx: 3,
-        expandDirection: 4
+        iconBgShape: 2,
+        fixed: 3,
+        offsetPx: 4,
+        expandDirection: 5
       },
-      At
+      Bi
     );
   }
   get badge() {
     return this.$$.ctx[0];
   }
   set badge(e) {
-    this.$$set({ badge: e }), m();
+    this.$$set({ badge: e }), _();
   }
   get variant() {
     return this.$$.ctx[1];
   }
   set variant(e) {
-    this.$$set({ variant: e }), m();
+    this.$$set({ variant: e }), _();
   }
-  get fixed() {
+  get iconBgShape() {
     return this.$$.ctx[2];
   }
-  set fixed(e) {
-    this.$$set({ fixed: e }), m();
+  set iconBgShape(e) {
+    this.$$set({ iconBgShape: e }), _();
   }
-  get offsetPx() {
+  get fixed() {
     return this.$$.ctx[3];
   }
-  set offsetPx(e) {
-    this.$$set({ offsetPx: e }), m();
+  set fixed(e) {
+    this.$$set({ fixed: e }), _();
   }
-  get expandDirection() {
+  get offsetPx() {
     return this.$$.ctx[4];
   }
+  set offsetPx(e) {
+    this.$$set({ offsetPx: e }), _();
+  }
+  get expandDirection() {
+    return this.$$.ctx[5];
+  }
   set expandDirection(e) {
-    this.$$set({ expandDirection: e }), m();
+    this.$$set({ expandDirection: e }), _();
   }
 }
-Z(Xe, { badge: {}, variant: {}, fixed: { type: "Boolean" }, offsetPx: {}, expandDirection: {} }, [], [], !0);
-function It(n) {
-  G(n, "svelte-1achwnm", `.prio.svelte-1achwnm.svelte-1achwnm{width:var(--prio-size);height:var(--prio-size);border-radius:999px;display:inline-flex;align-items:center;justify-content:center;cursor:default;outline:none;user-select:none;transition:transform 160ms cubic-bezier(0.2, 0, 0, 1), box-shadow 160ms cubic-bezier(0.2, 0, 0, 1),
+W(et, { badge: {}, variant: {}, iconBgShape: {}, fixed: { type: "Boolean" }, offsetPx: {}, expandDirection: {} }, [], [], !0);
+function Ni(n) {
+  le(n, "svelte-1achwnm", `.prio.svelte-1achwnm.svelte-1achwnm{width:var(--prio-size);height:var(--prio-size);border-radius:999px;display:inline-flex;align-items:center;justify-content:center;cursor:default;outline:none;user-select:none;transition:transform 160ms cubic-bezier(0.2, 0, 0, 1), box-shadow 160ms cubic-bezier(0.2, 0, 0, 1),
       filter 160ms cubic-bezier(0.2, 0, 0, 1);--prio-solid:rgb(17, 24, 39);--prio-border:color-mix(in srgb, var(--prio-solid) 65%, transparent);--prio-text:#ffffff}.prio-inner.svelte-1achwnm.svelte-1achwnm{width:100%;height:100%;border-radius:999px;display:inline-flex;align-items:center;justify-content:center}.prio.with-label.svelte-1achwnm .prio-inner.svelte-1achwnm{flex-direction:column;gap:2px;padding:3px 5px 5px 5px;box-sizing:border-box}.prio-text.svelte-1achwnm.svelte-1achwnm{font-size:var(--prio-text-size, 10px);font-weight:550;letter-spacing:0.02em;line-height:1.05;color:var(--prio-text);text-align:center;white-space:normal;overflow-wrap:anywhere;opacity:0.95}.prio.solid.svelte-1achwnm.svelte-1achwnm{background:var(--prio-solid)}.prio.ring.svelte-1achwnm.svelte-1achwnm{background:#ffffff;box-shadow:inset 0 0 0 2px var(--prio-solid);--prio-text:var(--prio-solid)}.prio.double-ring.svelte-1achwnm.svelte-1achwnm{background:var(--prio-solid);box-shadow:inset 0 0 0 3px rgba(255, 255, 255, 0.95), 0 0 0 2px var(--prio-solid)}.prio.stamp.svelte-1achwnm.svelte-1achwnm{background:var(--prio-solid);box-shadow:inset 0 0 0 2px rgba(255, 255, 255, 0.85);filter:saturate(1.05)}.prio.stamp.svelte-1achwnm .prio-inner.svelte-1achwnm{background-image:radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 0);background-size:6px 6px;background-position:0 0}.prio.glow.svelte-1achwnm.svelte-1achwnm{background:var(--prio-solid);box-shadow:0 10px 22px rgba(17, 24, 39, 0.16), 0 0 0 3px rgba(255, 255, 255, 0.92)}`);
 }
-function Te(n) {
+function Ie(n) {
   let e, t;
-  return e = new ie({
+  return e = new fe({
     props: {
       badge: (
         /*badge*/
@@ -1821,35 +3118,35 @@ function Te(n) {
       placement: "top",
       openDelayMs: 120,
       contentMode: "labelAndDescription",
-      $$slots: { trigger: [Rt] },
+      $$slots: { trigger: [Ei] },
       $$scope: { ctx: n }
     }
   }), {
     c() {
-      P(e.$$.fragment);
+      E(e.$$.fragment);
     },
-    m(i, r) {
-      C(e, i, r), t = !0;
+    m(i, l) {
+      P(e, i, l), t = !0;
     },
-    p(i, r) {
-      const l = {};
-      r & /*badge*/
-      1 && (l.badge = /*badge*/
-      i[0]), r & /*$$scope, variant, badgeColor, renderSize, textSize, badge, rawLabel, iconName, iconSize*/
-      1279 && (l.$$scope = { dirty: r, ctx: i }), e.$set(l);
+    p(i, l) {
+      const r = {};
+      l & /*badge*/
+      1 && (r.badge = /*badge*/
+      i[0]), l & /*$$scope, variant, badgeColor, renderSize, textSize, badge, rawLabel, iconName, iconSize*/
+      1279 && (r.$$scope = { dirty: l, ctx: i }), e.$set(r);
     },
     i(i) {
-      t || (x(e.$$.fragment, i), t = !0);
+      t || ($(e.$$.fragment, i), t = !0);
     },
     o(i) {
-      k(e.$$.fragment, i), t = !1;
+      C(e.$$.fragment, i), t = !1;
     },
     d(i) {
-      T(e, i);
+      N(e, i);
     }
   };
 }
-function Pe(n) {
+function Le(n) {
   let e, t;
   return e = new re({
     props: {
@@ -1873,180 +3170,180 @@ function Pe(n) {
     }
   }), {
     c() {
-      P(e.$$.fragment);
+      E(e.$$.fragment);
     },
-    m(i, r) {
-      C(e, i, r), t = !0;
+    m(i, l) {
+      P(e, i, l), t = !0;
     },
-    p(i, r) {
-      const l = {};
-      r & /*iconName*/
-      128 && (l.name = /*iconName*/
-      i[7]), r & /*iconSize*/
-      32 && (l.size = /*iconSize*/
-      i[5]), r & /*variant*/
-      2 && (l.bg = /*variant*/
-      i[1] === "solid" ? "#ffffff" : "var(--prio-solid)"), r & /*variant*/
-      2 && (l.fg = /*variant*/
-      i[1] === "solid" ? "var(--prio-solid)" : "#ffffff"), e.$set(l);
+    p(i, l) {
+      const r = {};
+      l & /*iconName*/
+      128 && (r.name = /*iconName*/
+      i[7]), l & /*iconSize*/
+      32 && (r.size = /*iconSize*/
+      i[5]), l & /*variant*/
+      2 && (r.bg = /*variant*/
+      i[1] === "solid" ? "#ffffff" : "var(--prio-solid)"), l & /*variant*/
+      2 && (r.fg = /*variant*/
+      i[1] === "solid" ? "var(--prio-solid)" : "#ffffff"), e.$set(r);
     },
     i(i) {
-      t || (x(e.$$.fragment, i), t = !0);
+      t || ($(e.$$.fragment, i), t = !0);
     },
     o(i) {
-      k(e.$$.fragment, i), t = !1;
+      C(e.$$.fragment, i), t = !1;
     },
     d(i) {
-      T(e, i);
+      N(e, i);
     }
   };
 }
-function Rt(n) {
-  let e, t, i, r, l, s, o, f, u, c, b, _, d = (
+function Ei(n) {
+  let e, t, i, l, r, o, a, f, c, u, d, p, h = (
     /*iconName*/
-    n[7] && Pe(n)
+    n[7] && Le(n)
   );
   return {
     c() {
-      e = y("span"), t = y("span"), i = y("span"), d && d.c(), r = H(), l = y("span"), s = I(
+      e = B("span"), t = B("span"), i = B("span"), h && h.c(), l = V(), r = B("span"), o = H(
         /*rawLabel*/
         n[3]
-      ), a(l, "class", "prio-text svelte-1achwnm"), a(i, "class", "prio-inner svelte-1achwnm"), a(i, "aria-hidden", "true"), a(t, "class", o = "prio " + /*variant*/
-      n[1] + " with-label svelte-1achwnm"), a(t, "style", f = `--prio-solid:${/*badgeColor*/
+      ), s(r, "class", "prio-text svelte-1achwnm"), s(i, "class", "prio-inner svelte-1achwnm"), s(i, "aria-hidden", "true"), s(t, "class", a = "prio " + /*variant*/
+      n[1] + " with-label svelte-1achwnm"), s(t, "style", f = `--prio-solid:${/*badgeColor*/
       n[6]}; --prio-size:${/*renderSize*/
       n[2]}px; --prio-text-size:${/*textSize*/
-      n[4]}px;`), a(t, "role", "note"), a(t, "aria-label", u = /*badge*/
-      n[0].label), a(e, "slot", "trigger"), a(e, "role", "presentation");
+      n[4]}px;`), s(t, "role", "note"), s(t, "aria-label", c = /*badge*/
+      n[0].label), s(e, "slot", "trigger"), s(e, "role", "presentation");
     },
-    m(g, v) {
-      M(g, e, v), w(e, t), w(t, i), d && d.m(i, null), w(i, r), w(i, l), w(l, s), c = !0, b || (_ = X(e, "keydown", qt), b = !0);
+    m(g, x) {
+      y(g, e, x), m(e, t), m(t, i), h && h.m(i, null), m(i, l), m(i, r), m(r, o), u = !0, d || (p = A(e, "keydown", Ii), d = !0);
     },
-    p(g, v) {
+    p(g, x) {
       /*iconName*/
-      g[7] ? d ? (d.p(g, v), v & /*iconName*/
-      128 && x(d, 1)) : (d = Pe(g), d.c(), x(d, 1), d.m(i, r)) : d && (B(), k(d, 1, 1, () => {
-        d = null;
-      }), A()), (!c || v & /*rawLabel*/
+      g[7] ? h ? (h.p(g, x), x & /*iconName*/
+      128 && $(h, 1)) : (h = Le(g), h.c(), $(h, 1), h.m(i, l)) : h && (I(), C(h, 1, 1, () => {
+        h = null;
+      }), L()), (!u || x & /*rawLabel*/
       8) && Q(
-        s,
+        o,
         /*rawLabel*/
         g[3]
-      ), (!c || v & /*variant*/
-      2 && o !== (o = "prio " + /*variant*/
-      g[1] + " with-label svelte-1achwnm")) && a(t, "class", o), (!c || v & /*badgeColor, renderSize, textSize*/
+      ), (!u || x & /*variant*/
+      2 && a !== (a = "prio " + /*variant*/
+      g[1] + " with-label svelte-1achwnm")) && s(t, "class", a), (!u || x & /*badgeColor, renderSize, textSize*/
       84 && f !== (f = `--prio-solid:${/*badgeColor*/
       g[6]}; --prio-size:${/*renderSize*/
       g[2]}px; --prio-text-size:${/*textSize*/
-      g[4]}px;`)) && a(t, "style", f), (!c || v & /*badge*/
-      1 && u !== (u = /*badge*/
-      g[0].label)) && a(t, "aria-label", u);
+      g[4]}px;`)) && s(t, "style", f), (!u || x & /*badge*/
+      1 && c !== (c = /*badge*/
+      g[0].label)) && s(t, "aria-label", c);
     },
     i(g) {
-      c || (x(d), c = !0);
+      u || ($(h), u = !0);
     },
     o(g) {
-      k(d), c = !1;
+      C(h), u = !1;
     },
     d(g) {
-      g && j(e), d && d.d(), b = !1, _();
+      g && v(e), h && h.d(), d = !1, p();
     }
   };
 }
-function Ht(n) {
+function Oi(n) {
   let e, t, i = (
     /*badge*/
-    n[0] && Te(n)
+    n[0] && Ie(n)
   );
   return {
     c() {
-      i && i.c(), e = K();
+      i && i.c(), e = O();
     },
-    m(r, l) {
-      i && i.m(r, l), M(r, e, l), t = !0;
+    m(l, r) {
+      i && i.m(l, r), y(l, e, r), t = !0;
     },
-    p(r, [l]) {
+    p(l, [r]) {
       /*badge*/
-      r[0] ? i ? (i.p(r, l), l & /*badge*/
-      1 && x(i, 1)) : (i = Te(r), i.c(), x(i, 1), i.m(e.parentNode, e)) : i && (B(), k(i, 1, 1, () => {
+      l[0] ? i ? (i.p(l, r), r & /*badge*/
+      1 && $(i, 1)) : (i = Ie(l), i.c(), $(i, 1), i.m(e.parentNode, e)) : i && (I(), C(i, 1, 1, () => {
         i = null;
-      }), A());
+      }), L());
     },
-    i(r) {
-      t || (x(i), t = !0);
+    i(l) {
+      t || ($(i), t = !0);
     },
-    o(r) {
-      k(i), t = !1;
+    o(l) {
+      C(i), t = !1;
     },
-    d(r) {
-      r && j(e), i && i.d(r);
+    d(l) {
+      l && v(e), i && i.d(l);
     }
   };
 }
-function Ut(n) {
+function Fi(n) {
   return String(n ?? "").trim() || "—";
 }
-const qt = () => {
+const Ii = () => {
 };
-function Wt(n, e, t) {
-  let i, r, l, s, o, f, u, { badge: c } = e, { variant: b = "solid" } = e, { size: _ = 44 } = e;
-  return n.$$set = (d) => {
-    "badge" in d && t(0, c = d.badge), "variant" in d && t(1, b = d.variant), "size" in d && t(8, _ = d.size);
+function Li(n, e, t) {
+  let i, l, r, o, a, f, c, { badge: u } = e, { variant: d = "solid" } = e, { size: p = 44 } = e;
+  return n.$$set = (h) => {
+    "badge" in h && t(0, u = h.badge), "variant" in h && t(1, d = h.variant), "size" in h && t(8, p = h.size);
   }, n.$$.update = () => {
     n.$$.dirty & /*badge*/
-    1 && t(7, i = (c == null ? void 0 : c.icon) ?? null), n.$$.dirty & /*badge*/
-    1 && t(6, r = String((c == null ? void 0 : c.color) ?? "").trim() || "rgb(17, 24, 39)"), n.$$.dirty & /*badge*/
-    1 && t(3, l = Ut(c == null ? void 0 : c.label)), n.$$.dirty & /*rawLabel*/
-    8 && t(9, s = l.length), n.$$.dirty & /*size, labelLen*/
-    768 && t(2, o = Math.min(104, Math.max(_, 70 + Math.max(0, s - 12) * 1.4))), n.$$.dirty & /*renderSize*/
-    4 && t(5, f = Math.round(o * 0.34)), n.$$.dirty & /*labelLen*/
-    512 && t(4, u = s <= 12 ? 12 : s <= 18 ? 11 : s <= 26 ? 10 : 9);
+    1 && t(7, i = (u == null ? void 0 : u.icon) ?? null), n.$$.dirty & /*badge*/
+    1 && t(6, l = String((u == null ? void 0 : u.color) ?? "").trim() || "rgb(17, 24, 39)"), n.$$.dirty & /*badge*/
+    1 && t(3, r = Fi(u == null ? void 0 : u.label)), n.$$.dirty & /*rawLabel*/
+    8 && t(9, o = r.length), n.$$.dirty & /*size, labelLen*/
+    768 && t(2, a = Math.min(104, Math.max(p, 70 + Math.max(0, o - 12) * 1.4))), n.$$.dirty & /*renderSize*/
+    4 && t(5, f = Math.round(a * 0.34)), n.$$.dirty & /*labelLen*/
+    512 && t(4, c = o <= 12 ? 12 : o <= 18 ? 11 : o <= 26 ? 10 : 9);
   }, [
-    c,
-    b,
-    o,
-    l,
     u,
-    f,
+    d,
+    a,
     r,
+    c,
+    f,
+    l,
     i,
-    _,
-    s
+    p,
+    o
   ];
 }
-class Ie extends V {
+class tt extends U {
   constructor(e) {
-    super(), Y(this, e, Wt, Ht, L, { badge: 0, variant: 1, size: 8 }, It);
+    super(), R(this, e, Li, Oi, Z, { badge: 0, variant: 1, size: 8 }, Ni);
   }
   get badge() {
     return this.$$.ctx[0];
   }
   set badge(e) {
-    this.$$set({ badge: e }), m();
+    this.$$set({ badge: e }), _();
   }
   get variant() {
     return this.$$.ctx[1];
   }
   set variant(e) {
-    this.$$set({ variant: e }), m();
+    this.$$set({ variant: e }), _();
   }
   get size() {
     return this.$$.ctx[8];
   }
   set size(e) {
-    this.$$set({ size: e }), m();
+    this.$$set({ size: e }), _();
   }
 }
-Z(Ie, { badge: {}, variant: {}, size: {} }, [], [], !0);
-function Jt(n) {
-  G(n, "svelte-1wx095d", ".seal.svelte-1wx095d.svelte-1wx095d{position:relative;width:var(--seal-size);height:var(--seal-size);border-radius:999px;display:inline-grid;place-items:center;outline:none;cursor:default;user-select:none;background:transparent;--seal-solid:rgb(17, 24, 39);--seal-ring:color-mix(in srgb, var(--seal-solid) 55%, transparent);--seal-line:color-mix(in srgb, var(--seal-solid) 18%, transparent);--seal-ring-fg:var(--seal-solid)}.seal.filled.svelte-1wx095d.svelte-1wx095d{background:var(--seal-solid);--seal-ring-fg:rgba(255, 255, 255, 0.92)}.ring.svelte-1wx095d.svelte-1wx095d{position:absolute;inset:0;border-radius:999px;font-size:var(--seal-font);color:var(--seal-ring-fg);opacity:0.92;text-transform:uppercase;letter-spacing:0.1em;font-weight:550}.char.svelte-1wx095d.svelte-1wx095d{width:1em;height:100%;position:absolute;top:0;left:50%;transform:translateX(-50%) rotate(var(--angle));text-align:center}.center.svelte-1wx095d.svelte-1wx095d{position:absolute;inset:0;display:grid;place-items:center}.center-pill.svelte-1wx095d.svelte-1wx095d{width:calc(var(--seal-size) * 0.64);height:calc(var(--seal-size) * 0.64);border-radius:999px;background:rgba(255, 255, 255, 0.96);border:1px solid var(--seal-line);display:grid;place-items:center;opacity:0.95}.seal.filled.svelte-1wx095d .center-pill.svelte-1wx095d{border-color:rgba(255, 255, 255, 0.35);background:#ffffff;opacity:1}");
+W(tt, { badge: {}, variant: {}, size: {} }, [], [], !0);
+function Ai(n) {
+  le(n, "svelte-1wx095d", ".seal.svelte-1wx095d.svelte-1wx095d{position:relative;width:var(--seal-size);height:var(--seal-size);border-radius:999px;display:inline-grid;place-items:center;outline:none;cursor:default;user-select:none;background:transparent;--seal-solid:rgb(17, 24, 39);--seal-ring:color-mix(in srgb, var(--seal-solid) 55%, transparent);--seal-line:color-mix(in srgb, var(--seal-solid) 18%, transparent);--seal-ring-fg:var(--seal-solid)}.seal.filled.svelte-1wx095d.svelte-1wx095d{background:var(--seal-solid);--seal-ring-fg:rgba(255, 255, 255, 0.92)}.ring.svelte-1wx095d.svelte-1wx095d{position:absolute;inset:0;border-radius:999px;font-size:var(--seal-font);color:var(--seal-ring-fg);opacity:0.92;text-transform:uppercase;letter-spacing:0.1em;font-weight:550}.char.svelte-1wx095d.svelte-1wx095d{width:1em;height:100%;position:absolute;top:0;left:50%;transform:translateX(-50%) rotate(var(--angle));text-align:center}.center.svelte-1wx095d.svelte-1wx095d{position:absolute;inset:0;display:grid;place-items:center}.center-pill.svelte-1wx095d.svelte-1wx095d{width:calc(var(--seal-size) * 0.64);height:calc(var(--seal-size) * 0.64);border-radius:999px;background:rgba(255, 255, 255, 0.96);border:1px solid var(--seal-line);display:grid;place-items:center;opacity:0.95}.seal.filled.svelte-1wx095d .center-pill.svelte-1wx095d{border-color:rgba(255, 255, 255, 0.35);background:#ffffff;opacity:1}");
 }
-function Oe(n, e, t) {
+function Ae(n, e, t) {
   const i = n.slice();
   return i[14] = e[t], i[16] = t, i;
 }
-function Ee(n) {
+function Ve(n) {
   let e, t;
-  return e = new ie({
+  return e = new fe({
     props: {
       badge: (
         /*badge*/
@@ -2055,64 +3352,64 @@ function Ee(n) {
       placement: "top",
       openDelayMs: 120,
       contentMode: "labelAndDescription",
-      $$slots: { trigger: [Gt] },
+      $$slots: { trigger: [Vi] },
       $$scope: { ctx: n }
     }
   }), {
     c() {
-      P(e.$$.fragment);
+      E(e.$$.fragment);
     },
-    m(i, r) {
-      C(e, i, r), t = !0;
+    m(i, l) {
+      P(e, i, l), t = !0;
     },
-    p(i, r) {
-      const l = {};
-      r & /*badge*/
-      1 && (l.badge = /*badge*/
-      i[0]), r & /*$$scope, variant, badgeColor, size, ringFontPx, badge, iconName, centerIcon, chars*/
-      131327 && (l.$$scope = { dirty: r, ctx: i }), e.$set(l);
+    p(i, l) {
+      const r = {};
+      l & /*badge*/
+      1 && (r.badge = /*badge*/
+      i[0]), l & /*$$scope, variant, badgeColor, size, ringFontPx, badge, iconName, centerIcon, chars*/
+      131327 && (r.$$scope = { dirty: l, ctx: i }), e.$set(r);
     },
     i(i) {
-      t || (x(e.$$.fragment, i), t = !0);
+      t || ($(e.$$.fragment, i), t = !0);
     },
     o(i) {
-      k(e.$$.fragment, i), t = !1;
+      C(e.$$.fragment, i), t = !1;
     },
     d(i) {
-      T(e, i);
+      N(e, i);
     }
   };
 }
-function Fe(n, e) {
+function Ze(n, e) {
   let t, i = (
     /*char*/
     e[14] + ""
-  ), r, l;
+  ), l, r;
   return {
     key: n,
     first: null,
     c() {
-      t = y("span"), r = I(i), a(t, "class", "char svelte-1wx095d"), a(t, "style", l = `--angle:${1 / /*chars*/
+      t = B("span"), l = H(i), s(t, "class", "char svelte-1wx095d"), s(t, "style", r = `--angle:${1 / /*chars*/
       e[5].length * /*index*/
       e[16]}turn;`), this.first = t;
     },
-    m(s, o) {
-      M(s, t, o), w(t, r);
+    m(o, a) {
+      y(o, t, a), m(t, l);
     },
-    p(s, o) {
-      e = s, o & /*chars*/
+    p(o, a) {
+      e = o, a & /*chars*/
       32 && i !== (i = /*char*/
-      e[14] + "") && Q(r, i), o & /*chars*/
-      32 && l !== (l = `--angle:${1 / /*chars*/
+      e[14] + "") && Q(l, i), a & /*chars*/
+      32 && r !== (r = `--angle:${1 / /*chars*/
       e[5].length * /*index*/
-      e[16]}turn;`) && a(t, "style", l);
+      e[16]}turn;`) && s(t, "style", r);
     },
-    d(s) {
-      s && j(t);
+    d(o) {
+      o && v(t);
     }
   };
 }
-function Ne(n) {
+function He(n) {
   let e, t;
   return e = new re({
     props: {
@@ -2130,171 +3427,171 @@ function Ne(n) {
     }
   }), {
     c() {
-      P(e.$$.fragment);
+      E(e.$$.fragment);
     },
-    m(i, r) {
-      C(e, i, r), t = !0;
+    m(i, l) {
+      P(e, i, l), t = !0;
     },
-    p(i, r) {
-      const l = {};
-      r & /*iconName*/
-      128 && (l.name = /*iconName*/
-      i[7]), r & /*centerIcon*/
-      8 && (l.size = /*centerIcon*/
-      i[3]), e.$set(l);
+    p(i, l) {
+      const r = {};
+      l & /*iconName*/
+      128 && (r.name = /*iconName*/
+      i[7]), l & /*centerIcon*/
+      8 && (r.size = /*centerIcon*/
+      i[3]), e.$set(r);
     },
     i(i) {
-      t || (x(e.$$.fragment, i), t = !0);
+      t || ($(e.$$.fragment, i), t = !0);
     },
     o(i) {
-      k(e.$$.fragment, i), t = !1;
+      C(e.$$.fragment, i), t = !1;
     },
     d(i) {
-      T(e, i);
+      N(e, i);
     }
   };
 }
-function Gt(n) {
-  let e, t, i, r = [], l = /* @__PURE__ */ new Map(), s, o, f, u, c, b, _, d, g, v = we(
+function Vi(n) {
+  let e, t, i, l = [], r = /* @__PURE__ */ new Map(), o, a, f, c, u, d, p, h, g, x = xe(
     /*chars*/
     n[5]
   );
-  const z = (p) => (
+  const T = (S) => (
     /*index*/
-    p[16]
+    S[16]
   );
-  for (let p = 0; p < v.length; p += 1) {
-    let $ = Oe(n, v, p), E = z($);
-    l.set(E, r[p] = Fe(E, $));
+  for (let S = 0; S < x.length; S += 1) {
+    let z = Ae(n, x, S), M = T(z);
+    r.set(M, l[S] = Ze(M, z));
   }
-  let h = (
+  let b = (
     /*iconName*/
-    n[7] && Ne(n)
+    n[7] && He(n)
   );
   return {
     c() {
-      e = y("span"), t = y("span"), i = y("span");
-      for (let p = 0; p < r.length; p += 1)
-        r[p].c();
-      s = H(), o = y("span"), f = y("span"), h && h.c(), a(i, "class", "ring svelte-1wx095d"), a(i, "aria-hidden", "true"), a(f, "class", "center-pill svelte-1wx095d"), a(o, "class", "center svelte-1wx095d"), a(o, "aria-hidden", "true"), a(t, "class", u = "seal " + /*variant*/
-      n[1] + " svelte-1wx095d"), a(t, "style", c = `--seal-solid:${/*badgeColor*/
+      e = B("span"), t = B("span"), i = B("span");
+      for (let S = 0; S < l.length; S += 1)
+        l[S].c();
+      o = V(), a = B("span"), f = B("span"), b && b.c(), s(i, "class", "ring svelte-1wx095d"), s(i, "aria-hidden", "true"), s(f, "class", "center-pill svelte-1wx095d"), s(a, "class", "center svelte-1wx095d"), s(a, "aria-hidden", "true"), s(t, "class", c = "seal " + /*variant*/
+      n[1] + " svelte-1wx095d"), s(t, "style", u = `--seal-solid:${/*badgeColor*/
       n[6]}; --seal-size:${/*size*/
       n[2]}px; --seal-font:${/*ringFontPx*/
-      n[4]}px;`), a(t, "role", "note"), a(t, "aria-label", b = /*badge*/
-      n[0].label), a(e, "slot", "trigger"), a(e, "role", "presentation");
+      n[4]}px;`), s(t, "role", "note"), s(t, "aria-label", d = /*badge*/
+      n[0].label), s(e, "slot", "trigger"), s(e, "role", "presentation");
     },
-    m(p, $) {
-      M(p, e, $), w(e, t), w(t, i);
-      for (let E = 0; E < r.length; E += 1)
-        r[E] && r[E].m(i, null);
-      w(t, s), w(t, o), w(o, f), h && h.m(f, null), _ = !0, d || (g = X(e, "keydown", en), d = !0);
+    m(S, z) {
+      y(S, e, z), m(e, t), m(t, i);
+      for (let M = 0; M < l.length; M += 1)
+        l[M] && l[M].m(i, null);
+      m(t, o), m(t, a), m(a, f), b && b.m(f, null), p = !0, h || (g = A(e, "keydown", Ri), h = !0);
     },
-    p(p, $) {
-      $ & /*chars*/
-      32 && (v = we(
+    p(S, z) {
+      z & /*chars*/
+      32 && (x = xe(
         /*chars*/
-        p[5]
-      ), r = at(r, $, z, 1, p, v, l, i, st, Fe, null, Oe)), /*iconName*/
-      p[7] ? h ? (h.p(p, $), $ & /*iconName*/
-      128 && x(h, 1)) : (h = Ne(p), h.c(), x(h, 1), h.m(f, null)) : h && (B(), k(h, 1, 1, () => {
-        h = null;
-      }), A()), (!_ || $ & /*variant*/
-      2 && u !== (u = "seal " + /*variant*/
-      p[1] + " svelte-1wx095d")) && a(t, "class", u), (!_ || $ & /*badgeColor, size, ringFontPx*/
-      84 && c !== (c = `--seal-solid:${/*badgeColor*/
-      p[6]}; --seal-size:${/*size*/
-      p[2]}px; --seal-font:${/*ringFontPx*/
-      p[4]}px;`)) && a(t, "style", c), (!_ || $ & /*badge*/
-      1 && b !== (b = /*badge*/
-      p[0].label)) && a(t, "aria-label", b);
+        S[5]
+      ), l = kt(l, z, T, 1, S, x, r, i, wt, Ze, null, Ae)), /*iconName*/
+      S[7] ? b ? (b.p(S, z), z & /*iconName*/
+      128 && $(b, 1)) : (b = He(S), b.c(), $(b, 1), b.m(f, null)) : b && (I(), C(b, 1, 1, () => {
+        b = null;
+      }), L()), (!p || z & /*variant*/
+      2 && c !== (c = "seal " + /*variant*/
+      S[1] + " svelte-1wx095d")) && s(t, "class", c), (!p || z & /*badgeColor, size, ringFontPx*/
+      84 && u !== (u = `--seal-solid:${/*badgeColor*/
+      S[6]}; --seal-size:${/*size*/
+      S[2]}px; --seal-font:${/*ringFontPx*/
+      S[4]}px;`)) && s(t, "style", u), (!p || z & /*badge*/
+      1 && d !== (d = /*badge*/
+      S[0].label)) && s(t, "aria-label", d);
     },
-    i(p) {
-      _ || (x(h), _ = !0);
+    i(S) {
+      p || ($(b), p = !0);
     },
-    o(p) {
-      k(h), _ = !1;
+    o(S) {
+      C(b), p = !1;
     },
-    d(p) {
-      p && j(e);
-      for (let $ = 0; $ < r.length; $ += 1)
-        r[$].d();
-      h && h.d(), d = !1, g();
+    d(S) {
+      S && v(e);
+      for (let z = 0; z < l.length; z += 1)
+        l[z].d();
+      b && b.d(), h = !1, g();
     }
   };
 }
-function Kt(n) {
+function Zi(n) {
   let e, t, i = (
     /*badge*/
-    n[0] && Ee(n)
+    n[0] && Ve(n)
   );
   return {
     c() {
-      i && i.c(), e = K();
+      i && i.c(), e = O();
     },
-    m(r, l) {
-      i && i.m(r, l), M(r, e, l), t = !0;
+    m(l, r) {
+      i && i.m(l, r), y(l, e, r), t = !0;
     },
-    p(r, [l]) {
+    p(l, [r]) {
       /*badge*/
-      r[0] ? i ? (i.p(r, l), l & /*badge*/
-      1 && x(i, 1)) : (i = Ee(r), i.c(), x(i, 1), i.m(e.parentNode, e)) : i && (B(), k(i, 1, 1, () => {
+      l[0] ? i ? (i.p(l, r), r & /*badge*/
+      1 && $(i, 1)) : (i = Ve(l), i.c(), $(i, 1), i.m(e.parentNode, e)) : i && (I(), C(i, 1, 1, () => {
         i = null;
-      }), A());
+      }), L());
     },
-    i(r) {
-      t || (x(i), t = !0);
+    i(l) {
+      t || ($(i), t = !0);
     },
-    o(r) {
-      k(i), t = !1;
+    o(l) {
+      C(i), t = !1;
     },
-    d(r) {
-      r && j(e), i && i.d(r);
+    d(l) {
+      l && v(e), i && i.d(l);
     }
   };
 }
-function Qt(n, e, t) {
+function Hi(n, e, t) {
   return Math.max(e, Math.min(t, n));
 }
-const en = () => {
+const Ri = () => {
 };
-function tn(n, e, t) {
-  let i, r, l, s, o, f, u, { badge: c } = e, { variant: b = "outlined" } = e, { ringText: _ = null } = e, { repeat: d = 2 } = e, { separator: g = " • " } = e, { size: v = 76 } = e, { sealFontScale: z = 0.12 } = e;
-  return n.$$set = (h) => {
-    "badge" in h && t(0, c = h.badge), "variant" in h && t(1, b = h.variant), "ringText" in h && t(8, _ = h.ringText), "repeat" in h && t(9, d = h.repeat), "separator" in h && t(10, g = h.separator), "size" in h && t(2, v = h.size), "sealFontScale" in h && t(11, z = h.sealFontScale);
+function Wi(n, e, t) {
+  let i, l, r, o, a, f, c, { badge: u } = e, { variant: d = "outlined" } = e, { ringText: p = null } = e, { repeat: h = 2 } = e, { separator: g = " • " } = e, { size: x = 76 } = e, { sealFontScale: T = 0.12 } = e;
+  return n.$$set = (b) => {
+    "badge" in b && t(0, u = b.badge), "variant" in b && t(1, d = b.variant), "ringText" in b && t(8, p = b.ringText), "repeat" in b && t(9, h = b.repeat), "separator" in b && t(10, g = b.separator), "size" in b && t(2, x = b.size), "sealFontScale" in b && t(11, T = b.sealFontScale);
   }, n.$$.update = () => {
     n.$$.dirty & /*badge*/
-    1 && t(7, i = (c == null ? void 0 : c.icon) ?? null), n.$$.dirty & /*badge*/
-    1 && t(6, r = String((c == null ? void 0 : c.color) ?? "").trim() || "rgb(17, 24, 39)"), n.$$.dirty & /*ringText, badge*/
-    257 && t(12, l = (_ ?? (c == null ? void 0 : c.label) ?? "").trim() || "—"), n.$$.dirty & /*repeat*/
-    512 && t(13, s = Qt(Math.floor(d || 1), 1, 10)), n.$$.dirty & /*repeatSafe, displayText, separator*/
-    13312 && t(5, o = [...Array(s)].map(() => [...l.toUpperCase()].concat([...g.toUpperCase()])).flat()), n.$$.dirty & /*size, sealFontScale*/
-    2052 && t(4, f = Math.round(v * z)), n.$$.dirty & /*size*/
-    4 && t(3, u = Math.round(v * 0.3));
+    1 && t(7, i = (u == null ? void 0 : u.icon) ?? null), n.$$.dirty & /*badge*/
+    1 && t(6, l = String((u == null ? void 0 : u.color) ?? "").trim() || "rgb(17, 24, 39)"), n.$$.dirty & /*ringText, badge*/
+    257 && t(12, r = (p ?? (u == null ? void 0 : u.label) ?? "").trim() || "—"), n.$$.dirty & /*repeat*/
+    512 && t(13, o = Hi(Math.floor(h || 1), 1, 10)), n.$$.dirty & /*repeatSafe, displayText, separator*/
+    13312 && t(5, a = [...Array(o)].map(() => [...r.toUpperCase()].concat([...g.toUpperCase()])).flat()), n.$$.dirty & /*size, sealFontScale*/
+    2052 && t(4, f = Math.round(x * T)), n.$$.dirty & /*size*/
+    4 && t(3, c = Math.round(x * 0.3));
   }, [
-    c,
-    b,
-    v,
     u,
-    f,
-    o,
-    r,
-    i,
-    _,
     d,
-    g,
-    z,
+    x,
+    c,
+    f,
+    a,
     l,
-    s
+    i,
+    p,
+    h,
+    g,
+    T,
+    r,
+    o
   ];
 }
-class Re extends V {
+class it extends U {
   constructor(e) {
-    super(), Y(
+    super(), R(
       this,
       e,
-      tn,
-      Kt,
-      L,
+      Wi,
+      Zi,
+      Z,
       {
         badge: 0,
         variant: 1,
@@ -2304,56 +3601,56 @@ class Re extends V {
         size: 2,
         sealFontScale: 11
       },
-      Jt
+      Ai
     );
   }
   get badge() {
     return this.$$.ctx[0];
   }
   set badge(e) {
-    this.$$set({ badge: e }), m();
+    this.$$set({ badge: e }), _();
   }
   get variant() {
     return this.$$.ctx[1];
   }
   set variant(e) {
-    this.$$set({ variant: e }), m();
+    this.$$set({ variant: e }), _();
   }
   get ringText() {
     return this.$$.ctx[8];
   }
   set ringText(e) {
-    this.$$set({ ringText: e }), m();
+    this.$$set({ ringText: e }), _();
   }
   get repeat() {
     return this.$$.ctx[9];
   }
   set repeat(e) {
-    this.$$set({ repeat: e }), m();
+    this.$$set({ repeat: e }), _();
   }
   get separator() {
     return this.$$.ctx[10];
   }
   set separator(e) {
-    this.$$set({ separator: e }), m();
+    this.$$set({ separator: e }), _();
   }
   get size() {
     return this.$$.ctx[2];
   }
   set size(e) {
-    this.$$set({ size: e }), m();
+    this.$$set({ size: e }), _();
   }
   get sealFontScale() {
     return this.$$.ctx[11];
   }
   set sealFontScale(e) {
-    this.$$set({ sealFontScale: e }), m();
+    this.$$set({ sealFontScale: e }), _();
   }
 }
-Z(Re, { badge: {}, variant: {}, ringText: {}, repeat: {}, separator: {}, size: {}, sealFontScale: {} }, [], [], !0);
-function nn(n) {
+W(it, { badge: {}, variant: {}, ringText: {}, repeat: {}, separator: {}, size: {}, sealFontScale: {} }, [], [], !0);
+function Ui(n) {
   let e, t;
-  return e = new Re({
+  return e = new it({
     props: {
       badge: (
         /*badge*/
@@ -2361,19 +3658,19 @@ function nn(n) {
       ),
       variant: (
         /*roundCircularTextVariant*/
-        n[10]
+        n[11]
       ),
       ringText: (
         /*ringText*/
-        n[6]
+        n[7]
       ),
       repeat: (
         /*repeat*/
-        n[7]
+        n[8]
       ),
       separator: (
         /*separator*/
-        n[8]
+        n[9]
       ),
       size: (
         /*size*/
@@ -2381,48 +3678,48 @@ function nn(n) {
       ),
       sealFontScale: (
         /*sealFontScale*/
-        n[9]
+        n[10]
       )
     }
   }), {
     c() {
-      P(e.$$.fragment);
+      E(e.$$.fragment);
     },
-    m(i, r) {
-      C(e, i, r), t = !0;
+    m(i, l) {
+      P(e, i, l), t = !0;
     },
-    p(i, r) {
-      const l = {};
-      r & /*badge*/
-      1 && (l.badge = /*badge*/
-      i[0]), r & /*roundCircularTextVariant*/
-      1024 && (l.variant = /*roundCircularTextVariant*/
-      i[10]), r & /*ringText*/
-      64 && (l.ringText = /*ringText*/
-      i[6]), r & /*repeat*/
-      128 && (l.repeat = /*repeat*/
-      i[7]), r & /*separator*/
-      256 && (l.separator = /*separator*/
-      i[8]), r & /*size*/
-      4 && (l.size = /*size*/
-      i[2] ?? 76), r & /*sealFontScale*/
-      512 && (l.sealFontScale = /*sealFontScale*/
-      i[9]), e.$set(l);
+    p(i, l) {
+      const r = {};
+      l & /*badge*/
+      1 && (r.badge = /*badge*/
+      i[0]), l & /*roundCircularTextVariant*/
+      2048 && (r.variant = /*roundCircularTextVariant*/
+      i[11]), l & /*ringText*/
+      128 && (r.ringText = /*ringText*/
+      i[7]), l & /*repeat*/
+      256 && (r.repeat = /*repeat*/
+      i[8]), l & /*separator*/
+      512 && (r.separator = /*separator*/
+      i[9]), l & /*size*/
+      4 && (r.size = /*size*/
+      i[2] ?? 76), l & /*sealFontScale*/
+      1024 && (r.sealFontScale = /*sealFontScale*/
+      i[10]), e.$set(r);
     },
     i(i) {
-      t || (x(e.$$.fragment, i), t = !0);
+      t || ($(e.$$.fragment, i), t = !0);
     },
     o(i) {
-      k(e.$$.fragment, i), t = !1;
+      C(e.$$.fragment, i), t = !1;
     },
     d(i) {
-      T(e, i);
+      N(e, i);
     }
   };
 }
-function rn(n) {
+function Xi(n) {
   let e, t;
-  return e = new Ie({
+  return e = new tt({
     props: {
       badge: (
         /*badge*/
@@ -2430,7 +3727,7 @@ function rn(n) {
       ),
       variant: (
         /*roundVariant*/
-        n[11]
+        n[12]
       ),
       size: (
         /*size*/
@@ -2439,35 +3736,35 @@ function rn(n) {
     }
   }), {
     c() {
-      P(e.$$.fragment);
+      E(e.$$.fragment);
     },
-    m(i, r) {
-      C(e, i, r), t = !0;
+    m(i, l) {
+      P(e, i, l), t = !0;
     },
-    p(i, r) {
-      const l = {};
-      r & /*badge*/
-      1 && (l.badge = /*badge*/
-      i[0]), r & /*roundVariant*/
-      2048 && (l.variant = /*roundVariant*/
-      i[11]), r & /*size*/
-      4 && (l.size = /*size*/
-      i[2] ?? 44), e.$set(l);
+    p(i, l) {
+      const r = {};
+      l & /*badge*/
+      1 && (r.badge = /*badge*/
+      i[0]), l & /*roundVariant*/
+      4096 && (r.variant = /*roundVariant*/
+      i[12]), l & /*size*/
+      4 && (r.size = /*size*/
+      i[2] ?? 44), e.$set(r);
     },
     i(i) {
-      t || (x(e.$$.fragment, i), t = !0);
+      t || ($(e.$$.fragment, i), t = !0);
     },
     o(i) {
-      k(e.$$.fragment, i), t = !1;
+      C(e.$$.fragment, i), t = !1;
     },
     d(i) {
-      T(e, i);
+      N(e, i);
     }
   };
 }
-function ln(n) {
+function Gi(n) {
   let e, t;
-  return e = new Xe({
+  return e = new et({
     props: {
       badge: (
         /*badge*/
@@ -2475,7 +3772,7 @@ function ln(n) {
       ),
       variant: (
         /*miniVariant*/
-        n[12]
+        n[13]
       ),
       fixed: (
         /*fixed*/
@@ -2488,43 +3785,49 @@ function ln(n) {
       expandDirection: (
         /*expandDirection*/
         n[5]
+      ),
+      iconBgShape: (
+        /*iconBgShape*/
+        n[6] ?? "round"
       )
     }
   }), {
     c() {
-      P(e.$$.fragment);
+      E(e.$$.fragment);
     },
-    m(i, r) {
-      C(e, i, r), t = !0;
+    m(i, l) {
+      P(e, i, l), t = !0;
     },
-    p(i, r) {
-      const l = {};
-      r & /*badge*/
-      1 && (l.badge = /*badge*/
-      i[0]), r & /*miniVariant*/
-      4096 && (l.variant = /*miniVariant*/
-      i[12]), r & /*fixed*/
-      8 && (l.fixed = /*fixed*/
-      i[3]), r & /*offsetPx*/
-      16 && (l.offsetPx = /*offsetPx*/
-      i[4]), r & /*expandDirection*/
-      32 && (l.expandDirection = /*expandDirection*/
-      i[5]), e.$set(l);
+    p(i, l) {
+      const r = {};
+      l & /*badge*/
+      1 && (r.badge = /*badge*/
+      i[0]), l & /*miniVariant*/
+      8192 && (r.variant = /*miniVariant*/
+      i[13]), l & /*fixed*/
+      8 && (r.fixed = /*fixed*/
+      i[3]), l & /*offsetPx*/
+      16 && (r.offsetPx = /*offsetPx*/
+      i[4]), l & /*expandDirection*/
+      32 && (r.expandDirection = /*expandDirection*/
+      i[5]), l & /*iconBgShape*/
+      64 && (r.iconBgShape = /*iconBgShape*/
+      i[6] ?? "round"), e.$set(r);
     },
     i(i) {
-      t || (x(e.$$.fragment, i), t = !0);
+      t || ($(e.$$.fragment, i), t = !0);
     },
     o(i) {
-      k(e.$$.fragment, i), t = !1;
+      C(e.$$.fragment, i), t = !1;
     },
     d(i) {
-      T(e, i);
+      N(e, i);
     }
   };
 }
-function sn(n) {
+function Ji(n) {
   let e, t;
-  return e = new Ve({
+  return e = new Qe({
     props: {
       badge: (
         /*badge*/
@@ -2532,39 +3835,39 @@ function sn(n) {
       ),
       variant: (
         /*monoVariant*/
-        n[13]
+        n[14]
       )
     }
   }), {
     c() {
-      P(e.$$.fragment);
+      E(e.$$.fragment);
     },
-    m(i, r) {
-      C(e, i, r), t = !0;
+    m(i, l) {
+      P(e, i, l), t = !0;
     },
-    p(i, r) {
-      const l = {};
-      r & /*badge*/
-      1 && (l.badge = /*badge*/
-      i[0]), r & /*monoVariant*/
-      8192 && (l.variant = /*monoVariant*/
-      i[13]), e.$set(l);
+    p(i, l) {
+      const r = {};
+      l & /*badge*/
+      1 && (r.badge = /*badge*/
+      i[0]), l & /*monoVariant*/
+      16384 && (r.variant = /*monoVariant*/
+      i[14]), e.$set(r);
     },
     i(i) {
-      t || (x(e.$$.fragment, i), t = !0);
+      t || ($(e.$$.fragment, i), t = !0);
     },
     o(i) {
-      k(e.$$.fragment, i), t = !1;
+      C(e.$$.fragment, i), t = !1;
     },
     d(i) {
-      T(e, i);
+      N(e, i);
     }
   };
 }
-function an(n) {
-  let e, t, i, r;
-  const l = [sn, ln, rn, nn], s = [];
-  function o(f, u) {
+function Yi(n) {
+  let e, t, i, l;
+  const r = [Ji, Gi, Xi, Ui], o = [];
+  function a(f, c) {
     return (
       /*type*/
       f[1] === "mono" ? 0 : (
@@ -2576,149 +3879,157 @@ function an(n) {
       )
     );
   }
-  return e = o(n), t = s[e] = l[e](n), {
+  return e = a(n), t = o[e] = r[e](n), {
     c() {
-      t.c(), i = K();
+      t.c(), i = O();
     },
-    m(f, u) {
-      s[e].m(f, u), M(f, i, u), r = !0;
+    m(f, c) {
+      o[e].m(f, c), y(f, i, c), l = !0;
     },
-    p(f, [u]) {
-      let c = e;
-      e = o(f), e === c ? s[e].p(f, u) : (B(), k(s[c], 1, 1, () => {
-        s[c] = null;
-      }), A(), t = s[e], t ? t.p(f, u) : (t = s[e] = l[e](f), t.c()), x(t, 1), t.m(i.parentNode, i));
+    p(f, [c]) {
+      let u = e;
+      e = a(f), e === u ? o[e].p(f, c) : (I(), C(o[u], 1, 1, () => {
+        o[u] = null;
+      }), L(), t = o[e], t ? t.p(f, c) : (t = o[e] = r[e](f), t.c()), $(t, 1), t.m(i.parentNode, i));
     },
     i(f) {
-      r || (x(t), r = !0);
+      l || ($(t), l = !0);
     },
     o(f) {
-      k(t), r = !1;
+      C(t), l = !1;
     },
     d(f) {
-      f && j(i), s[e].d(f);
+      f && v(i), o[e].d(f);
     }
   };
 }
-function on(n, e, t) {
-  let i, r, l, s, { badge: o } = e, { type: f = "mono" } = e, { variant: u = void 0 } = e, { size: c = void 0 } = e, { fixed: b = !1 } = e, { offsetPx: _ = 16 } = e, { expandDirection: d = "right" } = e, { ringText: g = null } = e, { repeat: v = 2 } = e, { separator: z = " • " } = e, { sealFontScale: h = 0.12 } = e;
-  return n.$$set = (p) => {
-    "badge" in p && t(0, o = p.badge), "type" in p && t(1, f = p.type), "variant" in p && t(14, u = p.variant), "size" in p && t(2, c = p.size), "fixed" in p && t(3, b = p.fixed), "offsetPx" in p && t(4, _ = p.offsetPx), "expandDirection" in p && t(5, d = p.expandDirection), "ringText" in p && t(6, g = p.ringText), "repeat" in p && t(7, v = p.repeat), "separator" in p && t(8, z = p.separator), "sealFontScale" in p && t(9, h = p.sealFontScale);
+function Ki(n, e, t) {
+  let i, l, r, o, { badge: a } = e, { type: f = "mono" } = e, { variant: c = void 0 } = e, { size: u = void 0 } = e, { fixed: d = !1 } = e, { offsetPx: p = 16 } = e, { expandDirection: h = "right" } = e, { iconBgShape: g = void 0 } = e, { ringText: x = null } = e, { repeat: T = 2 } = e, { separator: b = " • " } = e, { sealFontScale: S = 0.12 } = e;
+  return n.$$set = (z) => {
+    "badge" in z && t(0, a = z.badge), "type" in z && t(1, f = z.type), "variant" in z && t(15, c = z.variant), "size" in z && t(2, u = z.size), "fixed" in z && t(3, d = z.fixed), "offsetPx" in z && t(4, p = z.offsetPx), "expandDirection" in z && t(5, h = z.expandDirection), "iconBgShape" in z && t(6, g = z.iconBgShape), "ringText" in z && t(7, x = z.ringText), "repeat" in z && t(8, T = z.repeat), "separator" in z && t(9, b = z.separator), "sealFontScale" in z && t(10, S = z.sealFontScale);
   }, n.$$.update = () => {
     n.$$.dirty & /*variant*/
-    16384 && t(13, i = u ?? "filled"), n.$$.dirty & /*variant*/
-    16384 && t(12, r = u ?? "outlined"), n.$$.dirty & /*variant*/
-    16384 && t(11, l = u ?? "solid"), n.$$.dirty & /*variant*/
-    16384 && t(10, s = u ?? "outlined");
+    32768 && t(14, i = c ?? "filled"), n.$$.dirty & /*variant*/
+    32768 && t(13, l = c ?? "outlined"), n.$$.dirty & /*variant*/
+    32768 && t(12, r = c ?? "solid"), n.$$.dirty & /*variant*/
+    32768 && t(11, o = c ?? "outlined");
   }, [
-    o,
+    a,
     f,
-    c,
-    b,
-    _,
+    u,
     d,
-    g,
-    v,
-    z,
+    p,
     h,
-    s,
-    l,
+    g,
+    x,
+    T,
+    b,
+    S,
+    o,
     r,
+    l,
     i,
-    u
+    c
   ];
 }
-class He extends V {
+class nt extends U {
   constructor(e) {
-    super(), Y(this, e, on, an, L, {
+    super(), R(this, e, Ki, Yi, Z, {
       badge: 0,
       type: 1,
-      variant: 14,
+      variant: 15,
       size: 2,
       fixed: 3,
       offsetPx: 4,
       expandDirection: 5,
-      ringText: 6,
-      repeat: 7,
-      separator: 8,
-      sealFontScale: 9
+      iconBgShape: 6,
+      ringText: 7,
+      repeat: 8,
+      separator: 9,
+      sealFontScale: 10
     });
   }
   get badge() {
     return this.$$.ctx[0];
   }
   set badge(e) {
-    this.$$set({ badge: e }), m();
+    this.$$set({ badge: e }), _();
   }
   get type() {
     return this.$$.ctx[1];
   }
   set type(e) {
-    this.$$set({ type: e }), m();
+    this.$$set({ type: e }), _();
   }
   get variant() {
-    return this.$$.ctx[14];
+    return this.$$.ctx[15];
   }
   set variant(e) {
-    this.$$set({ variant: e }), m();
+    this.$$set({ variant: e }), _();
   }
   get size() {
     return this.$$.ctx[2];
   }
   set size(e) {
-    this.$$set({ size: e }), m();
+    this.$$set({ size: e }), _();
   }
   get fixed() {
     return this.$$.ctx[3];
   }
   set fixed(e) {
-    this.$$set({ fixed: e }), m();
+    this.$$set({ fixed: e }), _();
   }
   get offsetPx() {
     return this.$$.ctx[4];
   }
   set offsetPx(e) {
-    this.$$set({ offsetPx: e }), m();
+    this.$$set({ offsetPx: e }), _();
   }
   get expandDirection() {
     return this.$$.ctx[5];
   }
   set expandDirection(e) {
-    this.$$set({ expandDirection: e }), m();
+    this.$$set({ expandDirection: e }), _();
   }
-  get ringText() {
+  get iconBgShape() {
     return this.$$.ctx[6];
   }
-  set ringText(e) {
-    this.$$set({ ringText: e }), m();
+  set iconBgShape(e) {
+    this.$$set({ iconBgShape: e }), _();
   }
-  get repeat() {
+  get ringText() {
     return this.$$.ctx[7];
   }
-  set repeat(e) {
-    this.$$set({ repeat: e }), m();
+  set ringText(e) {
+    this.$$set({ ringText: e }), _();
   }
-  get separator() {
+  get repeat() {
     return this.$$.ctx[8];
   }
-  set separator(e) {
-    this.$$set({ separator: e }), m();
+  set repeat(e) {
+    this.$$set({ repeat: e }), _();
   }
-  get sealFontScale() {
+  get separator() {
     return this.$$.ctx[9];
   }
+  set separator(e) {
+    this.$$set({ separator: e }), _();
+  }
+  get sealFontScale() {
+    return this.$$.ctx[10];
+  }
   set sealFontScale(e) {
-    this.$$set({ sealFontScale: e }), m();
+    this.$$set({ sealFontScale: e }), _();
   }
 }
-Z(He, { badge: {}, type: {}, variant: {}, size: {}, fixed: { type: "Boolean" }, offsetPx: {}, expandDirection: {}, ringText: {}, repeat: {}, separator: {}, sealFontScale: {} }, [], [], !0);
-function fn(n) {
+W(nt, { badge: {}, type: {}, variant: {}, size: {}, fixed: { type: "Boolean" }, offsetPx: {}, expandDirection: {}, iconBgShape: {}, ringText: {}, repeat: {}, separator: {}, sealFontScale: {} }, [], [], !0);
+function Qi(n) {
   let e, t;
-  return e = new He({
+  return e = new nt({
     props: {
       badge: (
         /*computedBadge*/
-        n[10]
+        n[11]
       ),
       type: (
         /*type*/
@@ -2744,212 +4055,259 @@ function fn(n) {
         /*expandDirection*/
         n[5]
       ),
+      iconBgShape: (
+        /*iconBgShape*/
+        n[6] ?? void 0
+      ),
       ringText: (
         /*ringText*/
-        n[6]
+        n[7]
       ),
       repeat: (
         /*repeat*/
-        n[7]
+        n[8]
       ),
       separator: (
         /*separator*/
-        n[8]
+        n[9]
       ),
       sealFontScale: (
         /*sealFontScale*/
-        n[9]
+        n[10]
       )
     }
   }), {
     c() {
-      P(e.$$.fragment);
+      E(e.$$.fragment);
     },
-    m(i, r) {
-      C(e, i, r), t = !0;
+    m(i, l) {
+      P(e, i, l), t = !0;
     },
-    p(i, [r]) {
-      const l = {};
-      r & /*computedBadge*/
-      1024 && (l.badge = /*computedBadge*/
-      i[10]), r & /*type*/
-      1 && (l.type = /*type*/
-      i[0]), r & /*variant*/
-      2 && (l.variant = /*variant*/
-      i[1]), r & /*size*/
-      4 && (l.size = /*size*/
-      i[2]), r & /*fixed*/
-      8 && (l.fixed = /*fixed*/
-      i[3]), r & /*offsetPx*/
-      16 && (l.offsetPx = /*offsetPx*/
-      i[4]), r & /*expandDirection*/
-      32 && (l.expandDirection = /*expandDirection*/
-      i[5]), r & /*ringText*/
-      64 && (l.ringText = /*ringText*/
-      i[6]), r & /*repeat*/
-      128 && (l.repeat = /*repeat*/
-      i[7]), r & /*separator*/
-      256 && (l.separator = /*separator*/
-      i[8]), r & /*sealFontScale*/
-      512 && (l.sealFontScale = /*sealFontScale*/
-      i[9]), e.$set(l);
+    p(i, [l]) {
+      const r = {};
+      l & /*computedBadge*/
+      2048 && (r.badge = /*computedBadge*/
+      i[11]), l & /*type*/
+      1 && (r.type = /*type*/
+      i[0]), l & /*variant*/
+      2 && (r.variant = /*variant*/
+      i[1]), l & /*size*/
+      4 && (r.size = /*size*/
+      i[2]), l & /*fixed*/
+      8 && (r.fixed = /*fixed*/
+      i[3]), l & /*offsetPx*/
+      16 && (r.offsetPx = /*offsetPx*/
+      i[4]), l & /*expandDirection*/
+      32 && (r.expandDirection = /*expandDirection*/
+      i[5]), l & /*iconBgShape*/
+      64 && (r.iconBgShape = /*iconBgShape*/
+      i[6] ?? void 0), l & /*ringText*/
+      128 && (r.ringText = /*ringText*/
+      i[7]), l & /*repeat*/
+      256 && (r.repeat = /*repeat*/
+      i[8]), l & /*separator*/
+      512 && (r.separator = /*separator*/
+      i[9]), l & /*sealFontScale*/
+      1024 && (r.sealFontScale = /*sealFontScale*/
+      i[10]), e.$set(r);
     },
     i(i) {
-      t || (x(e.$$.fragment, i), t = !0);
+      t || ($(e.$$.fragment, i), t = !0);
     },
     o(i) {
-      k(e.$$.fragment, i), t = !1;
+      C(e.$$.fragment, i), t = !1;
     },
     d(i) {
-      T(e, i);
+      N(e, i);
     }
   };
 }
-const cn = "rgb(17, 24, 39)";
-function un(n, e, t) {
-  let i, { badge: r = null } = e, { label: l = null } = e, { color: s = null } = e, { icon: o = null } = e, { description: f = null } = e, { type: u = "mono" } = e, { variant: c = void 0 } = e, { size: b = void 0 } = e, { fixed: _ = !1 } = e, { offsetPx: d = 16 } = e, { expandDirection: g = "right" } = e, { ringText: v = null } = e, { repeat: z = 2 } = e, { separator: h = " • " } = e, { sealFontScale: p = 0.12 } = e;
-  return n.$$set = ($) => {
-    "badge" in $ && t(11, r = $.badge), "label" in $ && t(12, l = $.label), "color" in $ && t(13, s = $.color), "icon" in $ && t(14, o = $.icon), "description" in $ && t(15, f = $.description), "type" in $ && t(0, u = $.type), "variant" in $ && t(1, c = $.variant), "size" in $ && t(2, b = $.size), "fixed" in $ && t(3, _ = $.fixed), "offsetPx" in $ && t(4, d = $.offsetPx), "expandDirection" in $ && t(5, g = $.expandDirection), "ringText" in $ && t(6, v = $.ringText), "repeat" in $ && t(7, z = $.repeat), "separator" in $ && t(8, h = $.separator), "sealFontScale" in $ && t(9, p = $.sealFontScale);
+const en = "rgb(17, 24, 39)";
+function Re(n) {
+  return /\bdownload\b/i.test(n);
+}
+function tn(n, e, t) {
+  let i, { badge: l = null } = e, { label: r = null } = e, { color: o = null } = e, { icon: a = null } = e, { description: f = null } = e, { actionText: c = null } = e, { actionIcon: u = null } = e, { interactive: d = !1 } = e, { type: p = "mono" } = e, { variant: h = void 0 } = e, { size: g = void 0 } = e, { fixed: x = !1 } = e, { offsetPx: T = 16 } = e, { expandDirection: b = "right" } = e, { iconBgShape: S = null } = e, { ringText: z = null } = e, { repeat: M = 2 } = e, { separator: q = " • " } = e, { sealFontScale: X = 0.12 } = e;
+  return n.$$set = (w) => {
+    "badge" in w && t(12, l = w.badge), "label" in w && t(13, r = w.label), "color" in w && t(14, o = w.color), "icon" in w && t(15, a = w.icon), "description" in w && t(16, f = w.description), "actionText" in w && t(17, c = w.actionText), "actionIcon" in w && t(18, u = w.actionIcon), "interactive" in w && t(19, d = w.interactive), "type" in w && t(0, p = w.type), "variant" in w && t(1, h = w.variant), "size" in w && t(2, g = w.size), "fixed" in w && t(3, x = w.fixed), "offsetPx" in w && t(4, T = w.offsetPx), "expandDirection" in w && t(5, b = w.expandDirection), "iconBgShape" in w && t(6, S = w.iconBgShape), "ringText" in w && t(7, z = w.ringText), "repeat" in w && t(8, M = w.repeat), "separator" in w && t(9, q = w.separator), "sealFontScale" in w && t(10, X = w.sealFontScale);
   }, n.$$.update = () => {
-    n.$$.dirty & /*badge, label, color, icon, description*/
-    63488 && t(10, i = r ?? {
-      label: (l ?? "").trim() || "—",
-      color: (s ?? "").trim() || cn,
-      icon: o ?? void 0,
-      description: (f ?? "").trim() || void 0
+    n.$$.dirty & /*badge, label, color, icon, description, actionText, interactive, actionIcon*/
+    1044480 && t(11, i = l ?? {
+      label: (r ?? "").trim() || "—",
+      color: (o ?? "").trim() || en,
+      icon: a ?? void 0,
+      description: (f ?? "").trim() || void 0,
+      actionText: (c ?? "").trim() || (d ? Re((r ?? "").trim()) ? "Click to download" : "Click to interact" : void 0),
+      actionIcon: u ?? (d ? Re((r ?? "").trim()) ? "Download" : "Interactive" : void 0)
     });
   }, [
-    u,
-    c,
-    b,
-    _,
-    d,
-    g,
-    v,
-    z,
-    h,
     p,
+    h,
+    g,
+    x,
+    T,
+    b,
+    S,
+    z,
+    M,
+    q,
+    X,
     i,
-    r,
     l,
-    s,
+    r,
     o,
-    f
+    a,
+    f,
+    c,
+    u,
+    d
   ];
 }
-class Ue extends V {
+class lt extends U {
   constructor(e) {
-    super(), Y(this, e, un, fn, L, {
-      badge: 11,
-      label: 12,
-      color: 13,
-      icon: 14,
-      description: 15,
+    super(), R(this, e, tn, Qi, Z, {
+      badge: 12,
+      label: 13,
+      color: 14,
+      icon: 15,
+      description: 16,
+      actionText: 17,
+      actionIcon: 18,
+      interactive: 19,
       type: 0,
       variant: 1,
       size: 2,
       fixed: 3,
       offsetPx: 4,
       expandDirection: 5,
-      ringText: 6,
-      repeat: 7,
-      separator: 8,
-      sealFontScale: 9
+      iconBgShape: 6,
+      ringText: 7,
+      repeat: 8,
+      separator: 9,
+      sealFontScale: 10
     });
   }
   get badge() {
-    return this.$$.ctx[11];
-  }
-  set badge(e) {
-    this.$$set({ badge: e }), m();
-  }
-  get label() {
     return this.$$.ctx[12];
   }
-  set label(e) {
-    this.$$set({ label: e }), m();
+  set badge(e) {
+    this.$$set({ badge: e }), _();
   }
-  get color() {
+  get label() {
     return this.$$.ctx[13];
   }
-  set color(e) {
-    this.$$set({ color: e }), m();
+  set label(e) {
+    this.$$set({ label: e }), _();
   }
-  get icon() {
+  get color() {
     return this.$$.ctx[14];
   }
-  set icon(e) {
-    this.$$set({ icon: e }), m();
+  set color(e) {
+    this.$$set({ color: e }), _();
   }
-  get description() {
+  get icon() {
     return this.$$.ctx[15];
   }
+  set icon(e) {
+    this.$$set({ icon: e }), _();
+  }
+  get description() {
+    return this.$$.ctx[16];
+  }
   set description(e) {
-    this.$$set({ description: e }), m();
+    this.$$set({ description: e }), _();
+  }
+  get actionText() {
+    return this.$$.ctx[17];
+  }
+  set actionText(e) {
+    this.$$set({ actionText: e }), _();
+  }
+  get actionIcon() {
+    return this.$$.ctx[18];
+  }
+  set actionIcon(e) {
+    this.$$set({ actionIcon: e }), _();
+  }
+  get interactive() {
+    return this.$$.ctx[19];
+  }
+  set interactive(e) {
+    this.$$set({ interactive: e }), _();
   }
   get type() {
     return this.$$.ctx[0];
   }
   set type(e) {
-    this.$$set({ type: e }), m();
+    this.$$set({ type: e }), _();
   }
   get variant() {
     return this.$$.ctx[1];
   }
   set variant(e) {
-    this.$$set({ variant: e }), m();
+    this.$$set({ variant: e }), _();
   }
   get size() {
     return this.$$.ctx[2];
   }
   set size(e) {
-    this.$$set({ size: e }), m();
+    this.$$set({ size: e }), _();
   }
   get fixed() {
     return this.$$.ctx[3];
   }
   set fixed(e) {
-    this.$$set({ fixed: e }), m();
+    this.$$set({ fixed: e }), _();
   }
   get offsetPx() {
     return this.$$.ctx[4];
   }
   set offsetPx(e) {
-    this.$$set({ offsetPx: e }), m();
+    this.$$set({ offsetPx: e }), _();
   }
   get expandDirection() {
     return this.$$.ctx[5];
   }
   set expandDirection(e) {
-    this.$$set({ expandDirection: e }), m();
+    this.$$set({ expandDirection: e }), _();
   }
-  get ringText() {
+  get iconBgShape() {
     return this.$$.ctx[6];
   }
-  set ringText(e) {
-    this.$$set({ ringText: e }), m();
+  set iconBgShape(e) {
+    this.$$set({ iconBgShape: e }), _();
   }
-  get repeat() {
+  get ringText() {
     return this.$$.ctx[7];
   }
-  set repeat(e) {
-    this.$$set({ repeat: e }), m();
+  set ringText(e) {
+    this.$$set({ ringText: e }), _();
   }
-  get separator() {
+  get repeat() {
     return this.$$.ctx[8];
   }
-  set separator(e) {
-    this.$$set({ separator: e }), m();
+  set repeat(e) {
+    this.$$set({ repeat: e }), _();
   }
-  get sealFontScale() {
+  get separator() {
     return this.$$.ctx[9];
   }
+  set separator(e) {
+    this.$$set({ separator: e }), _();
+  }
+  get sealFontScale() {
+    return this.$$.ctx[10];
+  }
   set sealFontScale(e) {
-    this.$$set({ sealFontScale: e }), m();
+    this.$$set({ sealFontScale: e }), _();
   }
 }
-customElements.define("vis-badge", Z(Ue, { badge: { type: "Object" }, label: {}, color: {}, icon: {}, description: {}, type: {}, variant: {}, size: { type: "Number" }, fixed: { type: "Boolean" }, offsetPx: { type: "Number" }, expandDirection: {}, ringText: {}, repeat: { type: "Number" }, separator: {}, sealFontScale: { type: "Number" } }, [], [], !0));
+customElements.define("vis-badge", W(lt, { badge: { type: "Object" }, label: {}, color: {}, icon: {}, description: {}, actionText: {}, actionIcon: {}, interactive: { type: "Boolean" }, type: {}, variant: {}, size: { type: "Number" }, fixed: { type: "Boolean" }, offsetPx: { type: "Number" }, expandDirection: {}, iconBgShape: { type: "String", attribute: "icon-bg-shape" }, ringText: {}, repeat: { type: "Number" }, separator: {}, sealFontScale: { type: "Number" } }, [], [], !0, (n) => class extends n {
+  addEventListener(e, t, i) {
+    return e === "click" && (this.interactive = !0), super.addEventListener(e, t, i);
+  }
+}));
 if (!customElements.get("vis-badge")) {
-  const n = Ue.element;
+  const n = lt.element;
   customElements.define("vis-badge", n);
 }

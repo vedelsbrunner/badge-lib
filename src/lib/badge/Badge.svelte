@@ -13,6 +13,7 @@
   import BadgeRound from './BadgeRound.svelte';
   import BadgeRoundCircularText from './BadgeRoundCircularText.svelte';
   import type { BadgeData } from './types';
+  import type { BadgeIconBgShape } from './icons/BadgeIcon.svelte';
   import type { MonoVariant } from './BadgeMono.svelte';
   import type { MiniVariant } from './BadgeMini.svelte';
   import type { RoundVariant } from './BadgeRound.svelte';
@@ -35,6 +36,7 @@
   export let fixed: boolean = false;
   export let offsetPx: number = 16;
   export let expandDirection: 'left' | 'right' = 'right';
+  export let iconBgShape: BadgeIconBgShape | undefined = undefined;
 
   // roundcirculartext-only
   export let ringText: string | null = null;
@@ -52,6 +54,7 @@
     {fixed}
     {offsetPx}
     {expandDirection}
+    iconBgShape={iconBgShape ?? 'round'}
   />
 {:else if type === 'round'}
   <BadgeRound badge={badge} variant={roundVariant} size={size ?? 44} />

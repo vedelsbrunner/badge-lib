@@ -10,6 +10,23 @@
     OPEN_DATA_BADGE,
     RAW_DATA_AVAILABLE_BADGE
   } from './demo/badges';
+
+  let lastAction: string = '—';
+
+  function onDemoAction(label: string) {
+    lastAction = label;
+  }
+
+  function onKeyActivate(e: KeyboardEvent, label: string) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onDemoAction(label);
+    }
+  }
+
+  function keyActivate(label: string) {
+    return (e: KeyboardEvent) => onKeyActivate(e, label);
+  }
 </script>
 
 <main>
@@ -66,6 +83,12 @@
         color={OPEN_DATA_BADGE.color}
         icon={OPEN_DATA_BADGE.icon}
         description={OPEN_DATA_BADGE.description}
+        actionIcon="Download"
+        actionText="Click to download"
+        role="button"
+        tabindex="0"
+        on:click={() => onDemoAction('Download (web component)')}
+        on:keydown={keyActivate('Download (web component)')}
       />
       <vis-badge
         type="mini"
@@ -74,6 +97,12 @@
         color={INTERACTIVE_BADGE.color}
         icon={INTERACTIVE_BADGE.icon}
         description={INTERACTIVE_BADGE.description}
+        actionIcon="Interactive"
+        actionText="Click to explore"
+        role="button"
+        tabindex="0"
+        on:click={() => onDemoAction('Explore (web component)')}
+        on:keydown={keyActivate('Explore (web component)')}
       />
       <vis-badge
         type="mini"
@@ -82,6 +111,100 @@
         color={MODELLED_DATA_BADGE.color}
         icon={MODELLED_DATA_BADGE.icon}
         description={MODELLED_DATA_BADGE.description}
+      />
+      <vis-badge
+        type="mini"
+        variant="outlined"
+        label="Download Chart"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        color="rgb(2, 136, 209)"
+        icon="Download"
+        actionIcon="Download"
+        actionText="Click to download"
+        role="button"
+        tabindex="0"
+        on:click={() => onDemoAction('Download Chart (web component)')}
+        on:keydown={keyActivate('Download Chart (web component)')}
+      />
+      <vis-badge
+        type="mini"
+        variant="outlined"
+        label="Expanded"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        color="rgb(2, 136, 209)"
+        icon="Expand"
+        actionIcon="Expand"
+        actionText="Click to expand"
+        role="button"
+        tabindex="0"
+        on:click={() => onDemoAction('Expanded (web component)')}
+        on:keydown={keyActivate('Expanded (web component)')}
+      />
+      <vis-badge
+        type="mini"
+        variant="outlined"
+        icon-bg-shape="square"
+        label="Download Chart (square)"
+        description="Same badge but square icon background."
+        color="rgb(2, 136, 209)"
+        icon="Download"
+        actionIcon="Download"
+        actionText="Click to download"
+        role="button"
+        tabindex="0"
+        on:click={() => onDemoAction('Download Chart (square)')}
+        on:keydown={keyActivate('Download Chart (square)')}
+      />
+      <vis-badge
+        type="mini"
+        variant="outlined"
+        icon-bg-shape="square"
+        label="Expanded (square)"
+        description="Same badge but square icon background."
+        color="rgb(2, 136, 209)"
+        icon="Expand"
+        actionIcon="Expand"
+        actionText="Click to expand"
+        role="button"
+        tabindex="0"
+        on:click={() => onDemoAction('Expanded (square)')}
+        on:keydown={keyActivate('Expanded (square)')}
+      />
+      <vis-badge
+        type="mini"
+        variant="filled"
+        icon-bg-shape="square"
+        label="Open Data (square)"
+        description="Open data: square icon background."
+        color="rgb(46, 125, 50)"
+        icon="OpenData"
+      />
+      <vis-badge
+        type="mini"
+        variant="filled"
+        icon-bg-shape="square"
+        label="Interactive (square)"
+        description="Interactive: square icon background."
+        color="rgb(2, 136, 209)"
+        icon="Interactive"
+      />
+      <vis-badge
+        type="mini"
+        variant="outlined"
+        icon-bg-shape="square"
+        label="Warning (square)"
+        description="Warning: square icon background."
+        color="rgb(237, 108, 2)"
+        icon="Warning"
+      />
+      <vis-badge
+        type="mini"
+        variant="outlined"
+        icon-bg-shape="square"
+        label="Info (square)"
+        description="Info: square icon background."
+        color="rgb(2, 136, 209)"
+        icon="Info"
       />
       <vis-badge
         type="round"
@@ -126,6 +249,7 @@
         />
       </div>
     </div>
+    <p class="demoAction">Last action: {lastAction}</p>
   </section>
 
 </main>
@@ -166,6 +290,12 @@
     padding: 12px;
     background: rgba(17, 24, 39, 0.02);
     margin-top: 12px;
+  }
+
+  .demoAction {
+    margin-top: 10px;
+    font-size: 12px;
+    opacity: 0.85;
   }
 </style>
 

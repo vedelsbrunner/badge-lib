@@ -5,10 +5,12 @@
 <script lang="ts">
   import BadgeTooltip from './_BadgeTooltip.svelte';
   import BadgeIcon from './icons/BadgeIcon.svelte';
+  import type { BadgeIconBgShape } from './icons/BadgeIcon.svelte';
   import type { BadgeData } from './types';
 
   export let badge: BadgeData;
   export let variant: MiniVariant = 'outlined';
+  export let iconBgShape: BadgeIconBgShape = 'round';
 
   /**
    * If true, positions the mini badge fixed in the bottom-right corner.
@@ -24,7 +26,7 @@
 
   $: iconName = badge?.icon ?? null;
   $: badgeColor = String(badge?.color ?? '').trim() || 'rgb(17, 24, 39)';
-  const iconSize = 22;
+  const iconSize = 24;
 </script>
 
 <div
@@ -41,9 +43,10 @@
               <BadgeIcon
                 name={iconName}
                 size={iconSize}
-                bg={variant === 'outlined' ? 'var(--badge-solid)' : '#ffffff'}
-                fg={variant === 'outlined' ? '#ffffff' : 'var(--badge-solid)'}
+                bg="var(--mini-icon-bg)"
+                fg="var(--mini-icon-fg)"
                 bgOpacity={1}
+                bgShape={iconBgShape}
               />
             </span>
           {/if}
@@ -95,6 +98,10 @@
     --badge-pad-y: 3px;
     --badge-pad-x: 6px;
     --badge-border-w: 1px;
+
+    /* Mini icon defaults (outlined-like): colored pill, white glyph */
+    --mini-icon-bg: var(--badge-solid);
+    --mini-icon-fg: #ffffff;
   }
 
   .badge.filled {
@@ -150,6 +157,19 @@
   .badge.mini.outlined:hover,
   .badge.mini.outlined:focus-visible {
     border-color: var(--badge-border);
+  }
+
+  /* For filled mini badges, the base `.badge.mini` keeps background transparent.
+     Re-introduce the solid background when expanded so text stays readable. */
+  .badge.mini.filled:hover,
+  .badge.mini.filled:focus-visible {
+    background: var(--badge-solid);
+    border-color: transparent;
+    color: #ffffff;
+
+    /* Invert the icon when expanded: white pill, colored glyph */
+    --mini-icon-bg: #ffffff;
+    --mini-icon-fg: var(--badge-solid);
   }
 
   .badge.mini:hover .label,

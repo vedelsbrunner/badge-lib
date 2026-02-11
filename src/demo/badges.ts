@@ -61,7 +61,7 @@ export const OPEN_DATA_BADGE: BadgeData = {
   description:
     'Open data: the underlying dataset used for this atlas is openly available and can be downloaded and reused.',
   color: COLOR_SUCCESS,
-  icon: 'Confirmation',
+  icon: 'OpenData',
   type: 'DATA'
 };
 

@@ -15,7 +15,7 @@ export function getPathname(): string {
  * - Fallback: `<base href="...">` if present
  */
 export function getBasePath(): string {
-  const baseUrl = import.meta.env?.BASE_URL;
+  const baseUrl = (import.meta as unknown as { env?: { BASE_URL?: unknown } }).env?.BASE_URL;
   if (typeof baseUrl === 'string') {
     const trimmed = baseUrl.endsWith('/') ? baseUrl.slice(0, -1) : baseUrl;
     return trimmed === '/' ? '' : trimmed;

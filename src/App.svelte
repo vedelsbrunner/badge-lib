@@ -1,9 +1,6 @@
 <script lang="ts">
   import {
     Badge,
-    MiniBadges,
-    PriorityBadge,
-    PrioritySealBadge,
     BACKGROUND_READING_BADGE,
     BOX_PLOTS_BADGE,
     COMPARISON_AVERAGE_BADGE,
@@ -26,23 +23,28 @@
       <Badge badge={RAW_DATA_AVAILABLE_BADGE} />
       <Badge badge={MODELLED_DATA_BADGE} />
       <Badge badge={COMPARISON_AVERAGE_BADGE} variant="outlined" />
-      <Badge badge={BOX_PLOTS_BADGE} onClick={{ href: 'https://example.com', external: true, hint: { text: 'Open docs', icon: 'info' } }} />
-      <Badge badge={INTERACTIVE_BADGE} onClick={{ action: () => alert('Action clicked'), hint: { text: 'Run action', icon: 'info' } }} />
+      <Badge badge={BOX_PLOTS_BADGE} />
+      <Badge badge={INTERACTIVE_BADGE} />
     </div>
   </section>
 
   <section>
     <h2>Mini badges cluster</h2>
-    <MiniBadges badges={[MAJOR_FINDING_BADGE, INTERACTIVE_BADGE, MODELLED_DATA_BADGE, BACKGROUND_READING_BADGE]} fixed={false} />
+    <div class="row">
+      <Badge type="mini" badge={MAJOR_FINDING_BADGE} />
+      <Badge type="mini" badge={INTERACTIVE_BADGE} />
+      <Badge type="mini" badge={MODELLED_DATA_BADGE} />
+      <Badge type="mini" badge={BACKGROUND_READING_BADGE} />
+    </div>
   </section>
 
   <section>
     <h2>Big badges</h2>
     <div class="row big">
-      <PriorityBadge badge={MAJOR_FINDING_BADGE} variant="solid" size={54} />
-      <PriorityBadge badge={BACKGROUND_READING_BADGE} variant="ring" size={54} />
-      <PrioritySealBadge badge={OPEN_DATA_BADGE} variant="outlined" size={88} ringText="Open data" />
-      <PrioritySealBadge badge={MODELLED_DATA_BADGE} variant="filled" size={88} ringText="Modelled" />
+      <Badge type="round" badge={MAJOR_FINDING_BADGE} variant="solid" size={54} />
+      <Badge type="round" badge={BACKGROUND_READING_BADGE} variant="ring" size={54} />
+      <Badge type="roundcirculartext" badge={OPEN_DATA_BADGE} variant="outlined" size={88} ringText="Open data" />
+      <Badge type="roundcirculartext" badge={MODELLED_DATA_BADGE} variant="filled" size={88} ringText="Modelled" />
     </div>
   </section>
 

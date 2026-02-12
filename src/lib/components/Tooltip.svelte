@@ -20,6 +20,85 @@
   let tooltipStyle = '';
   let arrowStyle = '';
 
+  const GLOBAL_STYLE_ID = 'badge-lib-tooltip-global-v1';
+  const GLOBAL_CSS = `
+.bl_tooltip {
+  display: block;
+  position: fixed;
+  z-index: 2000;
+  width: max-content;
+  max-width: min(280px, 64vw);
+  padding: 7px 9px;
+  border-radius: 9px;
+  border: 1px solid rgba(17, 24, 39, 0.14);
+  background: rgba(17, 24, 39, 0.96);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.2);
+  font-size: 12px;
+  line-height: 1.3;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.bl_tooltip[data-open='true'] {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.bl_tooltipArrow {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: rgba(17, 24, 39, 0.96);
+  border-left: 1px solid rgba(17, 24, 39, 0.14);
+  border-top: 1px solid rgba(17, 24, 39, 0.14);
+  transform: rotate(45deg);
+}
+
+.bl_tooltip[data-placement='top'] .bl_tooltipArrow {
+  bottom: -4px;
+}
+
+.bl_tooltip[data-placement='bottom'] .bl_tooltipArrow {
+  top: -4px;
+  transform: rotate(225deg);
+}
+
+.bl_tooltip[data-placement='left'] .bl_tooltipArrow {
+  right: -4px;
+  transform: rotate(135deg);
+}
+
+.bl_tooltip[data-placement='right'] .bl_tooltipArrow {
+  left: -4px;
+  transform: rotate(-45deg);
+}
+`;
+
+  function ensureGlobalStyles() {
+    if (typeof document === 'undefined') return;
+    if (document.getElementById(GLOBAL_STYLE_ID)) return;
+    const style = document.createElement('style');
+    style.id = GLOBAL_STYLE_ID;
+    style.textContent = GLOBAL_CSS;
+    document.head.appendChild(style);
+  }
+
+  function portalToBody(node: HTMLElement) {
+    ensureGlobalStyles();
+    if (typeof document === 'undefined') return;
+    document.body.appendChild(node);
+    return {
+      destroy() {
+        node.remove();
+      }
+    };
+  }
+
   function onEnter() {
     if (timer) clearTimeout(timer);
     timer = setTimeout(() => (open = true), openDelayMs);
@@ -114,16 +193,19 @@
   </span>
 
   <span
-    class="tooltip {open ? 'open' : ''} {effectivePlacement}"
+    class="bl_tooltip"
     role="tooltip"
     aria-hidden={!open}
+    data-open={open}
+    data-placement={effectivePlacement}
     bind:this={tooltipEl}
     style={tooltipStyle}
+    use:portalToBody
   >
     <span class="content">
       <slot name="content" />
     </span>
-    <span class="arrow" aria-hidden="true" style={arrowStyle} />
+    <span class="bl_tooltipArrow" aria-hidden="true" style={arrowStyle} />
   </span>
 </span>
 
@@ -137,64 +219,6 @@
   .trigger {
     display: inline-flex;
     align-items: center;
-  }
-
-  .tooltip {
-    display: block;
-    position: fixed;
-    z-index: 2000;
-    width: max-content;
-    max-width: min(280px, 64vw);
-    padding: 7px 9px;
-    border-radius: 9px;
-    border: 1px solid rgba(17, 24, 39, 0.14);
-    background: rgba(17, 24, 39, 0.96);
-    color: #ffffff;
-    box-shadow: 0 10px 24px rgba(17, 24, 39, 0.2);
-    font-size: 12px;
-    line-height: 1.3;
-
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-6px);
-    pointer-events: none;
-    transition: opacity 180ms ease, transform 180ms ease;
-  }
-
-  .tooltip.open {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  .arrow {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background: rgba(17, 24, 39, 0.96);
-    border-left: 1px solid rgba(17, 24, 39, 0.14);
-    border-top: 1px solid rgba(17, 24, 39, 0.14);
-    transform: rotate(45deg);
-  }
-
-  .tooltip.top .arrow {
-    bottom: -4px;
-  }
-
-  .tooltip.bottom .arrow {
-    top: -4px;
-    transform: rotate(225deg);
-  }
-
-  .tooltip.left .arrow {
-    right: -4px;
-    transform: rotate(135deg);
-  }
-
-  .tooltip.right .arrow {
-    left: -4px;
-    transform: rotate(-45deg);
   }
 </style>
 

@@ -8,7 +8,8 @@
     | 'Expand'
     | 'OpenData'
     | 'badge-check'
-    | 'Download';
+    | 'Download'
+    | 'ExternalLink';
 
   export type BadgeIconBgShape = 'round' | 'square';
 </script>
@@ -220,6 +221,33 @@
       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
       <path d="M7 10l5 5 5-5" />
       <path d="M12 15V3" />
+    </g>
+  </svg>
+{:else if name === 'ExternalLink'}
+  <!-- lucide external-link -->
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    aria-hidden="true"
+    stroke={fg ?? 'currentColor'}
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    {#if bg}
+      {#if bgShape === 'square'}
+        <rect x="3" y="3" width="18" height="18" rx="0" fill={bg} opacity={bgOpacity} stroke="none" />
+      {:else}
+        <circle cx="12" cy="12" r="10" fill={bg} opacity={bgOpacity} stroke="none" />
+      {/if}
+    {/if}
+    <!-- scale down the glyph so there's more padding inside the background -->
+    <g transform="translate(12 12) scale(0.68) translate(-12 -12)">
+      <path d="M15 3h6v6" />
+      <path d="M10 14 21 3" />
+      <path d="M21 13v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" />
     </g>
   </svg>
 {:else}

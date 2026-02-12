@@ -68,8 +68,8 @@
 
   const DEFAULT_COLOR = 'rgb(17, 24, 39)';
 
-  function isDownloadLabel(s: string) {
-    return /\bdownload\b/i.test(s);
+  function isDownloadLikeLabel(s: string) {
+    return /\bdownload\b/i.test(s) || /\bopen[-\s]*data\b/i.test(s);
   }
 
   $: computedBadge =
@@ -81,8 +81,10 @@
       description: (description ?? '').trim() || undefined,
       actionText:
         (actionText ?? '').trim() ||
-        (interactive ? (isDownloadLabel((label ?? '').trim()) ? 'Click to download' : 'Click to interact') : undefined),
-      actionIcon: actionIcon ?? (interactive ? (isDownloadLabel((label ?? '').trim()) ? 'Download' : 'Interactive') : undefined)
+        (interactive ? (isDownloadLikeLabel((label ?? '').trim()) ? 'Click to download' : 'Click to interact') : undefined),
+      actionIcon:
+        actionIcon ??
+        (interactive ? (isDownloadLikeLabel((label ?? '').trim()) ? 'Download' : 'Interactive') : undefined)
     } satisfies BadgeData);
 </script>
 

@@ -6,6 +6,7 @@
   import BadgeTooltip from './_BadgeTooltip.svelte';
   import BadgeIcon from './icons/BadgeIcon.svelte';
   import type { BadgeData } from './types';
+  import type { BadgeIconBgShape } from './icons/BadgeIcon.svelte';
 
   export let badge: BadgeData;
   export let variant: RoundVariant = 'solid';
@@ -13,6 +14,7 @@
 
   $: iconName = badge?.icon ?? null;
   $: badgeColor = String(badge?.color ?? '').trim() || 'rgb(17, 24, 39)';
+  $: iconBgShape = (iconName === 'Info' ? 'square' : 'round') as BadgeIconBgShape;
 
   function fullLabel(label: unknown): string {
     const cleaned = String(label ?? '').trim();
@@ -43,6 +45,7 @@
               bg={variant === 'solid' ? '#ffffff' : 'var(--prio-solid)'}
               bgOpacity={1}
               fg={variant === 'solid' ? 'var(--prio-solid)' : '#ffffff'}
+              bgShape={iconBgShape}
             />
           {/if}
           <span class="prio-text">{rawLabel}</span>

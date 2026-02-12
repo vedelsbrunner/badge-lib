@@ -158,7 +158,7 @@
     visibility: hidden;
     transform: translateY(-6px);
     pointer-events: none;
-    transition: opacity 130ms ease, transform 130ms ease;
+    transition: opacity 180ms ease, transform 180ms ease;
   }
 
   .tooltip.open {

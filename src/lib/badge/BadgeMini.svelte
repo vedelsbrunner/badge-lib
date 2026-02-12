@@ -88,8 +88,8 @@
     line-height: 1;
     user-select: none;
     outline: none;
-    transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease,
-      padding 320ms cubic-bezier(0.2, 0, 0, 1);
+    transition: background-color 220ms ease, border-color 220ms ease, color 220ms ease, box-shadow 220ms ease,
+      padding 420ms cubic-bezier(0.2, 0, 0, 1);
 
     /* Tokens derived from the explicit `--badge-solid` color. */
     --badge-solid: rgb(17, 24, 39);
@@ -144,7 +144,7 @@
     overflow: hidden;
     line-height: 1.2;
     padding-bottom: 1px;
-    transition: max-width 320ms cubic-bezier(0.2, 0, 0, 1), opacity 200ms ease;
+    transition: max-width 420ms cubic-bezier(0.2, 0, 0, 1), opacity 260ms ease;
   }
 
   .badge.mini:hover,

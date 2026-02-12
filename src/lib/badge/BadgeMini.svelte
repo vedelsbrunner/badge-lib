@@ -27,6 +27,7 @@
   $: iconName = badge?.icon ?? null;
   $: badgeColor = String(badge?.color ?? '').trim() || 'rgb(17, 24, 39)';
   const iconSize = 24;
+  $: iconBgShapeFinal = iconName === 'Info' ? 'square' : iconBgShape;
 </script>
 
 <div
@@ -46,7 +47,7 @@
                 bg="var(--mini-icon-bg)"
                 fg="var(--mini-icon-fg)"
                 bgOpacity={1}
-                bgShape={iconBgShape}
+                bgShape={iconBgShapeFinal}
               />
             </span>
           {/if}

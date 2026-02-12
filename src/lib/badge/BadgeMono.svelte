@@ -13,6 +13,7 @@
   $: iconName = badge?.icon ?? null;
   $: badgeColor = String(badge?.color ?? '').trim() || 'rgb(17, 24, 39)';
   const iconSize = 20;
+  $: iconBgShape = iconName === 'Info' ? 'square' : 'round';
 </script>
 
 {#if badge}
@@ -27,6 +28,7 @@
               bg={variant === 'outlined' ? 'var(--badge-solid)' : '#ffffff'}
               fg={variant === 'outlined' ? '#ffffff' : 'var(--badge-solid)'}
               bgOpacity={1}
+              bgShape={iconBgShape}
             />
           </span>
         {/if}

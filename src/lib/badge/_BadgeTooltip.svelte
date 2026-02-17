@@ -53,7 +53,7 @@
           <div class="bl_tooltipActionRow">
             {#if hintIcon}
               <span class="bl_tooltipActionIcon">
-                <BadgeIcon name={hintIcon} size={10} fg="rgba(255, 255, 255, 0.92)" bg={null} bgOpacity={0} />
+                <BadgeIcon name={hintIcon} size={13} fg="rgba(255, 255, 255, 0.92)" bg={null} bgOpacity={0} />
               </span>
             {/if}
             <span class="bl_tooltipActionText">{badge.actionText}</span>

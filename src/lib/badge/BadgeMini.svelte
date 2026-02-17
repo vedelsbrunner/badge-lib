@@ -6,11 +6,12 @@
   import BadgeTooltip from './_BadgeTooltip.svelte';
   import BadgeIcon from './icons/BadgeIcon.svelte';
   import type { BadgeIconBgShape } from './icons/BadgeIcon.svelte';
-  import type { BadgeTooltipOptions, MiniVariant as MiniVariantType } from './model';
+  import type { BadgeCorners, BadgeTooltipOptions, MiniVariant as MiniVariantType } from './model';
   import type { BadgeData } from './types';
 
   export let badge: BadgeData;
   export let variant: MiniVariantType = 'outlined';
+  export let corners: BadgeCorners = 'rounded';
   export let iconBgShape: BadgeIconBgShape = 'round';
   export let tooltip: BadgeTooltipOptions | undefined = undefined;
   export let interactive = false;
@@ -41,7 +42,10 @@
   {#if badge}
     <BadgeTooltip {badge} options={tooltip} {interactive} on:activate>
       <span slot="trigger">
-        <span class="badge mini {variant}" style={`--badge-solid:${badgeColor};`}>
+        <span
+          class="badge mini {variant}"
+          style={`--badge-solid:${badgeColor};--badge-radius:${corners === 'rectangular' ? '4px' : '16px'};`}
+        >
           {#if iconName}
             <span class="icon" aria-hidden="true">
               <BadgeIcon
@@ -84,7 +88,7 @@
     align-items: center;
     gap: var(--badge-gap);
     padding: var(--badge-pad-y) var(--badge-pad-x);
-    border-radius: 16px;
+    border-radius: var(--badge-radius, 16px);
     border: var(--badge-border-w) solid transparent;
     font-weight: 550;
     font-size: 12px;

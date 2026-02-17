@@ -5,12 +5,13 @@
 <script lang="ts">
   import BadgeTooltip from './_BadgeTooltip.svelte';
   import BadgeIcon from './icons/BadgeIcon.svelte';
-  import type { BadgeTooltipOptions, MonoVariant as MonoVariantType } from './model';
+  import type { BadgeCorners, BadgeTooltipOptions, MonoVariant as MonoVariantType } from './model';
   import type { BadgeIconBgShape } from './icons/BadgeIcon.svelte';
   import type { BadgeData } from './types';
 
   export let badge: BadgeData;
   export let variant: MonoVariantType = 'filled';
+  export let corners: BadgeCorners = 'rounded';
   export let tooltip: BadgeTooltipOptions | undefined = undefined;
   export let interactive = false;
 
@@ -23,7 +24,10 @@
 {#if badge}
   <BadgeTooltip {badge} options={tooltip} {interactive} on:activate>
     <span slot="trigger">
-      <span class="badge {variant}" style={`--badge-solid:${badgeColor};`}>
+      <span
+        class="badge {variant}"
+        style={`--badge-solid:${badgeColor};--badge-radius:${corners === 'rectangular' ? '4px' : '16px'};`}
+      >
         {#if iconName}
           <span class="icon" aria-hidden="true">
             <BadgeIcon
@@ -48,7 +52,7 @@
     align-items: center;
     gap: var(--badge-gap);
     padding: var(--badge-pad-y) var(--badge-pad-x);
-    border-radius: 16px;
+    border-radius: var(--badge-radius, 16px);
     border: var(--badge-border-w) solid transparent;
     font-weight: 550;
     font-size: 12px;

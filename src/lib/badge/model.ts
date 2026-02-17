@@ -1,6 +1,7 @@
 import type { BadgeIconBgShape } from './icons/BadgeIcon.svelte';
 
 export type BadgeType = 'mono' | 'mini' | 'round' | 'roundcirculartext';
+export type BadgeCorners = 'rounded' | 'rectangular';
 
 export type MonoVariant = 'filled' | 'outlined';
 export type MiniVariant = 'filled' | 'outlined';
@@ -24,6 +25,7 @@ export interface BadgeTooltipOptions {
 export interface BadgeRenderOptions {
   type?: BadgeType;
   variant?: BadgeVariant;
+  corners?: BadgeCorners | null;
   size?: number;
   fixed?: boolean;
   offsetPx?: number;

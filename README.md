@@ -19,7 +19,7 @@ Reusable badge components extracted from the CoBenefits project.
 - Content: `label`, `description`, `icon`, `tone`, `color`
 - Type: `type` (`mono`, `mini`, `round`, `roundcirculartext`)
 - Variant: `variant`
-- Size/layout: `size`, `fixed`, `offsetPx`, `expandDirection`, `iconBgShape`, `ringText`, `repeat`, `separator`, `sealFontScale`
+- Size/layout: `size`, `corners`, `fixed`, `offsetPx`, `expandDirection`, `iconBgShape`, `ringText`, `repeat`, `separator`, `sealFontScale`
 - Interaction hints: `interactive`, `actionText`, `actionIcon`
 - Tooltip: `tooltipMode`, `tooltipPlacement`, `tooltipDelayMs`, `tooltipMaxWidthPx`
 
@@ -60,6 +60,20 @@ el.description = 'First line\\nSecond line\\n\\nThird paragraph';
 Or HTML attributes:
 ```html
 <vis-badge description="First line&#10;Second line"></vis-badge>
+```
+
+## Corner style (mono + mini)
+Use `corners="rectangular"` for a compact rectangular look. Default is `corners="rounded"`.
+
+```html
+<vis-badge
+  label="Contains Modelled Data"
+  tone="info"
+  icon="Info"
+  type="mono"
+  variant="outlined"
+  corners="rectangular"
+></vis-badge>
 ```
 
 ## Tooltip theming (advanced)

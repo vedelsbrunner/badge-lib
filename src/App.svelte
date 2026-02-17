@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { BadgeActivateDetail, BadgeData, BadgeType } from './lib';
+  import type { BadgeActivateDetail, BadgeCorners, BadgeData, BadgeType } from './lib';
   import {
     BACKGROUND_READING_BADGE,
     BOX_PLOTS_BADGE,
@@ -15,6 +15,7 @@
     badge: BadgeData;
     type: BadgeType;
     variant: string;
+    corners?: BadgeCorners;
     size?: number;
     ringText?: string;
     repeat?: number;
@@ -101,6 +102,35 @@
           badge: CORRELATION_NOT_CAUSATION_BADGE,
           type: 'mono',
           variant: 'outlined'
+        }
+      ]
+    },
+    {
+      title: 'Corner Styles',
+      badges: [
+        {
+          badge: MODELLED_DATA_BADGE,
+          type: 'mono',
+          variant: 'outlined',
+          corners: 'rounded'
+        },
+        {
+          badge: MODELLED_DATA_BADGE,
+          type: 'mono',
+          variant: 'outlined',
+          corners: 'rectangular'
+        },
+        {
+          badge: MODELLED_DATA_BADGE,
+          type: 'mini',
+          variant: 'outlined',
+          corners: 'rounded'
+        },
+        {
+          badge: MODELLED_DATA_BADGE,
+          type: 'mini',
+          variant: 'outlined',
+          corners: 'rectangular'
         }
       ]
     },
@@ -231,6 +261,7 @@
               badge={item.badge}
               type={item.type}
               variant={item.variant}
+              corners={item.corners}
               size={item.size}
               ringText={item.ringText}
               repeat={item.repeat}

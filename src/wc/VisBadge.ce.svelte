@@ -11,6 +11,7 @@
       interactive: { type: 'Boolean' },
       fixed: { type: 'Boolean' },
       offsetPx: { type: 'Number' },
+      corners: { type: 'String' },
       iconBgShape: { type: 'String', attribute: 'icon-bg-shape' },
       repeat: { type: 'Number' },
       sealFontScale: { type: 'Number' },
@@ -25,7 +26,7 @@
   import Badge from '../lib/badge/Badge.svelte';
   import { normalizeVisBadgeInput } from '../lib/public/normalize';
   import type { BadgeTone, BadgeTooltipMode } from '../lib/public/normalize';
-  import type { BadgeType, BadgeVariant, TooltipPlacement } from '../lib/badge/model';
+  import type { BadgeCorners, BadgeType, BadgeVariant, TooltipPlacement } from '../lib/badge/model';
   import type { BadgeActivateDetail, BadgeData } from '../lib/badge/types';
   import type { BadgeIconName } from '../lib/badge/icons/BadgeIcon.svelte';
   import type { BadgeIconBgShape } from '../lib/badge/icons/BadgeIcon.svelte';
@@ -51,6 +52,7 @@
   // Rendering controls.
   export let type: BadgeType | null = null;
   export let variant: BadgeVariant | null = null;
+  export let corners: BadgeCorners | null = null;
   export let size: number | null = null;
 
   // mini-only
@@ -84,6 +86,7 @@
     actionIcon,
     type,
     variant,
+    corners,
     size,
     fixed,
     offsetPx,
@@ -109,6 +112,7 @@
   {interactive}
   type={normalized.type}
   variant={normalized.variant}
+  corners={normalized.corners}
   size={normalized.size}
   fixed={normalized.fixed}
   offsetPx={normalized.offsetPx}

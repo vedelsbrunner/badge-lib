@@ -43,7 +43,7 @@ const GLOBAL_CSS = `
     Arial,
     sans-serif
   );
-  font-size: var(--vis-badge-tooltip-font-size, 12px);
+  font-size: var(--vis-badge-tooltip-font-size, 13px);
   line-height: var(--vis-badge-tooltip-line-height, 1.3);
   opacity: 0;
   visibility: hidden;
@@ -105,8 +105,8 @@ const GLOBAL_CSS = `
   display: grid;
   place-items: center;
   width: 100%;
-  margin-top: 7px;
-  opacity: 0.95;
+  margin-top: 0px;
+  opacity: 1;
 }
 
 .bl_tooltipActionRow {
@@ -123,29 +123,29 @@ const GLOBAL_CSS = `
 .bl_tooltipActionText {
   display: inline-block;
   text-align: center;
-  font-size: 9.5px;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 0.015em;
   opacity: 0.92;
   white-space: pre-line;
   overflow-wrap: anywhere;
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
 .bl_tooltipActionIcon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 10px;
-  width: 10px;
-  height: 10px;
+  flex: 0 0 13px;
+  width: 13px;
+  height: 13px;
   line-height: 0;
 }
 
 .bl_tooltipActionIcon svg {
   display: block;
-  width: 10px;
-  height: 10px;
+  width: 13px;
+  height: 13px;
 }
 `;
 

@@ -12,6 +12,7 @@
   import { resolveTooltipOptions } from './model';
   import type { BadgeActivateDetail, BadgeData } from './types';
   import type {
+    BadgeCorners,
     BadgeTooltipOptions,
     BadgeType as BadgeTypeDef,
     BadgeVariant as BadgeVariantDef,
@@ -27,6 +28,7 @@
   export let badge: BadgeData;
   export let type: BadgeTypeDef = 'mono';
   export let interactive = false;
+  export let corners: BadgeCorners = 'rounded';
 
   // Interpreted based on `type`.
   export let variant: BadgeVariantDef | undefined = undefined;
@@ -63,11 +65,19 @@
 </script>
 
 {#if type === 'mono'}
-  <BadgeMono badge={badge} variant={monoVariant} tooltip={tooltipOptions} {interactive} on:activate={onActivate} />
+  <BadgeMono
+    badge={badge}
+    variant={monoVariant}
+    {corners}
+    tooltip={tooltipOptions}
+    {interactive}
+    on:activate={onActivate}
+  />
 {:else if type === 'mini'}
   <BadgeMini
     badge={badge}
     variant={miniVariant}
+    {corners}
     {interactive}
     {fixed}
     {offsetPx}

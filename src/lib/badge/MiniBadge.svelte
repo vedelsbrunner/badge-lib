@@ -1,5 +1,6 @@
 <script lang="ts">
   import Badge from './Badge.svelte';
+  import type { BadgeCorners } from './model';
   import type { BadgeData } from './types';
 
   export let badge: BadgeData;
@@ -15,6 +16,7 @@
    * Controls whether the label expands left or right of the icon.
    */
   export let expandDirection: 'left' | 'right' = 'right';
+  export let corners: BadgeCorners = 'rounded';
 </script>
 
 <div
@@ -23,7 +25,7 @@
   aria-label="Mini badge"
 >
   {#if badge}
-    <Badge {badge} type="mini" variant="outlined" />
+    <Badge {badge} type="mini" variant="outlined" {corners} />
   {/if}
 </div>
 
@@ -41,4 +43,3 @@
   }
 
 </style>
-

@@ -1,5 +1,6 @@
 import type { BadgeIconBgShape, BadgeIconName } from '../badge/icons/BadgeIcon.svelte';
 import type {
+  BadgeCorners,
   BadgeTooltipOptions,
   BadgeType,
   BadgeVariant,
@@ -34,6 +35,7 @@ export interface VisBadgeInput {
   actionIcon?: BadgeIconName | null;
   type?: BadgeType | null;
   variant?: BadgeVariant | null;
+  corners?: BadgeCorners | null;
   size?: number | null;
   fixed?: boolean | null;
   offsetPx?: number | null;
@@ -56,6 +58,7 @@ export interface NormalizedVisBadge {
   badge: BadgeData;
   type: BadgeType;
   variant?: BadgeVariant;
+  corners: BadgeCorners;
   size?: number;
   fixed: boolean;
   offsetPx: number;
@@ -85,6 +88,14 @@ function normalizedType(value: unknown): BadgeType {
   const text = String(value ?? '').trim();
   if (text === 'mini' || text === 'round' || text === 'roundcirculartext') return text;
   return 'mono';
+}
+
+function normalizedCorners(value: unknown): BadgeCorners {
+  return String(value ?? '')
+    .trim()
+    .toLowerCase() === 'rectangular'
+    ? 'rectangular'
+    : 'rounded';
 }
 
 function fallbackActionText(label: string): string {
@@ -153,6 +164,7 @@ export function normalizeVisBadgeInput(input: VisBadgeInput): NormalizedVisBadge
     badge,
     type,
     variant: input.variant ?? undefined,
+    corners: normalizedCorners(input.corners),
     size: Number.isFinite(input.size) ? Number(input.size) : undefined,
     fixed: Boolean(input.fixed ?? false),
     offsetPx: Number.isFinite(input.offsetPx) ? Number(input.offsetPx) : 16,

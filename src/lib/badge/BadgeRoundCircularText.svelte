@@ -1,14 +1,17 @@
 <script context="module" lang="ts">
-  export type RoundCircularTextVariant = 'outlined' | 'filled';
+  export type RoundCircularTextVariant = import('./model').RoundCircularTextVariant;
 </script>
 
 <script lang="ts">
   import BadgeTooltip from './_BadgeTooltip.svelte';
   import BadgeIcon from './icons/BadgeIcon.svelte';
+  import type { BadgeTooltipOptions, RoundCircularTextVariant as RoundCircularTextVariantType } from './model';
   import type { BadgeData } from './types';
 
   export let badge: BadgeData;
-  export let variant: RoundCircularTextVariant = 'outlined';
+  export let variant: RoundCircularTextVariantType = 'outlined';
+  export let tooltip: BadgeTooltipOptions | undefined = undefined;
+  export let interactive = false;
   export let ringText: string | null = null;
   export let repeat: number = 2;
   export let separator: string = ' • ';
@@ -32,13 +35,11 @@
 </script>
 
 {#if badge}
-  <BadgeTooltip {badge} placement="top" openDelayMs={120} contentMode="labelAndDescription">
-    <span slot="trigger" role="presentation" on:keydown={() => {}}>
+  <BadgeTooltip {badge} options={tooltip} {interactive} on:activate>
+    <span slot="trigger">
       <span
         class="seal {variant}"
         style={`--seal-solid:${badgeColor}; --seal-size:${size}px; --seal-font:${ringFontPx}px;`}
-        role="note"
-        aria-label={badge.label}
       >
         <span class="ring" aria-hidden="true">
           {#each chars as char, index (index)}
@@ -49,7 +50,9 @@
         <span class="center" aria-hidden="true">
           <span class="center-pill">
             {#if iconName}
-              <BadgeIcon name={iconName} size={centerIcon} bg="var(--seal-solid)" fg="#ffffff" bgOpacity={1} />
+              <span class="icon" aria-hidden="true" style={`--seal-icon-size:${centerIcon}px;`}>
+                <BadgeIcon name={iconName} size={centerIcon} bg="var(--seal-solid)" fg="#ffffff" bgOpacity={1} />
+              </span>
             {/if}
           </span>
         </span>
@@ -86,6 +89,17 @@
     inset: 0;
     border-radius: 999px;
     font-size: var(--seal-font);
+    font-family: var(
+      --vis-badge-tooltip-font-family,
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      'Segoe UI',
+      Roboto,
+      'Helvetica Neue',
+      Arial,
+      sans-serif
+    );
     color: var(--seal-ring-fg);
     opacity: 0.92;
     text-transform: uppercase;
@@ -121,6 +135,23 @@
     opacity: 0.95;
   }
 
+  .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--seal-icon-size);
+    height: var(--seal-icon-size);
+  }
+
+  .icon :global(svg),
+  .icon :global(img),
+  .icon :global(ion-icon),
+  .icon :global(iconify-icon) {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
   .seal.filled .center-pill {
     border-color: rgba(255, 255, 255, 0.35);
     background: #ffffff;
@@ -128,4 +159,3 @@
   }
 
 </style>
-

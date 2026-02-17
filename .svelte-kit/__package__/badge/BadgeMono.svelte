@@ -4,15 +4,18 @@
 import BadgeIcon from "./icons/BadgeIcon.svelte";
 export let badge;
 export let variant = "filled";
+export let tooltip = void 0;
+export let interactive = false;
 $: iconName = badge?.icon ?? null;
 $: badgeColor = String(badge?.color ?? "").trim() || "rgb(17, 24, 39)";
 const iconSize = 20;
+$: iconBgShape = iconName === "Info" ? "square" : "round";
 </script>
 
 {#if badge}
-  <BadgeTooltip {badge} placement="top" openDelayMs={80} contentMode="description">
-    <span slot="trigger" role="presentation" on:keydown={() => {}}>
-      <span class="badge {variant}" style={`--badge-solid:${badgeColor};`} role="note" aria-label={badge.label}>
+  <BadgeTooltip {badge} options={tooltip} {interactive} on:activate>
+    <span slot="trigger">
+      <span class="badge {variant}" style={`--badge-solid:${badgeColor};`}>
         {#if iconName}
           <span class="icon" aria-hidden="true">
             <BadgeIcon
@@ -21,6 +24,7 @@ const iconSize = 20;
               bg={variant === 'outlined' ? 'var(--badge-solid)' : '#ffffff'}
               fg={variant === 'outlined' ? '#ffffff' : 'var(--badge-solid)'}
               bgOpacity={1}
+              bgShape={iconBgShape}
             />
           </span>
         {/if}
@@ -41,6 +45,17 @@ const iconSize = 20;
     font-weight: 550;
     font-size: 12px;
     line-height: 1;
+    font-family: var(
+      --vis-badge-tooltip-font-family,
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      'Segoe UI',
+      Roboto,
+      'Helvetica Neue',
+      Arial,
+      sans-serif
+    );
     user-select: none;
     outline: none;
     transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
@@ -72,6 +87,17 @@ const iconSize = 20;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 20px;
+    height: 20px;
+  }
+
+  .icon :global(svg),
+  .icon :global(img),
+  .icon :global(ion-icon),
+  .icon :global(iconify-icon) {
+    width: 100%;
+    height: 100%;
+    display: block;
   }
 
   .label {
@@ -79,4 +105,3 @@ const iconSize = 20;
   }
 
 </style>
-

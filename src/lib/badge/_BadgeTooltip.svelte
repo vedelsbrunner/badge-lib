@@ -1,87 +1,87 @@
-<script context="module" lang="ts">
-  export type BadgeTooltipContentMode = 'description' | 'labelAndDescription';
-</script>
-
 <script lang="ts">
-  import Tooltip, { type TooltipPlacement } from '../components/Tooltip.svelte';
+  import { createEventDispatcher } from 'svelte';
+  import Tooltip from '../components/Tooltip.svelte';
   import BadgeIcon from './icons/BadgeIcon.svelte';
-  import type { BadgeData } from './types';
+  import type { BadgeTooltipOptions, TooltipPlacement } from './model';
+  import type { BadgeActivateDetail, BadgeData } from './types';
 
   export let badge: BadgeData;
-  export let placement: TooltipPlacement = 'top';
-  export let openDelayMs = 80;
-  export let contentMode: BadgeTooltipContentMode = 'description';
+  export let options: BadgeTooltipOptions | undefined = undefined;
+  export let interactive = false;
 
-  $: showTooltip = Boolean(badge?.description || badge?.actionText);
+  const dispatch = createEventDispatcher<{ activate: BadgeActivateDetail }>();
+
+  $: placement = (options?.placement ?? 'top') as TooltipPlacement;
+  $: openDelayMs = Number.isFinite(options?.openDelayMs) ? Number(options?.openDelayMs) : 80;
+  $: maxWidthPx = Number.isFinite(options?.maxWidthPx) ? Number(options?.maxWidthPx) : 280;
+  $: contentMode = options?.contentMode === 'labelAndDescription' ? 'labelAndDescription' : 'description';
+  $: enabled = options?.enabled ?? true;
+
+  $: showTooltip = enabled && Boolean(badge?.description || badge?.actionText);
   $: hintIcon = badge?.actionIcon ?? null;
+
+  function onActivate(source: BadgeActivateDetail['source']) {
+    if (!interactive || !badge) return;
+    dispatch('activate', { badge, source });
+  }
+
+  function onTriggerClick(event: MouseEvent) {
+    onActivate(event.detail === 0 ? 'keyboard' : 'pointer');
+  }
 </script>
 
 {#if showTooltip}
-  <Tooltip {placement} {openDelayMs}>
-    <span slot="trigger"><slot name="trigger" /></span>
-    <span slot="content">
+  <Tooltip {placement} {openDelayMs} {maxWidthPx}>
+    <span slot="trigger">
+      {#if interactive}
+        <button class="triggerButton interactive" type="button" aria-label={badge?.label} on:click={onTriggerClick}>
+          <slot name="trigger" />
+        </button>
+      {:else}
+        <slot name="trigger" />
+      {/if}
+    </span>
+    <div slot="content" class="bl_tooltipContent">
       {#if contentMode === 'labelAndDescription'}
         <strong>{badge.label}</strong>
       {/if}
       {#if badge.description}
-        <span class="desc">{badge.description}</span>
+        <span class="bl_tooltipDesc">{badge.description}</span>
       {/if}
       {#if badge.actionText}
-        <div class="actionHint" aria-hidden="true">
-          <span class="actionRow">
+        <div class="bl_tooltipActionHint" aria-hidden="true">
+          <div class="bl_tooltipActionRow">
             {#if hintIcon}
-              <span class="actionIcon">
-                <BadgeIcon name={hintIcon} size={14} fg="rgba(255, 255, 255, 0.92)" bg={null} bgOpacity={0} />
+              <span class="bl_tooltipActionIcon">
+                <BadgeIcon name={hintIcon} size={10} fg="rgba(255, 255, 255, 0.92)" bg={null} bgOpacity={0} />
               </span>
             {/if}
-            <span class="actionText">{badge.actionText}</span>
-          </span>
+            <span class="bl_tooltipActionText">{badge.actionText}</span>
+          </div>
         </div>
       {/if}
-    </span>
+    </div>
   </Tooltip>
 {:else}
-  <slot name="trigger" />
+  {#if interactive}
+    <button class="triggerButton interactive" type="button" aria-label={badge?.label} on:click={onTriggerClick}>
+      <slot name="trigger" />
+    </button>
+  {:else}
+    <span>
+      <slot name="trigger" />
+    </span>
+  {/if}
 {/if}
 
 <style>
-  .desc {
-    display: block;
-    white-space: pre-line;
-  }
-
-  .actionHint {
-    display: block;
-    margin-top: 7px;
-    padding-top: 7px;
-    border-top: 1px solid rgba(255, 255, 255, 0.18);
-    opacity: 0.92;
-    font-size: 11px;
-    line-height: 1.2;
-    width: 100%;
-    text-align: center;
-    font-weight: 650;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .actionRow {
+  .triggerButton {
+    all: unset;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 6px;
   }
 
-  .actionText {
-    display: inline-block;
-    text-align: center;
-    white-space: normal;
-  }
-
-  .actionIcon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  .interactive {
+    cursor: pointer;
   }
 </style>
-

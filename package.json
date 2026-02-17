@@ -22,8 +22,10 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "vite",
+    "serve": "vite",
     "build:demo": "vite build",
     "build:wc": "vite build -c vite.wc.config.ts",
+    "build:wc:release": "npm run build:wc && node scripts/prepare-wc-release.mjs",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "package": "svelte-package",
     "prepack": "npm run package"

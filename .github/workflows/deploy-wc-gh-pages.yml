@@ -36,14 +36,17 @@ jobs:
       - name: Install
         run: npm ci
 
+      - name: Type-check
+        run: npm run check
+
       - name: Build web component bundle
-        run: npm run build:wc
+        run: npm run build:wc:release
 
       - name: Prepare Pages artifact folder
         run: |
           rm -rf pages
           mkdir -p pages/dist-wc
-          cp dist-wc/vis-badge.js pages/dist-wc/vis-badge.js
+          cp -R dist-wc/. pages/dist-wc/
           touch pages/.nojekyll
 
       - name: Deploy to gh-pages branch
@@ -52,3 +55,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./pages
           publish_branch: gh-pages
+          keep_files: true

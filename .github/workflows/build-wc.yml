@@ -1,0 +1,51 @@
+name: Build dist-wc on push
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "dist-wc/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: badge-lib-build-wc
+  cancel-in-progress: true
+
+jobs:
+  build-wc:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-actions[bot]'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Type-check
+        run: npm run check
+
+      - name: Build web component bundle
+        run: npm run build:wc:release
+
+      - name: Commit updated bundle (if changed)
+        run: |
+          if git diff --quiet -- dist-wc; then
+            echo "No changes in dist-wc"
+            exit 0
+          fi
+
+          git add dist-wc
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: rebuild vis-badge bundle [skip ci]"
+          git push

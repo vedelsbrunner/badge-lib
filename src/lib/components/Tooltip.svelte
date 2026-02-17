@@ -1,12 +1,10 @@
-<script context="module" lang="ts">
-  export type TooltipPlacement = 'top' | 'bottom' | 'left' | 'right';
-</script>
-
 <script lang="ts">
   import { tick } from 'svelte';
+  import type { TooltipPlacement } from '../badge/model';
 
   export let placement: TooltipPlacement = 'top';
   export let openDelayMs = 80;
+  export let maxWidthPx = 280;
 
   let open = false;
   let timer: ReturnType<typeof setTimeout> | null = null;
@@ -20,22 +18,33 @@
   let tooltipStyle = '';
   let arrowStyle = '';
 
-  const GLOBAL_STYLE_ID = 'badge-lib-tooltip-global-v1';
-  const GLOBAL_CSS = `
+  const GLOBAL_STYLE_ID = 'badge-lib-tooltip-global-v2';
+const GLOBAL_CSS = `
 .bl_tooltip {
   display: block;
   position: fixed;
-  z-index: 2000;
+  z-index: var(--vis-badge-tooltip-z-index, 2000);
   width: max-content;
-  max-width: min(280px, 64vw);
-  padding: 7px 9px;
-  border-radius: 9px;
-  border: 1px solid rgba(17, 24, 39, 0.14);
-  background: rgba(17, 24, 39, 0.96);
-  color: #ffffff;
-  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.2);
-  font-size: 12px;
-  line-height: 1.3;
+  max-width: min(var(--bl-tooltip-max-width, 280px), 64vw);
+  padding: var(--vis-badge-tooltip-padding, 7px 9px);
+  border-radius: var(--vis-badge-tooltip-radius, 9px);
+  border: 1px solid var(--vis-badge-tooltip-border, rgba(17, 24, 39, 0.14));
+  background: var(--vis-badge-tooltip-bg, rgba(17, 24, 39, 0.96));
+  color: var(--vis-badge-tooltip-fg, #ffffff);
+  box-shadow: var(--vis-badge-tooltip-shadow, 0 10px 24px rgba(17, 24, 39, 0.2));
+  font-family: var(
+    --vis-badge-tooltip-font-family,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    sans-serif
+  );
+  font-size: var(--vis-badge-tooltip-font-size, 12px);
+  line-height: var(--vis-badge-tooltip-line-height, 1.3);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-6px);
@@ -53,9 +62,9 @@
   position: absolute;
   width: 8px;
   height: 8px;
-  background: rgba(17, 24, 39, 0.96);
-  border-left: 1px solid rgba(17, 24, 39, 0.14);
-  border-top: 1px solid rgba(17, 24, 39, 0.14);
+  background: var(--vis-badge-tooltip-bg, rgba(17, 24, 39, 0.96));
+  border-left: 1px solid var(--vis-badge-tooltip-border, rgba(17, 24, 39, 0.14));
+  border-top: 1px solid var(--vis-badge-tooltip-border, rgba(17, 24, 39, 0.14));
   transform: rotate(45deg);
 }
 
@@ -77,11 +86,78 @@
   left: -4px;
   transform: rotate(-45deg);
 }
+
+.bl_tooltipContent {
+  display: grid;
+  row-gap: 4px;
+  width: 100%;
+  text-align: center;
+}
+
+.bl_tooltipDesc {
+  display: block;
+  text-align: left;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+.bl_tooltipActionHint {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  margin-top: 7px;
+  opacity: 0.95;
+}
+
+.bl_tooltipActionRow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  max-width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1;
+}
+
+.bl_tooltipActionText {
+  display: inline-block;
+  text-align: center;
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.015em;
+  opacity: 0.92;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+  line-height: 1.1;
+}
+
+.bl_tooltipActionIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 10px;
+  width: 10px;
+  height: 10px;
+  line-height: 0;
+}
+
+.bl_tooltipActionIcon svg {
+  display: block;
+  width: 10px;
+  height: 10px;
+}
 `;
 
   function ensureGlobalStyles() {
     if (typeof document === 'undefined') return;
-    if (document.getElementById(GLOBAL_STYLE_ID)) return;
+    const existing = document.getElementById(GLOBAL_STYLE_ID);
+    if (existing) {
+      if (existing.textContent !== GLOBAL_CSS) {
+        existing.textContent = GLOBAL_CSS;
+      }
+      return;
+    }
     const style = document.createElement('style');
     style.id = GLOBAL_STYLE_ID;
     style.textContent = GLOBAL_CSS;
@@ -199,12 +275,12 @@
     data-open={open}
     data-placement={effectivePlacement}
     bind:this={tooltipEl}
-    style={tooltipStyle}
+    style={`${tooltipStyle}--bl-tooltip-max-width:${Math.max(120, maxWidthPx)}px;`}
     use:portalToBody
   >
-    <span class="content">
+    <div class="content">
       <slot name="content" />
-    </span>
+    </div>
     <span class="bl_tooltipArrow" aria-hidden="true" style={arrowStyle} />
   </span>
 </span>
@@ -220,5 +296,9 @@
     display: inline-flex;
     align-items: center;
   }
-</style>
 
+  .content {
+    display: block;
+    width: 100%;
+  }
+</style>

@@ -4,12 +4,16 @@
 import BadgeIcon from "./icons/BadgeIcon.svelte";
 export let badge;
 export let variant = "outlined";
+export let iconBgShape = "round";
+export let tooltip = void 0;
+export let interactive = false;
 export let fixed = false;
 export let offsetPx = 16;
 export let expandDirection = "right";
 $: iconName = badge?.icon ?? null;
 $: badgeColor = String(badge?.color ?? "").trim() || "rgb(17, 24, 39)";
-const iconSize = 22;
+const iconSize = 24;
+$: iconBgShapeFinal = iconName === "Info" ? "square" : iconBgShape;
 </script>
 
 <div
@@ -18,17 +22,18 @@ const iconSize = 22;
   aria-label="Mini badge"
 >
   {#if badge}
-    <BadgeTooltip {badge} placement="top" openDelayMs={420} contentMode="description">
-      <span slot="trigger" role="presentation" on:keydown={() => {}}>
-        <span class="badge mini {variant}" style={`--badge-solid:${badgeColor};`} role="note" aria-label={badge.label}>
+    <BadgeTooltip {badge} options={tooltip} {interactive} on:activate>
+      <span slot="trigger">
+        <span class="badge mini {variant}" style={`--badge-solid:${badgeColor};`}>
           {#if iconName}
             <span class="icon" aria-hidden="true">
               <BadgeIcon
                 name={iconName}
                 size={iconSize}
-                bg={variant === 'outlined' ? 'var(--badge-solid)' : '#ffffff'}
-                fg={variant === 'outlined' ? '#ffffff' : 'var(--badge-solid)'}
+                bg="var(--mini-icon-bg)"
+                fg="var(--mini-icon-fg)"
                 bgOpacity={1}
+                bgShape={iconBgShapeFinal}
               />
             </span>
           {/if}
@@ -67,10 +72,21 @@ const iconSize = 22;
     font-weight: 550;
     font-size: 12px;
     line-height: 1;
+    font-family: var(
+      --vis-badge-tooltip-font-family,
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      'Segoe UI',
+      Roboto,
+      'Helvetica Neue',
+      Arial,
+      sans-serif
+    );
     user-select: none;
     outline: none;
-    transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease,
-      padding 320ms cubic-bezier(0.2, 0, 0, 1);
+    transition: background-color 220ms ease, border-color 220ms ease, color 220ms ease, box-shadow 220ms ease,
+      padding 420ms cubic-bezier(0.2, 0, 0, 1);
 
     /* Tokens derived from the explicit `--badge-solid` color. */
     --badge-solid: rgb(17, 24, 39);
@@ -80,6 +96,10 @@ const iconSize = 22;
     --badge-pad-y: 3px;
     --badge-pad-x: 6px;
     --badge-border-w: 1px;
+
+    /* Mini icon defaults (outlined-like): colored pill, white glyph */
+    --mini-icon-bg: var(--badge-solid);
+    --mini-icon-fg: #ffffff;
   }
 
   .badge.filled {
@@ -98,6 +118,17 @@ const iconSize = 22;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 24px;
+    height: 24px;
+  }
+
+  .icon :global(svg),
+  .icon :global(img),
+  .icon :global(ion-icon),
+  .icon :global(iconify-icon) {
+    width: 100%;
+    height: 100%;
+    display: block;
   }
 
   .label {
@@ -121,7 +152,7 @@ const iconSize = 22;
     overflow: hidden;
     line-height: 1.2;
     padding-bottom: 1px;
-    transition: max-width 320ms cubic-bezier(0.2, 0, 0, 1), opacity 200ms ease;
+    transition: max-width 420ms cubic-bezier(0.2, 0, 0, 1), opacity 260ms ease;
   }
 
   .badge.mini:hover,
@@ -137,10 +168,22 @@ const iconSize = 22;
     border-color: var(--badge-border);
   }
 
+  /* For filled mini badges, the base `.badge.mini` keeps background transparent.
+     Re-introduce the solid background when expanded so text stays readable. */
+  .badge.mini.filled:hover,
+  .badge.mini.filled:focus-visible {
+    background: var(--badge-solid);
+    border-color: transparent;
+    color: #ffffff;
+
+    /* Invert the icon when expanded: white pill, colored glyph */
+    --mini-icon-bg: #ffffff;
+    --mini-icon-fg: var(--badge-solid);
+  }
+
   .badge.mini:hover .label,
   .badge.mini:focus-visible .label {
     max-width: 220px;
     opacity: 1;
   }
 </style>
-

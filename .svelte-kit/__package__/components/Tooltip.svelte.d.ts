@@ -1,9 +1,10 @@
 import { SvelteComponent } from "svelte";
-export type TooltipPlacement = 'top' | 'bottom' | 'left' | 'right';
+import type { TooltipPlacement } from '../badge/model';
 declare const __propDef: {
     props: {
         placement?: TooltipPlacement;
         openDelayMs?: number;
+        maxWidthPx?: number;
     };
     events: {
         [evt: string]: CustomEvent<any>;

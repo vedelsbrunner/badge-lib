@@ -7,5 +7,20 @@ if (!customElements.get('vis-badge')) {
   customElements.define('vis-badge', ctor);
 }
 
-export {};
+// In dev, custom elements cannot be redefined after first registration.
+// Force a full reload when the CE module updates so style/markup changes are visible.
+const hot = (
+  import.meta as ImportMeta & {
+    hot?: {
+      accept: (dep: string, cb: () => void) => void;
+    };
+  }
+).hot;
 
+if (hot) {
+  hot.accept('./VisBadge.ce.svelte', () => {
+    window.location.reload();
+  });
+}
+
+export {};

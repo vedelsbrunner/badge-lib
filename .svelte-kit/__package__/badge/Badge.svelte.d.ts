@@ -1,22 +1,29 @@
 import { SvelteComponent } from "svelte";
-export type BadgeType = 'mono' | 'mini' | 'round' | 'roundcirculartext';
-export type BadgeVariant = import('./BadgeMono.svelte').MonoVariant | import('./BadgeMini.svelte').MiniVariant | import('./BadgeRound.svelte').RoundVariant | import('./BadgeRoundCircularText.svelte').RoundCircularTextVariant;
-import type { BadgeData } from './types';
+export type BadgeType = import('./model').BadgeType;
+export type BadgeVariant = import('./model').BadgeVariant;
+import type { BadgeActivateDetail, BadgeData } from './types';
+import type { BadgeTooltipOptions, BadgeType as BadgeTypeDef, BadgeVariant as BadgeVariantDef } from './model';
+import type { BadgeIconBgShape } from './icons/BadgeIcon.svelte';
 declare const __propDef: {
     props: {
         badge: BadgeData;
-        type?: BadgeType;
-        variant?: BadgeVariant | undefined;
+        type?: BadgeTypeDef;
+        interactive?: boolean;
+        variant?: BadgeVariantDef | undefined;
         size?: number | undefined;
         fixed?: boolean;
         offsetPx?: number;
         expandDirection?: "left" | "right";
+        iconBgShape?: BadgeIconBgShape | undefined;
         ringText?: string | null;
         repeat?: number;
         separator?: string;
         sealFontScale?: number;
+        tooltip?: BadgeTooltipOptions | undefined;
     };
     events: {
+        activate: CustomEvent<BadgeActivateDetail>;
+    } & {
         [evt: string]: CustomEvent<any>;
     };
     slots: {};

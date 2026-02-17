@@ -1,4 +1,4 @@
-import type { BadgeData } from '../lib/badge/types';
+import type { BadgeData } from '../badge/types';
 
 const COLOR_SUCCESS = 'rgb(46, 125, 50)';
 const COLOR_INFO = 'rgb(2, 136, 209)';
@@ -178,4 +178,3 @@ export function makeSEFChartBadge(kind: SEFChartBadgeKind, areaName: string, com
     description: cfg.describe(areaName, compareTo)
   };
 }
-

@@ -1,13 +1,18 @@
 import { SvelteComponent } from "svelte";
-export type RoundVariant = 'solid' | 'ring' | 'double-ring' | 'stamp' | 'glow';
+export type RoundVariant = import('./model').RoundVariant;
 import type { BadgeData } from './types';
+import type { BadgeTooltipOptions, RoundVariant as RoundVariantType } from './model';
 declare const __propDef: {
     props: {
         badge: BadgeData;
-        variant?: RoundVariant;
+        variant?: RoundVariantType;
         size?: number;
+        tooltip?: BadgeTooltipOptions | undefined;
+        interactive?: boolean;
     };
     events: {
+        activate: CustomEvent<import("./types").BadgeActivateDetail>;
+    } & {
         [evt: string]: CustomEvent<any>;
     };
     slots: {};

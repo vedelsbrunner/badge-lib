@@ -1,12 +1,17 @@
 import { SvelteComponent } from "svelte";
-export type MonoVariant = 'filled' | 'outlined';
+export type MonoVariant = import('./model').MonoVariant;
+import type { BadgeTooltipOptions, MonoVariant as MonoVariantType } from './model';
 import type { BadgeData } from './types';
 declare const __propDef: {
     props: {
         badge: BadgeData;
-        variant?: MonoVariant;
+        variant?: MonoVariantType;
+        tooltip?: BadgeTooltipOptions | undefined;
+        interactive?: boolean;
     };
     events: {
+        activate: CustomEvent<import("./types").BadgeActivateDetail>;
+    } & {
         [evt: string]: CustomEvent<any>;
     };
     slots: {};

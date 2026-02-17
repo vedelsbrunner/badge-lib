@@ -1,5 +1,6 @@
 import { SvelteComponent } from "svelte";
-export type BadgeIconName = 'Confirmation' | 'Warning' | 'Info' | 'Interactive' | 'badge-check';
+export type BadgeIconName = 'Confirmation' | 'Warning' | 'Info' | 'InfoCircle' | 'Interactive' | 'Expand' | 'OpenData' | 'badge-check' | 'Download' | 'ExternalLink';
+export type BadgeIconBgShape = 'round' | 'square';
 declare const __propDef: {
     props: {
         name: BadgeIconName;
@@ -7,6 +8,7 @@ declare const __propDef: {
         bg?: string | null;
         fg?: string | null;
         bgOpacity?: number;
+        bgShape?: BadgeIconBgShape;
     };
     events: {
         [evt: string]: CustomEvent<any>;

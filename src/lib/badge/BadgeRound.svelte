@@ -1,16 +1,19 @@
 <script context="module" lang="ts">
-  export type RoundVariant = 'solid' | 'ring' | 'double-ring' | 'stamp' | 'glow';
+  export type RoundVariant = import('./model').RoundVariant;
 </script>
 
 <script lang="ts">
   import BadgeTooltip from './_BadgeTooltip.svelte';
   import BadgeIcon from './icons/BadgeIcon.svelte';
   import type { BadgeData } from './types';
+  import type { BadgeTooltipOptions, RoundVariant as RoundVariantType } from './model';
   import type { BadgeIconBgShape } from './icons/BadgeIcon.svelte';
 
   export let badge: BadgeData;
-  export let variant: RoundVariant = 'solid';
+  export let variant: RoundVariantType = 'solid';
   export let size: number = 44;
+  export let tooltip: BadgeTooltipOptions | undefined = undefined;
+  export let interactive = false;
 
   $: iconName = badge?.icon ?? null;
   $: badgeColor = String(badge?.color ?? '').trim() || 'rgb(17, 24, 39)';
@@ -29,24 +32,24 @@
 </script>
 
 {#if badge}
-  <BadgeTooltip {badge} placement="top" openDelayMs={120} contentMode="labelAndDescription">
-    <span slot="trigger" role="presentation" on:keydown={() => {}}>
+  <BadgeTooltip {badge} options={tooltip} {interactive} on:activate>
+    <span slot="trigger">
       <span
         class="prio {variant} with-label"
-        style={`--prio-solid:${badgeColor}; --prio-size:${renderSize}px; --prio-text-size:${textSize}px;`}
-        role="note"
-        aria-label={badge.label}
+        style={`--prio-solid:${badgeColor}; --prio-size:${renderSize}px; --prio-text-size:${textSize}px; --prio-icon-size:${iconSize}px;`}
       >
         <span class="prio-inner" aria-hidden="true">
           {#if iconName}
-            <BadgeIcon
-              name={iconName}
-              size={iconSize}
-              bg={variant === 'solid' ? '#ffffff' : 'var(--prio-solid)'}
-              bgOpacity={1}
-              fg={variant === 'solid' ? 'var(--prio-solid)' : '#ffffff'}
-              bgShape={iconBgShape}
-            />
+            <span class="icon" aria-hidden="true">
+              <BadgeIcon
+                name={iconName}
+                size={iconSize}
+                bg={variant === 'solid' ? '#ffffff' : 'var(--prio-solid)'}
+                bgOpacity={1}
+                fg={variant === 'solid' ? 'var(--prio-solid)' : '#ffffff'}
+                bgShape={iconBgShape}
+              />
+            </span>
           {/if}
           <span class="prio-text">{rawLabel}</span>
         </span>
@@ -66,8 +69,18 @@
     cursor: default;
     outline: none;
     user-select: none;
-    transition: transform 160ms cubic-bezier(0.2, 0, 0, 1), box-shadow 160ms cubic-bezier(0.2, 0, 0, 1),
-      filter 160ms cubic-bezier(0.2, 0, 0, 1);
+    transition: transform 160ms cubic-bezier(0.2, 0, 0, 1), box-shadow 160ms cubic-bezier(0.2, 0, 0, 1);
+    font-family: var(
+      --vis-badge-tooltip-font-family,
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      'Segoe UI',
+      Roboto,
+      'Helvetica Neue',
+      Arial,
+      sans-serif
+    );
     --prio-solid: rgb(17, 24, 39);
     --prio-border: color-mix(in srgb, var(--prio-solid) 65%, transparent);
     --prio-text: #ffffff;
@@ -101,6 +114,23 @@
     opacity: 0.95;
   }
 
+  .icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--prio-icon-size);
+    height: var(--prio-icon-size);
+  }
+
+  .icon :global(svg),
+  .icon :global(img),
+  .icon :global(ion-icon),
+  .icon :global(iconify-icon) {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
   .prio.solid {
     background: var(--prio-solid);
   }
@@ -116,22 +146,4 @@
     box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.95), 0 0 0 2px var(--prio-solid);
   }
 
-  .prio.stamp {
-    background: var(--prio-solid);
-    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.85);
-    filter: saturate(1.05);
-  }
-
-  .prio.stamp .prio-inner {
-    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 0);
-    background-size: 6px 6px;
-    background-position: 0 0;
-  }
-
-  .prio.glow {
-    background: var(--prio-solid);
-    box-shadow: 0 10px 22px rgba(17, 24, 39, 0.16), 0 0 0 3px rgba(255, 255, 255, 0.92);
-  }
-
 </style>
-

@@ -1,10 +1,13 @@
 import { SvelteComponent } from "svelte";
-export type RoundCircularTextVariant = 'outlined' | 'filled';
+export type RoundCircularTextVariant = import('./model').RoundCircularTextVariant;
+import type { BadgeTooltipOptions, RoundCircularTextVariant as RoundCircularTextVariantType } from './model';
 import type { BadgeData } from './types';
 declare const __propDef: {
     props: {
         badge: BadgeData;
-        variant?: RoundCircularTextVariant;
+        variant?: RoundCircularTextVariantType;
+        tooltip?: BadgeTooltipOptions | undefined;
+        interactive?: boolean;
         ringText?: string | null;
         repeat?: number;
         separator?: string;
@@ -12,6 +15,8 @@ declare const __propDef: {
         sealFontScale?: number;
     };
     events: {
+        activate: CustomEvent<import("./types").BadgeActivateDetail>;
+    } & {
         [evt: string]: CustomEvent<any>;
     };
     slots: {};

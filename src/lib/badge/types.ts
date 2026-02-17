@@ -2,8 +2,6 @@ import type { BadgeIconName } from './icons/BadgeIcon.svelte';
 
 export type BadgeColor = string;
 
-export type BadgeType = 'mono' | 'mini' | 'round' | 'roundcirculartext';
-
 export interface BadgeData {
   id?: string | number;
   label: string;
@@ -29,8 +27,18 @@ export interface BadgeData {
   icon?: BadgeIconName;
   /**
    * Optional grouping/category for downstream filtering/analytics.
-   * (Some badge definitions include this field.)
+   * Use `category` in new code. `type` is kept for legacy definitions.
+   */
+  category?: string;
+  /**
+   * @deprecated Use `category` instead.
    */
   type?: string;
 }
 
+export type BadgeActivationSource = 'pointer' | 'keyboard';
+
+export interface BadgeActivateDetail {
+  badge: BadgeData;
+  source: BadgeActivationSource;
+}

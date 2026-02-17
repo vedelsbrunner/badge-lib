@@ -1,15 +1,15 @@
 import { SvelteComponent } from "svelte";
-export type BadgeTooltipContentMode = 'description' | 'labelAndDescription';
-import { type TooltipPlacement } from '../components/Tooltip.svelte';
-import type { BadgeData } from './types';
+import type { BadgeTooltipOptions } from './model';
+import type { BadgeActivateDetail, BadgeData } from './types';
 declare const __propDef: {
     props: {
         badge: BadgeData;
-        placement?: TooltipPlacement;
-        openDelayMs?: number;
-        contentMode?: BadgeTooltipContentMode;
+        options?: BadgeTooltipOptions | undefined;
+        interactive?: boolean;
     };
     events: {
+        activate: CustomEvent<BadgeActivateDetail>;
+    } & {
         [evt: string]: CustomEvent<any>;
     };
     slots: {

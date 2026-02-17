@@ -1,16 +1,19 @@
 <script context="module" lang="ts">
-  export type MiniVariant = 'filled' | 'outlined';
+  export type MiniVariant = import('./model').MiniVariant;
 </script>
 
 <script lang="ts">
   import BadgeTooltip from './_BadgeTooltip.svelte';
   import BadgeIcon from './icons/BadgeIcon.svelte';
   import type { BadgeIconBgShape } from './icons/BadgeIcon.svelte';
+  import type { BadgeTooltipOptions, MiniVariant as MiniVariantType } from './model';
   import type { BadgeData } from './types';
 
   export let badge: BadgeData;
-  export let variant: MiniVariant = 'outlined';
+  export let variant: MiniVariantType = 'outlined';
   export let iconBgShape: BadgeIconBgShape = 'round';
+  export let tooltip: BadgeTooltipOptions | undefined = undefined;
+  export let interactive = false;
 
   /**
    * If true, positions the mini badge fixed in the bottom-right corner.
@@ -36,9 +39,9 @@
   aria-label="Mini badge"
 >
   {#if badge}
-    <BadgeTooltip {badge} placement="top" openDelayMs={420} contentMode="description">
-      <span slot="trigger" role="presentation" on:keydown={() => {}}>
-        <span class="badge mini {variant}" style={`--badge-solid:${badgeColor};`} role="note" aria-label={badge.label}>
+    <BadgeTooltip {badge} options={tooltip} {interactive} on:activate>
+      <span slot="trigger">
+        <span class="badge mini {variant}" style={`--badge-solid:${badgeColor};`}>
           {#if iconName}
             <span class="icon" aria-hidden="true">
               <BadgeIcon
@@ -86,6 +89,17 @@
     font-weight: 550;
     font-size: 12px;
     line-height: 1;
+    font-family: var(
+      --vis-badge-tooltip-font-family,
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      'Segoe UI',
+      Roboto,
+      'Helvetica Neue',
+      Arial,
+      sans-serif
+    );
     user-select: none;
     outline: none;
     transition: background-color 220ms ease, border-color 220ms ease, color 220ms ease, box-shadow 220ms ease,
@@ -121,6 +135,17 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 24px;
+    height: 24px;
+  }
+
+  .icon :global(svg),
+  .icon :global(img),
+  .icon :global(ion-icon),
+  .icon :global(iconify-icon) {
+    width: 100%;
+    height: 100%;
+    display: block;
   }
 
   .label {
@@ -179,4 +204,3 @@
     opacity: 1;
   }
 </style>
-

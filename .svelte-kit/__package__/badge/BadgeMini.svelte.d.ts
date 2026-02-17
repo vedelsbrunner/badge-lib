@@ -1,10 +1,15 @@
 import { SvelteComponent } from "svelte";
-export type MiniVariant = 'filled' | 'outlined';
+export type MiniVariant = import('./model').MiniVariant;
+import type { BadgeIconBgShape } from './icons/BadgeIcon.svelte';
+import type { BadgeTooltipOptions, MiniVariant as MiniVariantType } from './model';
 import type { BadgeData } from './types';
 declare const __propDef: {
     props: {
         badge: BadgeData;
-        variant?: MiniVariant;
+        variant?: MiniVariantType;
+        iconBgShape?: BadgeIconBgShape;
+        tooltip?: BadgeTooltipOptions | undefined;
+        interactive?: boolean;
         /**
            * If true, positions the mini badge fixed in the bottom-right corner.
            * If false, it will flow inline and you can position the wrapper yourself.
@@ -15,6 +20,8 @@ declare const __propDef: {
            */ expandDirection?: "left" | "right";
     };
     events: {
+        activate: CustomEvent<import("./types").BadgeActivateDetail>;
+    } & {
         [evt: string]: CustomEvent<any>;
     };
     slots: {};
